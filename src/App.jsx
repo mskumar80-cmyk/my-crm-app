@@ -1,12 +1,13 @@
-// ═══════════════════════════════════════════════
-//  Ensemble CRM — App.jsx
-//  Ensemble Digital Labs
-// ═══════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════
+//  Ensemble CRM  ·  App.jsx
+//  Ensemble Digital Labs  ·  ensembledigilabs.com
+//
+//  Features: Login · User Admin · Leads · Accounts · Contacts
+//            Opportunities · Contracts & Proposals · Activities
+//
+//  Default login → Username: Admin  /  Password: Admin
+// ═══════════════════════════════════════════════════════════════
 import { useState, useEffect, useRef, useMemo } from 'react';
-
-// All inline — no external CSS deps beyond index.css
-// Constants, demo data, helpers and every component
-// are defined below in one self-contained file.
 
 
 /* ═══ CONSTANTS ═══ */
@@ -72,6 +73,18 @@ const LR_META={
   Warm:{c:"#f97316",bg:"#fff7ed"},
   Cold:{c:"#0ea5e9",bg:"#e0f2fe"},
 };
+
+/* ─── User / Auth ─── */
+const USER_ROLES=["Admin","Manager","Sales Rep","Viewer"];
+const USER_STATUSES=["Active","Inactive"];
+const ROLE_META={
+  Admin:    {c:"#7c3aed",bg:"#ede9fe",icon:"🛡️"},
+  Manager:  {c:"#0ea5e9",bg:"#e0f2fe",icon:"📊"},
+  "Sales Rep":{c:"#10b981",bg:"#ecfdf5",icon:"💼"},
+  Viewer:   {c:"#64748b",bg:"#f1f5f9",icon:"👁️"},
+};
+/* Default built-in Admin — always present */
+const DEFAULT_ADMIN={id:"u0",username:"Admin",password:"Admin",name:"Administrator",email:"admin@ensembledigilabs.com",role:"Admin",status:"Active",createdAt:"2025-01-01",lastLogin:null};
 
 /* ═══ DEMO DATA ═══ */
 const D_ACCOUNTS=[
@@ -1457,7 +1470,10 @@ const SVGICONS={
   plus:'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>',
   chevL:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>',
   chevR:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>',
-  activities:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><line x1="8" y1="14" x2="8" y2="14"></line><line x1="12" y1="14" x2="12" y2="14"></line><line x1="16" y1="14" x2="16" y2="14"></line></svg>',
+  activities:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>',
+  users:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+  contracts:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>',
+  signout:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>',
 };
 
 /* ═══ ACTIVITIES GLOBAL ═══ */
@@ -1783,6 +1799,397 @@ function OppDetail({opp,account,acts,allAccounts,onBack,onEdit,onDelete,onSaveAc
   </div>;
 }
 
+/* ═══ LOGIN SCREEN ═══ */
+function LoginScreen({users,onLogin}){
+  const[username,setUsername]=useState("");
+  const[password,setPassword]=useState("");
+  const[showPw,setShowPw]=useState(false);
+  const[err,setErr]=useState("");
+  const[busy,setBusy]=useState(false);
+
+  function attempt(e){
+    e&&e.preventDefault();
+    setErr("");
+    if(!username.trim()||!password.trim()){setErr("Please enter your username and password.");return;}
+    setBusy(true);
+    setTimeout(()=>{
+      const allUsers=[DEFAULT_ADMIN,...(users||[])];
+      const match=allUsers.find(u=>u.username.toLowerCase()===username.trim().toLowerCase()&&u.password===password.trim());
+      if(!match){setErr("Incorrect username or password.");setBusy(false);return;}
+      if(match.status==="Inactive"){setErr("This account is inactive. Contact your Administrator.");setBusy(false);return;}
+      onLogin({...match,lastLogin:new Date().toISOString().slice(0,10)});
+    },550);
+  }
+
+  return(
+    <div style={{minHeight:"100vh",background:"linear-gradient(135deg,#0f172a 0%,#1e1b4b 55%,#0f172a 100%)",display:"flex",alignItems:"center",justifyContent:"center",padding:20,position:"relative",overflow:"hidden"}}>
+      {/* decorative blobs */}
+      <div style={{position:"absolute",top:"-12%",left:"-8%",width:480,height:480,borderRadius:"50%",background:"radial-gradient(circle,rgba(99,102,241,.2) 0%,transparent 70%)",pointerEvents:"none"}}/>
+      <div style={{position:"absolute",bottom:"-15%",right:"-6%",width:520,height:520,borderRadius:"50%",background:"radial-gradient(circle,rgba(139,92,246,.16) 0%,transparent 68%)",pointerEvents:"none"}}/>
+      {/* subtle grid */}
+      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(99,102,241,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(99,102,241,.05) 1px,transparent 1px)",backgroundSize:"40px 40px",pointerEvents:"none"}}/>
+
+      <div className="auth-fadeup" style={{width:"100%",maxWidth:420,position:"relative",zIndex:2}}>
+        {/* Brand */}
+        <div style={{textAlign:"center",marginBottom:28}}>
+          <div style={{width:58,height:58,borderRadius:16,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,fontWeight:800,color:"#fff",margin:"0 auto 14px",boxShadow:"0 0 0 8px rgba(99,102,241,.14),0 12px 36px rgba(99,102,241,.38)"}}>E</div>
+          <div style={{fontSize:22,fontWeight:700,color:"#f1f5f9",letterSpacing:"-.2px",marginBottom:3}}>Ensemble CRM</div>
+          <div style={{fontSize:11,color:"#475569",textTransform:"uppercase",letterSpacing:".08em"}}>Ensemble Digital Labs</div>
+        </div>
+
+        {/* Card */}
+        <div style={{background:"#fff",borderRadius:20,padding:"32px 34px",boxShadow:"0 28px 72px rgba(0,0,0,.38),0 0 0 1px rgba(255,255,255,.04)"}}>
+          <h2 style={{fontSize:18,fontWeight:700,color:"#0f172a",marginBottom:4}}>Sign in to your workspace</h2>
+          <p style={{fontSize:13,color:"#64748b",marginBottom:24}}>Enter your credentials to continue</p>
+
+          {/* Username */}
+          <div style={{marginBottom:14}}>
+            <div style={{fontSize:11,fontWeight:700,color:"#64748b",textTransform:"uppercase",letterSpacing:".06em",marginBottom:5}}>Username</div>
+            <input
+              value={username} onChange={e=>{setUsername(e.target.value);setErr("");}}
+              onKeyDown={e=>e.key==="Enter"&&attempt()}
+              placeholder="Enter username"
+              autoFocus
+              style={{width:"100%",padding:"10px 13px",borderRadius:9,border:"1.5px solid #e2e8f0",fontSize:14,outline:"none",background:"#fff",color:"#0f172a",transition:"border .15s,box-shadow .15s"}}
+              onFocus={e=>{e.target.style.borderColor="#6366f1";e.target.style.boxShadow="0 0 0 3px rgba(99,102,241,.1)";}}
+              onBlur={e=>{e.target.style.borderColor="#e2e8f0";e.target.style.boxShadow="none";}}
+            />
+          </div>
+
+          {/* Password */}
+          <div style={{marginBottom:20}}>
+            <div style={{fontSize:11,fontWeight:700,color:"#64748b",textTransform:"uppercase",letterSpacing:".06em",marginBottom:5}}>Password</div>
+            <div style={{position:"relative"}}>
+              <input
+                type={showPw?"text":"password"}
+                value={password} onChange={e=>{setPassword(e.target.value);setErr("");}}
+                onKeyDown={e=>e.key==="Enter"&&attempt()}
+                placeholder="Enter password"
+                style={{width:"100%",padding:"10px 40px 10px 13px",borderRadius:9,border:"1.5px solid #e2e8f0",fontSize:14,outline:"none",background:"#fff",color:"#0f172a",transition:"border .15s,box-shadow .15s"}}
+                onFocus={e=>{e.target.style.borderColor="#6366f1";e.target.style.boxShadow="0 0 0 3px rgba(99,102,241,.1)";}}
+                onBlur={e=>{e.target.style.borderColor="#e2e8f0";e.target.style.boxShadow="none";}}
+              />
+              <button type="button" onClick={()=>setShowPw(p=>!p)}
+                style={{position:"absolute",right:11,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:14,lineHeight:1,padding:2}}>
+                {showPw?"🙈":"👁"}
+              </button>
+            </div>
+          </div>
+
+          {err&&<div style={{background:"#fef2f2",border:"1px solid #fecaca",borderRadius:8,padding:"9px 12px",fontSize:12,color:"#dc2626",marginBottom:16,display:"flex",alignItems:"center",gap:7}}>
+            <span>⚠️</span>{err}
+          </div>}
+
+          <button onClick={attempt} disabled={busy}
+            style={{width:"100%",padding:"11px",borderRadius:11,border:"none",background:busy?"#a5b4fc":"linear-gradient(135deg,#6366f1,#8b5cf6)",color:"#fff",fontSize:14,fontWeight:700,cursor:busy?"default":"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:8,boxShadow:busy?"none":"0 4px 16px rgba(99,102,241,.35)",transition:"all .15s"}}>
+            {busy?<><div className="auth-spin"/>Signing in…</>:"Sign In"}
+          </button>
+
+          {/* Default credentials hint */}
+          <div style={{marginTop:18,padding:"11px 13px",background:"#f8fafc",border:"1px dashed #e2e8f0",borderRadius:9}}>
+            <div style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".07em",marginBottom:5}}>Default Credentials</div>
+            <div style={{fontSize:12,color:"#64748b",lineHeight:1.7}}>
+              Username: <code style={{background:"#e2e8f0",padding:"1px 6px",borderRadius:4,fontFamily:"monospace",color:"#334155"}}>Admin</code>
+              &nbsp;&nbsp;Password: <code style={{background:"#e2e8f0",padding:"1px 6px",borderRadius:4,fontFamily:"monospace",color:"#334155"}}>Admin</code>
+            </div>
+          </div>
+        </div>
+
+        <p style={{textAlign:"center",marginTop:18,fontSize:11,color:"#334155"}}>
+          © Ensemble Digital Labs ·{" "}
+          <a href="https://ensembledigilabs.com" target="_blank" style={{color:"#818cf8"}}>ensembledigilabs.com</a>
+        </p>
+      </div>
+    </div>
+  );
+}
+
+/* ═══ USER ADMINISTRATION ═══ */
+function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
+  const[showForm,setShowForm]=useState(false);
+  const[editU,setEditU]=useState(null);
+  const[search,setSearch]=useState("");
+  const[fRole,setFRole]=useState("All");
+  const[fStatus,setFStatus]=useState("All");
+  const[confirmDel,setConfirmDel]=useState(null);
+
+  const allUsers=[DEFAULT_ADMIN,...(users||[])];
+  const filtered=allUsers.filter(u=>{
+    if(fRole!=="All"&&u.role!==fRole)return false;
+    if(fStatus!=="All"&&u.status!==fStatus)return false;
+    if(search){const q=search.toLowerCase();return u.username?.toLowerCase().includes(q)||u.name?.toLowerCase().includes(q)||u.email?.toLowerCase().includes(q)||u.role?.toLowerCase().includes(q);}
+    return true;
+  });
+
+  const stats={total:allUsers.length,active:allUsers.filter(u=>u.status==="Active").length,admins:allUsers.filter(u=>u.role==="Admin").length};
+  const isAdmin=currentUser?.role==="Admin";
+  const avatarColor=u=>({Admin:"#7c3aed",Manager:"#0ea5e9","Sales Rep":"#10b981",Viewer:"#64748b"}[u.role]||"#6366f1");
+  const initials=n=>(n||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
+
+  return(
+    <div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
+      {/* Header */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
+        <div>
+          <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:3}}>User Administration</h1>
+          <p style={{fontSize:13,color:"#64748b"}}>Manage team members, roles, and access permissions</p>
+        </div>
+        {isAdmin&&<Btn onClick={()=>{setEditU(null);setShowForm(true);}}>+ Add User</Btn>}
+      </div>
+
+      {/* Stats */}
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:10,marginBottom:18}}>
+        {[["Total Users",stats.total,"#6366f1","👥"],["Active",stats.active,"#10b981","✅"],["Admins",stats.admins,"#7c3aed","🛡️"],["Other Roles",stats.total-stats.admins,"#0ea5e9","💼"]].map(([l,v,c,ic])=>
+          <div key={l} style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"14px 16px",display:"flex",alignItems:"center",gap:12}}>
+            <div style={{width:38,height:38,borderRadius:10,background:c+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{ic}</div>
+            <div>
+              <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
+              <div style={{fontSize:24,fontWeight:700,color:c,lineHeight:1}}>{v}</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Filters */}
+      <div style={{display:"flex",gap:10,marginBottom:14,flexWrap:"wrap"}}>
+        <div style={{position:"relative",flex:"1 1 200px"}}>
+          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#94a3b8",fontSize:13,pointerEvents:"none"}}>🔍</span>
+          <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search users…"
+            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+        </div>
+        <select value={fRole} onChange={e=>setFRole(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
+          <option value="All">All Roles</option>{USER_ROLES.map(r=><option key={r}>{r}</option>)}
+        </select>
+        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
+          <option value="All">All Statuses</option>{USER_STATUSES.map(s=><option key={s}>{s}</option>)}
+        </select>
+        {(search||fRole!=="All"||fStatus!=="All")&&
+          <button onClick={()=>{setSearch("");setFRole("All");setFStatus("All");}}
+            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#fff0f0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
+      </div>
+
+      {/* Table */}
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+        <div style={{overflowX:"auto"}}>
+          <table style={{width:"100%",fontSize:13,borderCollapse:"collapse",minWidth:700}}>
+            <thead>
+              <tr style={{background:"#f8fafc",borderBottom:"1px solid #e2e8f0"}}>
+                {["User","Username","Role","Status","Email","Last Login",""].map(h=>
+                  <th key={h} style={{padding:"11px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.length===0&&<tr><td colSpan={7} style={{padding:"48px",textAlign:"center",color:"#94a3b8"}}>No users match your filters.</td></tr>}
+              {filtered.map((u,i)=>{
+                const rm=ROLE_META[u.role]||ROLE_META.Viewer;
+                const isBuiltIn=u.id==="u0";
+                const isMe=u.id===currentUser?.id;
+                const isActive=u.status!=="Inactive";
+                return(
+                  <tr key={u.id} style={{borderTop:"1px solid #f1f5f9"}}
+                    onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"}
+                    onMouseLeave={e=>e.currentTarget.style.background=""}>
+                    {/* Avatar + Name */}
+                    <td style={{padding:"13px 16px"}}>
+                      <div style={{display:"flex",alignItems:"center",gap:10}}>
+                        <div style={{position:"relative",flexShrink:0}}>
+                          <div style={{width:36,height:36,borderRadius:"50%",background:avatarColor(u),display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:"#fff"}}>
+                            {initials(u.name||u.username)}
+                          </div>
+                          <span style={{position:"absolute",bottom:0,right:0,width:10,height:10,borderRadius:"50%",background:isActive?"#10b981":"#94a3b8",border:"2px solid #fff"}}/>
+                        </div>
+                        <div>
+                          <div style={{fontWeight:600,color:"#0f172a",display:"flex",alignItems:"center",gap:6}}>
+                            {u.name||u.username}
+                            {isMe&&<span style={{fontSize:9,fontWeight:700,background:"#eef2ff",color:"#6366f1",borderRadius:10,padding:"1px 6px"}}>YOU</span>}
+                            {isBuiltIn&&<span style={{fontSize:9,fontWeight:700,background:"#ede9fe",color:"#7c3aed",borderRadius:10,padding:"1px 6px"}}>BUILT-IN</span>}
+                          </div>
+                          <div style={{fontSize:11,color:"#64748b"}}>{u.email||"—"}</div>
+                        </div>
+                      </div>
+                    </td>
+                    {/* Username */}
+                    <td style={{padding:"13px 16px"}}>
+                      <code style={{fontSize:12,background:"#f1f5f9",color:"#334155",padding:"2px 8px",borderRadius:6,fontFamily:"monospace"}}>{u.username}</code>
+                    </td>
+                    {/* Role */}
+                    <td style={{padding:"13px 16px"}}>
+                      <span style={{background:rm.bg,color:rm.c,borderRadius:20,fontSize:11,fontWeight:600,padding:"3px 11px",display:"inline-flex",alignItems:"center",gap:4}}>
+                        <span style={{fontSize:12}}>{rm.icon}</span>{u.role}
+                      </span>
+                    </td>
+                    {/* Status */}
+                    <td style={{padding:"13px 16px"}}>
+                      <span style={{background:isActive?"#ecfdf5":"#f1f5f9",color:isActive?"#10b981":"#64748b",borderRadius:20,fontSize:11,fontWeight:600,padding:"3px 11px"}}>
+                        {isActive?"Active":"Inactive"}
+                      </span>
+                    </td>
+                    {/* Email */}
+                    <td style={{padding:"13px 16px",color:"#64748b",fontSize:12}}>{u.email||"—"}</td>
+                    {/* Last Login */}
+                    <td style={{padding:"13px 16px"}}>
+                      {u.lastLogin?<span style={{fontSize:12,color:"#64748b"}}>{fmt(u.lastLogin)}</span>:<span style={{fontSize:11,color:"#94a3b8",fontStyle:"italic"}}>Never</span>}
+                    </td>
+                    {/* Actions */}
+                    <td style={{padding:"13px 16px"}}>
+                      {isAdmin&&!isBuiltIn?(
+                        <div style={{display:"flex",gap:6,justifyContent:"flex-end",flexWrap:"wrap"}}>
+                          <Btn sz="sm" v="ghost" onClick={()=>{setEditU(u);setShowForm(true);}}>Edit</Btn>
+                          {!isMe&&isActive&&(
+                            <Btn sz="sm" v="ghost" onClick={()=>{onToggleStatus(u.id,"Inactive");notify("User deactivated");}}
+                              style={{color:"#f59e0b",borderColor:"#fde68a"}}>Deactivate</Btn>
+                          )}
+                          {!isMe&&!isActive&&(
+                            <Btn sz="sm" v="ghost" onClick={()=>{onToggleStatus(u.id,"Active");notify("User reactivated ✓");}}
+                              style={{color:"#10b981",borderColor:"#a7f3d0"}}>Reactivate</Btn>
+                          )}
+                          {!isMe&&(
+                            <Btn sz="sm" v="danger" onClick={()=>setConfirmDel(u.id)}>Delete</Btn>
+                          )}
+                        </div>
+                      ):<span style={{fontSize:11,color:"#94a3b8",fontSize:12}}>—</span>}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Permission reference */}
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",marginTop:16}}>
+        <div style={{padding:"13px 20px",borderBottom:"1px solid #f1f5f9"}}>
+          <span style={{fontSize:13,fontWeight:700,color:"#0f172a"}}>Role Permissions</span>
+        </div>
+        <div style={{overflowX:"auto"}}>
+          <table style={{width:"100%",fontSize:12,borderCollapse:"collapse",minWidth:500}}>
+            <thead>
+              <tr style={{background:"#f8fafc"}}>
+                <th style={{padding:"9px 20px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",width:"40%"}}>Permission</th>
+                {USER_ROLES.map(r=>{const rm=ROLE_META[r];return(
+                  <th key={r} style={{padding:"9px 14px",textAlign:"center",fontSize:10,fontWeight:700,color:rm.c,textTransform:"uppercase"}}>{rm.icon} {r}</th>
+                );})}
+              </tr>
+            </thead>
+            <tbody>
+              {[
+                ["View all CRM data",         [1,1,1,1]],
+                ["Create & edit records",      [1,1,1,0]],
+                ["Delete records",             [1,1,0,0]],
+                ["Manage contracts & files",   [1,1,1,0]],
+                ["Export data",                [1,1,0,0]],
+                ["Manage users",               [1,0,0,0]],
+                ["System configuration",       [1,0,0,0]],
+              ].map(([perm,vals],i,arr)=>(
+                <tr key={perm} style={{borderTop:"1px solid #f1f5f9"}}>
+                  <td style={{padding:"10px 20px",color:"#334155",fontWeight:500}}>{perm}</td>
+                  {vals.map((v,j)=>(
+                    <td key={j} style={{padding:"10px 14px",textAlign:"center"}}>
+                      {v?<span style={{color:"#10b981",fontSize:16}}>✓</span>:<span style={{color:"#e2e8f0",fontSize:16}}>—</span>}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* Confirm delete */}
+      {confirmDel&&<div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.45)",zIndex:600,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
+        <div style={{background:"#fff",borderRadius:16,padding:"28px 32px",maxWidth:380,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,.22)",textAlign:"center"}}>
+          <div style={{fontSize:40,marginBottom:12}}>⚠️</div>
+          <div style={{fontSize:16,fontWeight:700,color:"#0f172a",marginBottom:8}}>Delete User?</div>
+          <p style={{fontSize:13,color:"#64748b",lineHeight:1.5,marginBottom:22}}>
+            This will permanently remove <strong>{allUsers.find(u=>u.id===confirmDel)?.name||allUsers.find(u=>u.id===confirmDel)?.username}</strong> and all their access. This cannot be undone.
+          </p>
+          <div style={{display:"flex",gap:10}}>
+            <Btn v="ghost" onClick={()=>setConfirmDel(null)} style={{flex:1}}>Cancel</Btn>
+            <Btn v="danger" onClick={()=>{onDelete(confirmDel);setConfirmDel(null);notify("User deleted");}} style={{flex:1,fontWeight:700}}>Delete User</Btn>
+          </div>
+        </div>
+      </div>}
+
+      {showForm&&<UserForm user={editU} allUsers={allUsers} onClose={()=>{setShowForm(false);setEditU(null);}}
+        onSave={d=>{
+          const isNew=!editU;
+          onSave({...d,id:editU?.id||uid(),createdAt:editU?.createdAt||new Date().toISOString().slice(0,10),lastLogin:editU?.lastLogin||null});
+          notify(isNew?"User created ✓":"User updated ✓");
+          setShowForm(false);setEditU(null);
+        }}/>}
+    </div>
+  );
+}
+
+function UserForm({user,allUsers,onClose,onSave}){
+  const isEdit=!!user;
+  const[f,sf]=useState({
+    username:user?.username||"",
+    password:user?.password||"",
+    name:user?.name||"",
+    email:user?.email||"",
+    role:user?.role||"Sales Rep",
+    status:user?.status||"Active",
+  });
+  const[showPw,setShowPw]=useState(false);
+  const set=(k,v)=>sf(p=>({...p,[k]:v}));
+
+  function validate(){
+    if(!f.username.trim())return"Username is required.";
+    if(!isEdit&&!f.password.trim())return"Password is required.";
+    // Username uniqueness (skip self)
+    const taken=allUsers.find(u=>u.username.toLowerCase()===f.username.trim().toLowerCase()&&u.id!==user?.id);
+    if(taken)return`Username "${f.username.trim()}" is already taken.`;
+    return null;
+  }
+
+  return(
+    <Modal title={isEdit?"Edit User":"Create New User"} onClose={onClose} onSave={()=>{const e=validate();if(e)return alert(e);onSave(f);}}>
+      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+        <Field label="Full Name" value={f.name} onChange={v=>set("name",v)} placeholder="e.g. Jane Smith" span={2}/>
+        <Field label="Username *" value={f.username} onChange={v=>set("username",v)} placeholder="e.g. jsmith"/>
+        <Field label="Email" value={f.email} onChange={v=>set("email",v)} type="email" placeholder="jane@company.com"/>
+
+        {/* Password field with toggle */}
+        <div style={{gridColumn:"span 2"}}>
+          <Lbl>{isEdit?"New Password (leave blank to keep current)":"Password *"}</Lbl>
+          <div style={{position:"relative"}}>
+            <input type={showPw?"text":"password"} value={f.password} onChange={e=>set("password",e.target.value)}
+              placeholder={isEdit?"Enter new password to change…":"Set a strong password"}
+              style={{width:"100%",padding:"8px 38px 8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+            <button type="button" onClick={()=>setShowPw(p=>!p)}
+              style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:14}}>
+              {showPw?"🙈":"👁"}
+            </button>
+          </div>
+        </div>
+
+        {/* Role selector */}
+        <div style={{gridColumn:"span 2"}}>
+          <Lbl>Role</Lbl>
+          <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:4}}>
+            {USER_ROLES.map(r=>{const rm=ROLE_META[r];const active=f.role===r;return(
+              <button key={r} onClick={()=>set("role",r)}
+                style={{padding:"7px 16px",borderRadius:20,border:"1.5px solid "+(active?rm.c:"#e2e8f0"),background:active?rm.bg:"#fff",color:active?rm.c:"#64748b",fontSize:12,fontWeight:active?700:400,cursor:"pointer",display:"flex",alignItems:"center",gap:5,transition:"all .12s"}}>
+                <span style={{fontSize:13}}>{rm.icon}</span>{r}
+              </button>
+            );})}
+          </div>
+          <div style={{marginTop:8,fontSize:11,color:"#94a3b8",lineHeight:1.5}}>
+            {f.role==="Admin"&&"⚡ Admin has full system access including user management."}
+            {f.role==="Manager"&&"📊 Manager can create, edit, and delete records but cannot manage users."}
+            {f.role==="Sales Rep"&&"💼 Sales Rep can view and edit records but cannot delete or export."}
+            {f.role==="Viewer"&&"👁️ Viewer can view records but cannot make any changes."}
+          </div>
+        </div>
+
+        {isEdit&&<Select label="Status" value={f.status} onChange={v=>set("status",v)} options={USER_STATUSES} span={2}/>}
+      </div>
+    </Modal>
+  );
+}
+
 /* ═══ CONTRACT COMPONENTS ═══ */
 
 function ContractForm({contract,accountId,onClose,onSave}){
@@ -1895,6 +2302,381 @@ function ContractForm({contract,accountId,onClose,onSave}){
       {fileErr&&<div style={{marginTop:6,fontSize:12,color:"#ef4444",fontWeight:500}}>{fileErr}</div>}
     </div>
   </Modal>
+}
+
+/* ═══ CONTRACTS & PROPOSALS SCREEN ═══ */
+function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
+  const[search,setSearch]=useState("");
+  const[fType,setFType]=useState("All");
+  const[fStatus,setFStatus]=useState("All");
+  const[fAccount,setFAccount]=useState("All");
+  const[view,setView]=useState("cards"); // cards | table
+  const[showForm,setShowForm]=useState(false);
+  const[editCT,setEditCT]=useState(null);
+  const[selCT,setSelCT]=useState(null); // detail panel
+
+  const today=new Date();
+
+  const filtered=contracts.filter(ct=>{
+    if(fType!=="All"&&ct.type!==fType)return false;
+    if(fStatus!=="All"&&ct.status!==fStatus)return false;
+    if(fAccount!=="All"&&ct.accountId!==fAccount)return false;
+    if(search){
+      const q=search.toLowerCase();
+      const acct=accounts.find(a=>a.id===ct.accountId);
+      return ct.name?.toLowerCase().includes(q)||ct.type?.toLowerCase().includes(q)||acct?.name?.toLowerCase().includes(q)||ct.notes?.toLowerCase().includes(q);
+    }
+    return true;
+  }).sort((a,b)=>new Date(b.createdAt||0)-new Date(a.createdAt||0));
+
+  /* ─── Summary stats ─── */
+  const totalValue=contracts.reduce((s,c)=>s+Number(c.value||0),0);
+  const byStatus=s=>contracts.filter(c=>c.status===s).length;
+  const expiringSoon=contracts.filter(c=>{
+    if(!c.endDate||c.status!=="Active")return false;
+    const d=Math.round((new Date(c.endDate)-today)/86400000);
+    return d>=0&&d<=30;
+  }).length;
+
+  function fmtBytes(b){if(!b)return"";if(b<1048576)return(b/1024).toFixed(0)+"KB";return(b/1048576).toFixed(2)+"MB";}
+
+  function handleQuickFile(ct,e){
+    const file=e.target.files[0];
+    if(!file)return;
+    if(file.size>5*1024*1024){alert("File exceeds 5 MB.");return;}
+    const reader=new FileReader();
+    reader.onload=ev=>onSave({...ct,fileName:file.name,fileSize:file.size,fileData:ev.target.result});
+    reader.readAsDataURL(file);
+  }
+
+  function ContractCard({ct}){
+    const cm=CT_META[ct.type]||CT_META.Other;
+    const acct=accounts.find(a=>a.id===ct.accountId);
+    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+    const daysLeft=ct.endDate?Math.round((new Date(ct.endDate)-today)/86400000):null;
+    const isExpired=ct.endDate&&new Date(ct.endDate)<today;
+    const urgent=daysLeft!==null&&daysLeft>=0&&daysLeft<=30;
+    const isSel=selCT?.id===ct.id;
+
+    return(
+      <div onClick={()=>setSelCT(isSel?null:ct)}
+        style={{background:"#fff",borderRadius:14,border:"2px solid "+(isSel?"#6366f1":"#e2e8f0"),padding:"18px 20px",cursor:"pointer",transition:"all .15s",boxShadow:isSel?"0 0 0 3px rgba(99,102,241,.12)":"none"}}
+        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.borderColor="#c7d2fe";}}
+        onMouseLeave={e=>{if(!isSel)e.currentTarget.style.borderColor="#e2e8f0";}}>
+        {/* Top row */}
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
+          <div style={{display:"flex",gap:10,alignItems:"flex-start",flex:1,minWidth:0}}>
+            <div style={{width:40,height:40,borderRadius:11,background:cm.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>{cm.icon}</div>
+            <div style={{minWidth:0}}>
+              <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.name}</div>
+              <div style={{display:"flex",gap:5,flexWrap:"wrap"}}>
+                <span style={{background:cm.bg,color:cm.c,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.type}</span>
+                <span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.status}</span>
+                {urgent&&<span style={{background:"#fff7ed",color:"#ea580c",borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>⚠️ {daysLeft}d left</span>}
+                {isExpired&&ct.status!=="Expired"&&<span style={{background:"#fef2f2",color:"#dc2626",borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>Overdue</span>}
+              </div>
+            </div>
+          </div>
+          <div style={{display:"flex",gap:5,marginLeft:8,flexShrink:0}} onClick={e=>e.stopPropagation()}>
+            <label title="Attach file" style={{display:"inline-flex",alignItems:"center",padding:"4px 8px",borderRadius:7,border:"1px solid #e2e8f0",background:"#f8fafc",color:"#64748b",fontSize:11,fontWeight:600,cursor:"pointer",gap:3}}>
+              📎<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
+            </label>
+            <Btn sz="sm" v="ghost" onClick={()=>{setEditCT(ct);setShowForm(true);}}>Edit</Btn>
+            <Btn sz="sm" v="danger" onClick={()=>{if(window.confirm("Delete this contract?"))onDelete(ct.id);}}>✕</Btn>
+          </div>
+        </div>
+
+        {/* Account */}
+        {acct&&<div style={{display:"flex",alignItems:"center",gap:6,marginBottom:12,padding:"6px 10px",background:"#f8fafc",borderRadius:8}}>
+          <Avatar name={acct.name} size={20} color="#6366f1" bg="#eef2ff"/>
+          <span style={{fontSize:12,color:"#334155",fontWeight:500}}>{acct.name}</span>
+        </div>}
+
+        {/* KPI row */}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6,marginBottom:ct.fileName?10:0}}>
+          {[["Value",ct.value?("$"+Number(ct.value).toLocaleString()):"—"],["Start",ct.startDate?fmt(ct.startDate):"—"],["End",ct.endDate?fmt(ct.endDate):"—"],["Days",ct.startDate&&ct.endDate?Math.round((new Date(ct.endDate)-new Date(ct.startDate))/86400000)+"d":"—"]].map(([l,v])=>
+            <div key={l} style={{background:"#f8fafc",borderRadius:7,padding:"6px 9px"}}>
+              <div style={{fontSize:8,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:1}}>{l}</div>
+              <div style={{fontSize:12,fontWeight:700,color:l==="Value"?"#10b981":"#334155"}}>{v}</div>
+            </div>
+          )}
+        </div>
+
+        {/* File chip */}
+        {ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",background:"#f1f5f9",borderRadius:8,border:"1px solid #e2e8f0"}} onClick={e=>e.stopPropagation()}>
+          <span style={{fontSize:15}}>{ct.fileName.toLowerCase().endsWith(".pdf")?"📄":"📝"}</span>
+          <div style={{flex:1,minWidth:0}}>
+            <div style={{fontSize:11,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
+            <div style={{fontSize:9,color:"#94a3b8"}}>{fmtBytes(ct.fileSize)}</div>
+          </div>
+          {ct.fileData&&<>
+            <button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
+              style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:700,cursor:"pointer",flexShrink:0}}>Open</button>
+            <a href={ct.fileData} download={ct.fileName}
+              style={{background:"#ecfdf5",color:"#10b981",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:700,textDecoration:"none",flexShrink:0}}>↓</a>
+          </>}
+        </div>}
+        {!ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",border:"1.5px dashed #e2e8f0",borderRadius:8,marginTop:ct.notes?6:0}} onClick={e=>e.stopPropagation()}>
+          <span style={{fontSize:13,color:"#cbd5e1"}}>📎</span>
+          <span style={{fontSize:11,color:"#94a3b8",flex:1}}>No file attached</span>
+          <label style={{background:"#eef2ff",color:"#6366f1",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:600,cursor:"pointer",flexShrink:0}}>
+            + Attach<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
+          </label>
+        </div>}
+        {ct.notes&&<div style={{marginTop:8,fontSize:11,color:"#64748b",fontStyle:"italic",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{ct.notes}</div>}
+      </div>
+    );
+  }
+
+  /* ─── Detail side-panel ─── */
+  function DetailPanel({ct}){
+    const cm=CT_META[ct.type]||CT_META.Other;
+    const acct=accounts.find(a=>a.id===ct.accountId);
+    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+    const daysLeft=ct.endDate?Math.round((new Date(ct.endDate)-today)/86400000):null;
+    const pct=ct.startDate&&ct.endDate?Math.min(100,Math.max(0,Math.round((today-new Date(ct.startDate))/(new Date(ct.endDate)-new Date(ct.startDate))*100))):null;
+    return(
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",position:"sticky",top:0}}>
+        {/* Header */}
+        <div style={{padding:"16px 18px",borderBottom:"1px solid #f1f5f9",background:"linear-gradient(135deg,"+cm.bg+",#fff)"}}>
+          <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
+            <div style={{display:"flex",gap:10,alignItems:"center"}}>
+              <div style={{width:42,height:42,borderRadius:11,background:cm.bg,border:"1.5px solid "+cm.c+"44",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>{cm.icon}</div>
+              <div>
+                <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:3}}>{ct.name}</div>
+                <span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.status}</span>
+              </div>
+            </div>
+            <button onClick={()=>setSelCT(null)} style={{background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:16,padding:2,lineHeight:1}}>✕</button>
+          </div>
+          {acct&&<div style={{display:"flex",alignItems:"center",gap:6,padding:"6px 10px",background:"rgba(255,255,255,.7)",borderRadius:8}}>
+            <Avatar name={acct.name} size={18} color="#6366f1" bg="#eef2ff"/>
+            <span style={{fontSize:12,color:"#334155",fontWeight:500}}>{acct.name}</span>
+          </div>}
+        </div>
+
+        {/* KPIs */}
+        <div style={{padding:"14px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
+            {[["Contract Value",ct.value?("$"+Number(ct.value).toLocaleString()):"—"],["Type",ct.type],["Start Date",ct.startDate?fmt(ct.startDate):"—"],["End Date",ct.endDate?fmt(ct.endDate):"—"],["Days Remaining",daysLeft!=null&&daysLeft>=0?daysLeft+"d":daysLeft!=null?"Expired":"—"],["Total Days",ct.startDate&&ct.endDate?Math.round((new Date(ct.endDate)-new Date(ct.startDate))/86400000)+"d":"—"]].map(([l,v])=>
+              <div key={l} style={{background:"#f8fafc",borderRadius:8,padding:"9px 11px"}}>
+                <div style={{fontSize:8,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
+                <div style={{fontSize:13,fontWeight:700,color:l==="Contract Value"?"#10b981":"#334155"}}>{v}</div>
+              </div>
+            )}
+          </div>
+          {pct!==null&&<div style={{marginTop:10}}>
+            <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
+              <span style={{fontSize:10,fontWeight:600,color:"#64748b"}}>Contract Progress</span>
+              <span style={{fontSize:10,fontWeight:700,color:"#6366f1"}}>{pct}%</span>
+            </div>
+            <div style={{height:6,background:"#e2e8f0",borderRadius:3,overflow:"hidden"}}>
+              <div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#8b5cf6)",borderRadius:3,transition:"width .4s"}}/>
+            </div>
+          </div>}
+        </div>
+
+        {/* Notes */}
+        {ct.notes&&<div style={{padding:"12px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",marginBottom:6}}>Notes</div>
+          <div style={{fontSize:12,color:"#64748b",lineHeight:1.6}}>{ct.notes}</div>
+        </div>}
+
+        {/* File */}
+        <div style={{padding:"12px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",marginBottom:8}}>Attached File</div>
+          {ct.fileName
+            ?<div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"#f8fafc",borderRadius:9,border:"1px solid #e2e8f0"}}>
+              <span style={{fontSize:20}}>{ct.fileName.toLowerCase().endsWith(".pdf")?"📄":"📝"}</span>
+              <div style={{flex:1,minWidth:0}}>
+                <div style={{fontSize:12,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
+                <div style={{fontSize:10,color:"#94a3b8"}}>{fmtBytes(ct.fileSize)}</div>
+              </div>
+              {ct.fileData&&<div style={{display:"flex",gap:5,flexShrink:0}}>
+                <button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
+                  style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📂 Open</button>
+                <a href={ct.fileData} download={ct.fileName}
+                  style={{background:"#ecfdf5",color:"#10b981",borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,textDecoration:"none",display:"flex",alignItems:"center"}}>↓ Save</a>
+              </div>}
+            </div>
+            :<div style={{padding:"12px",border:"1.5px dashed #e2e8f0",borderRadius:9,textAlign:"center"}}>
+              <div style={{fontSize:20,marginBottom:6}}>📎</div>
+              <div style={{fontSize:12,color:"#94a3b8",marginBottom:8}}>No file attached</div>
+              <label style={{background:"#eef2ff",color:"#6366f1",borderRadius:7,padding:"5px 14px",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+                + Attach File<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
+              </label>
+            </div>}
+        </div>
+
+        {/* Actions */}
+        <div style={{padding:"12px 18px",display:"flex",gap:8}}>
+          <Btn v="ghost" onClick={()=>{setEditCT(ct);setShowForm(true);}} style={{flex:1}}>Edit</Btn>
+          <Btn v="danger" onClick={()=>{if(window.confirm("Delete this contract?"))onDelete(ct.id);setSelCT(null);}} style={{flex:1}}>Delete</Btn>
+        </div>
+      </div>
+    );
+  }
+
+  return(
+    <div style={{padding:"24px",maxWidth:1400,margin:"0 auto"}}>
+      {/* Page header */}
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
+        <div>
+          <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:3}}>Contracts & Proposals</h1>
+          <p style={{fontSize:13,color:"#64748b"}}>{contracts.length} total · {filtered.length} shown</p>
+        </div>
+        <Btn onClick={()=>{setEditCT(null);setShowForm(true);}}>+ New Contract</Btn>
+      </div>
+
+      {/* Stats strip */}
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:18}}>
+        {[
+          {label:"Total Contracts",val:contracts.length,       color:"#6366f1",icon:"📋"},
+          {label:"Active",          val:byStatus("Active"),     color:"#10b981",icon:"✅"},
+          {label:"Pending",         val:byStatus("Pending"),    color:"#f59e0b",icon:"⏳"},
+          {label:"Expiring Soon",   val:expiringSoon,           color:"#f97316",icon:"⚠️"},
+          {label:"Total Value",     val:"$"+totalValue.toLocaleString(),color:"#10b981",icon:"💰",wide:true},
+        ].map(s=>
+          <div key={s.label} style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"14px 16px",display:"flex",alignItems:"center",gap:10}}>
+            <div style={{width:36,height:36,borderRadius:9,background:s.color+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,flexShrink:0}}>{s.icon}</div>
+            <div>
+              <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em",marginBottom:2}}>{s.label}</div>
+              <div style={{fontSize:s.wide?16:22,fontWeight:700,color:s.color,lineHeight:1}}>{s.val}</div>
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Type filter pills */}
+      <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:14}}>
+        {["All",...CONTRACT_TYPES].map(t=>{
+          const m=t==="All"?null:CT_META[t]||CT_META.Other;
+          const active=fType===t;
+          const cnt=t==="All"?contracts.length:contracts.filter(c=>c.type===t).length;
+          return<button key={t} onClick={()=>setFType(t)}
+            style={{display:"flex",alignItems:"center",gap:5,padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?(m?.c||"#6366f1"):"#e2e8f0"),background:active?(m?.bg||"#eef2ff"):"#fff",color:active?(m?.c||"#6366f1"):"#64748b",fontSize:12,fontWeight:active?700:400,cursor:"pointer",transition:"all .12s"}}>
+            {m&&<span style={{fontSize:13}}>{m.icon}</span>}{t}
+            <span style={{fontSize:10,fontWeight:700,background:active?"rgba(0,0,0,0.08)":"#f1f5f9",borderRadius:10,padding:"1px 5px",marginLeft:2}}>{cnt}</span>
+          </button>;
+        })}
+      </div>
+
+      {/* Filter bar */}
+      <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap",alignItems:"center"}}>
+        <div style={{position:"relative",flex:"1 1 220px"}}>
+          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#94a3b8",fontSize:13,pointerEvents:"none"}}>🔍</span>
+          <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search contracts…"
+            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+        </div>
+        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
+          <option value="All">All Statuses</option>{["Active","Expired","Pending","Terminated"].map(s=><option key={s}>{s}</option>)}
+        </select>
+        <select value={fAccount} onChange={e=>setFAccount(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
+          <option value="All">All Accounts</option>{accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
+        </select>
+        {/* View toggle */}
+        <div style={{display:"flex",background:"#f1f5f9",padding:3,borderRadius:8,gap:2,marginLeft:"auto"}}>
+          {[["cards","⊞ Cards"],["table","☰ Table"]].map(([v,lbl])=>
+            <button key={v} onClick={()=>setView(v)}
+              style={{padding:"5px 13px",borderRadius:6,border:"none",background:view===v?"#fff":"transparent",color:view===v?"#6366f1":"#64748b",fontSize:11,fontWeight:view===v?700:400,cursor:"pointer",whiteSpace:"nowrap",boxShadow:view===v?"0 1px 3px rgba(0,0,0,.08)":"none"}}>
+              {lbl}
+            </button>
+          )}
+        </div>
+        {(search||fType!=="All"||fStatus!=="All"||fAccount!=="All")&&
+          <button onClick={()=>{setSearch("");setFType("All");setFStatus("All");setFAccount("All");}}
+            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#fff0f0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
+      </div>
+
+      {filtered.length===0&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"60px 0",textAlign:"center",color:"#94a3b8",fontSize:14}}>
+        No contracts match your filters.<br/>
+        <button onClick={()=>{setEditCT(null);setShowForm(true);}} style={{marginTop:12,padding:"8px 18px",borderRadius:8,border:"none",background:"#eef2ff",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer"}}>+ New Contract</button>
+      </div>}
+
+      {/* Layout: grid/detail or table */}
+      {filtered.length>0&&<div style={{display:"grid",gridTemplateColumns:selCT?"1fr 320px":"1fr",gap:16,alignItems:"start"}}>
+        <div>
+          {/* ── CARDS VIEW ── */}
+          {view==="cards"&&<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(320px,1fr))",gap:14}}>
+            {filtered.map(ct=><ContractCard key={ct.id} ct={ct}/>)}
+          </div>}
+
+          {/* ── TABLE VIEW ── */}
+          {view==="table"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+            <div style={{overflowX:"auto"}}>
+              <table style={{width:"100%",fontSize:13,borderCollapse:"collapse",minWidth:800}}>
+                <thead>
+                  <tr style={{background:"#f8fafc",borderBottom:"1px solid #e2e8f0"}}>
+                    {["Contract","Account","Type","Status","Value","Start","End","File",""].map(h=>
+                      <th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map(ct=>{
+                    const cm=CT_META[ct.type]||CT_META.Other;
+                    const acct=accounts.find(a=>a.id===ct.accountId);
+                    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+                    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+                    const isSel=selCT?.id===ct.id;
+                    return(
+                      <tr key={ct.id} style={{borderTop:"1px solid #f1f5f9",background:isSel?"#f5f3ff":""}}
+                        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background="#f8fafc";}}
+                        onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background="";}}>
+                        <td style={{padding:"11px 14px",cursor:"pointer"}} onClick={()=>setSelCT(isSel?null:ct)}>
+                          <div style={{display:"flex",alignItems:"center",gap:8}}>
+                            <span style={{fontSize:17}}>{cm.icon}</span>
+                            <span style={{fontWeight:600,color:"#0f172a"}}>{ct.name}</span>
+                          </div>
+                        </td>
+                        <td style={{padding:"11px 14px",color:"#64748b"}}>{acct?.name||"—"}</td>
+                        <td style={{padding:"11px 14px"}}><span style={{background:cm.bg,color:cm.c,borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 9px"}}>{ct.type}</span></td>
+                        <td style={{padding:"11px 14px"}}><span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 9px"}}>{ct.status}</span></td>
+                        <td style={{padding:"11px 14px",fontWeight:700,color:"#10b981"}}>{ct.value?("$"+Number(ct.value).toLocaleString()):"—"}</td>
+                        <td style={{padding:"11px 14px",color:"#64748b",fontSize:12}}>{ct.startDate?fmt(ct.startDate):"—"}</td>
+                        <td style={{padding:"11px 14px",color:"#64748b",fontSize:12}}>{ct.endDate?fmt(ct.endDate):"—"}</td>
+                        <td style={{padding:"11px 14px"}}>
+                          {ct.fileName
+                            ?<div style={{display:"flex",gap:4}}>
+                              {ct.fileData&&<button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
+                                style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:700,cursor:"pointer"}}>Open</button>}
+                              {ct.fileData&&<a href={ct.fileData} download={ct.fileName}
+                                style={{background:"#ecfdf5",color:"#10b981",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:700,textDecoration:"none",display:"inline-flex",alignItems:"center"}}>↓</a>}
+                            </div>
+                            :<label style={{background:"#f8fafc",color:"#94a3b8",borderRadius:5,padding:"2px 8px",fontSize:10,fontWeight:600,cursor:"pointer",border:"1px dashed #e2e8f0"}}>
+                              📎<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
+                            </label>}
+                        </td>
+                        <td style={{padding:"11px 14px"}}>
+                          <div style={{display:"flex",gap:5,justifyContent:"flex-end"}}>
+                            <Btn sz="sm" v="ghost" onClick={()=>{setEditCT(ct);setShowForm(true);}}>Edit</Btn>
+                            <Btn sz="sm" v="danger" onClick={()=>{if(window.confirm("Delete?"))onDelete(ct.id);}}>✕</Btn>
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </div>}
+        </div>
+
+        {/* Side detail panel */}
+        {selCT&&<DetailPanel ct={selCT}/>}
+      </div>}
+
+      {showForm&&<ContractForm contract={editCT} accountId={editCT?.accountId||null}
+        onClose={()=>{setShowForm(false);setEditCT(null);}}
+        onSave={d=>{
+          const data={...d,id:editCT?.id||uid(),accountId:editCT?.accountId||d.accountId||null,createdAt:editCT?.createdAt||new Date().toISOString().slice(0,10)};
+          onSave(data);
+          notify(editCT?"Contract updated ✓":"Contract added ✓");
+          setShowForm(false);setEditCT(null);
+        }}/>}
+    </div>
+  );
 }
 
 /* ═══ LEAD CHILD COMPONENTS ═══ */
@@ -2159,6 +2941,8 @@ function LeadProposalsPanel({proposals,onAdd,onEdit,onDelete}){
 
 /* ═══ APP ROOT ═══ */
 function App(){
+  const[currentUser,setCurrentUser]=useState(null);
+  const[users,setUsers]=useState([]);
   const[accounts,setAccounts]=useState([]);
   const[contacts,setContacts]=useState([]);
   const[opps,setOpps]=useState([]);
@@ -2189,6 +2973,11 @@ function App(){
   const[toast,setToast]=useState(null);
 
   useEffect(()=>{
+    // Restore session
+    const sess=ls("ecrm_session");
+    if(sess&&sess.id){setCurrentUser(sess);}
+    // Load users
+    setUsers(ls("ecrm_users")||[]);
     setAccounts(ls("ecrm_accts")||D_ACCOUNTS);
     setContacts(ls("ecrm_contacts")||D_CONTACTS);
     setOpps(ls("ecrm_opps")||D_OPPS);
@@ -2208,6 +2997,23 @@ function App(){
   const saveContracts=v=>{setContracts(v);lss("ecrm_contracts",v);};
   const saveLeadActs=v=>{setLeadActs(v);lss("ecrm_lead_acts",v);};
   const saveLeadProposals=v=>{setLeadProposals(v);lss("ecrm_lead_proposals",v);};
+  const saveUsers=v=>{setUsers(v);lss("ecrm_users",v);};
+
+  function handleLogin(user){
+    const u={...user,lastLogin:new Date().toISOString().slice(0,10)};
+    setCurrentUser(u);
+    lss("ecrm_session",u);
+    // Persist lastLogin back into user list (skip built-in Admin)
+    if(u.id!=="u0"){
+      const next=(ls("ecrm_users")||[]).map(x=>x.id===u.id?{...x,lastLogin:u.lastLogin}:x);
+      saveUsers(next);
+    }
+  }
+  function handleLogout(){
+    setCurrentUser(null);
+    lss("ecrm_session",null);
+    setNav("dashboard");
+  }
 
   function notify(msg){setToast(msg);setTimeout(()=>setToast(null),2800);}
 
@@ -2244,11 +3050,18 @@ function App(){
     {k:"accounts",label:"Accounts"},
     {k:"contacts",label:"Contacts"},
     {k:"opportunities",label:"Opportunities"},
+    {k:"contracts",label:"Contracts"},
     {k:"activities",label:"Activities"},
+    ...(currentUser?.role==="Admin"?[{k:"users",label:"Users"}]:[]),
   ];
   const[sideOpen,setSideOpen]=useState(true);
   const[globalSearch,setGlobalSearch]=useState("");
   const[showSearch,setShowSearch]=useState(false);
+
+  // ── Gate: show login if not authenticated ──
+  if(!currentUser){
+    return <LoginScreen users={users} onLogin={handleLogin}/>;
+  }
 
   return<div style={{display:"flex",height:"100vh",overflow:"hidden"}}>
     {toast&&<div style={{position:"fixed",top:12,right:12,zIndex:999,background:"#10b981",color:"#fff",padding:"9px 16px",borderRadius:10,fontSize:13,fontWeight:600,boxShadow:"0 4px 20px rgba(0,0,0,0.15)",pointerEvents:"none"}}>{toast}</div>}
@@ -2291,7 +3104,7 @@ function App(){
           return<div key={k} style={{position:"relative",marginBottom:2}}>
             {active&&<span style={{position:"absolute",left:0,top:"18%",height:"64%",width:3,background:"#6366f1",borderRadius:"0 3px 3px 0",zIndex:1}}></span>}
             <button title={!sideOpen?label:""}
-              onClick={function(){if(k==="accounts")setSelAcct(null);if(k==="leads")setSelLead(null);setNav(k);}}
+              onClick={function(){if(k==="accounts")setSelAcct(null);if(k==="leads")setSelLead(null);if(k==="opportunities")setSelOpp(null);setNav(k);}}
               style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:sideOpen?"9px 10px":"10px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:active?"rgba(99,102,241,0.18)":"transparent",color:active?"#a5b4fc":"#64748b",cursor:"pointer",fontSize:13,fontWeight:active?600:400,transition:"background .15s,color .15s"}}
               onMouseEnter={function(e){if(!active){e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.color="#94a3b8";}}}
               onMouseLeave={function(e){e.currentTarget.style.background=active?"rgba(99,102,241,0.18)":"transparent";e.currentTarget.style.color=active?"#a5b4fc":"#64748b";}}>
@@ -2331,13 +3144,32 @@ function App(){
       </div>
 
       {/* User footer */}
-      <div style={{padding:"12px 14px",borderTop:"1px solid #1e293b",flexShrink:0}}>
-        <div style={{display:"flex",alignItems:"center",gap:10}}>
-          <div style={{width:30,height:30,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:"#fff",flexShrink:0}}>S</div>
-          {sideOpen&&<div style={{overflow:"hidden"}}>
-            <div style={{fontSize:12,fontWeight:600,color:"#e2e8f0",whiteSpace:"nowrap"}}>Senthil</div>
-            <div style={{fontSize:10,color:"#64748b",whiteSpace:"nowrap"}}>Ensemble Digital Labs</div>
-          </div>}
+      <div style={{padding:"10px 10px 12px",borderTop:"1px solid #1e293b",flexShrink:0}}>
+        <div style={{display:"flex",alignItems:"center",gap:8}}>
+          {/* Avatar */}
+          <div style={{width:32,height:32,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,color:"#fff",flexShrink:0}}>
+            {(currentUser?.name||currentUser?.username||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase()}
+          </div>
+          {sideOpen&&<>
+            <div style={{flex:1,minWidth:0,overflow:"hidden"}}>
+              <div style={{fontSize:12,fontWeight:600,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{currentUser?.name||currentUser?.username}</div>
+              <div style={{fontSize:10,color:"#475569",whiteSpace:"nowrap"}}>
+                <span style={{background:(ROLE_META[currentUser?.role]||ROLE_META.Viewer).bg,color:(ROLE_META[currentUser?.role]||ROLE_META.Viewer).c,borderRadius:6,padding:"1px 5px",fontSize:9,fontWeight:700}}>{currentUser?.role}</span>
+              </div>
+            </div>
+            <button title="Sign out" onClick={handleLogout}
+              style={{background:"none",border:"none",cursor:"pointer",color:"#475569",padding:5,borderRadius:7,display:"flex",alignItems:"center",flexShrink:0,transition:"all .12s"}}
+              onMouseEnter={e=>{e.currentTarget.style.color="#ef4444";e.currentTarget.style.background="rgba(239,68,68,.12)";}}
+              onMouseLeave={e=>{e.currentTarget.style.color="#475569";e.currentTarget.style.background="none";}}>
+              <span dangerouslySetInnerHTML={{__html:SVGICONS.signout}}/>
+            </button>
+          </>}
+          {!sideOpen&&<button title="Sign out" onClick={handleLogout}
+            style={{background:"none",border:"none",cursor:"pointer",color:"#475569",padding:4,borderRadius:6,display:"flex",marginLeft:"auto"}}
+            onMouseEnter={e=>e.currentTarget.style.color="#ef4444"}
+            onMouseLeave={e=>e.currentTarget.style.color="#475569"}>
+            <span dangerouslySetInnerHTML={{__html:SVGICONS.signout}}/>
+          </button>}
         </div>
       </div>
     </div>
@@ -2351,7 +3183,7 @@ function App(){
         {/* Breadcrumb */}
         <div style={{display:"flex",alignItems:"center",gap:5,fontSize:13,minWidth:0,flexShrink:0}}>
           <span style={{color:"#94a3b8",fontWeight:500,textTransform:"capitalize"}}>
-            {nav==="account-detail"||nav==="contact-detail"?"Accounts":nav==="lead-detail"?"Leads":nav==="opp-detail"?"Opportunities":nav==="dashboard"?"Home":nav}
+            {nav==="account-detail"||nav==="contact-detail"?"Accounts":nav==="lead-detail"?"Leads":nav==="opp-detail"?"Opportunities":nav==="users"?"Users":nav==="contracts"?"Contracts":nav==="dashboard"?"Home":nav}
           </span>
           {nav==="account-detail"&&liveAcct&&<span style={{color:"#cbd5e1"}}>/</span>}
           {nav==="account-detail"&&liveAcct&&<span style={{color:"#334155",fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:160}}>{liveAcct.name}</span>}
@@ -2515,6 +3347,29 @@ function App(){
         onViewAccount={openAccount}
         onSaveAct={a=>{saveActs([a,...acts]);notify("Activity logged ✓");}}/>}
 
+      {nav==="contracts"&&<ContractsScreen
+        contracts={contracts}
+        accounts={accounts}
+        notify={notify}
+        onSave={c=>{
+          const ex=contracts.find(x=>x.id===c.id);
+          saveContracts(ex?contracts.map(x=>x.id===c.id?c:x):[c,...contracts]);
+        }}
+        onDelete={id=>{saveContracts(contracts.filter(c=>c.id!==id));notify("Contract deleted");}}
+      />}
+
+      {nav==="users"&&currentUser?.role==="Admin"&&<UserAdmin
+        users={users}
+        currentUser={currentUser}
+        notify={notify}
+        onSave={u=>{
+          const next=users.find(x=>x.id===u.id)?users.map(x=>x.id===u.id?u:x):[...users,u];
+          saveUsers(next);
+        }}
+        onDelete={id=>{saveUsers(users.filter(u=>u.id!==id));}}
+        onToggleStatus={(id,status)=>{saveUsers(users.map(u=>u.id===id?{...u,status}:u));}}
+      />}
+
       {nav==="opp-detail"&&liveOpp&&<OppDetail
         opp={liveOpp}
         account={accounts.find(a=>a.id===liveOpp.accountId)}
@@ -2571,6 +3426,5 @@ function App(){
 
   </div>;
 }
-
 
 export default App;
