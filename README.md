@@ -1,16 +1,62 @@
-# React + Vite
+# Ensemble CRM — v5.1
+**Ensemble Digital Labs** · [ensembledigilabs.com](https://ensembledigilabs.com)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Quick Start
 
-Currently, two official plugins are available:
+```bash
+npm install
+npm run dev        # → http://localhost:3000
+npm run build      # → /dist  (production)
+npm run preview    # → preview production build
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Login
+Navigate to `http://localhost:3000` and sign in with your credentials.
+*(Default admin account: Username `Admin` / Password `Admin` — change after first login)*
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Modules
 
-## Expanding the ESLint configuration
+| Sidebar | Description |
+|---|---|
+| 🏠 Home | KPI dashboard, pipeline funnel, activity feed |
+| 🎯 Leads | Lead lifecycle — activities, proposals, convert to account |
+| 🏢 Accounts | Detail pages — contacts, opportunities, contracts, timeline |
+| 👤 Contacts | Global list with account linking |
+| 💰 Opportunities | Kanban + list pipeline, detail page with child activities |
+| 📄 Contracts | Dedicated screen — Cards / Table, side detail panel, file open/preview |
+| 📅 Activities | Global list + interactive calendar view |
+| ⬆️ Import / Export | CSV import (5 modules), CSV export, full JSON backup / restore |
+| 🛡️ Users | Invite, role management, deactivate *(Admin only)* |
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```
+ensemble-crm/
+├── index.html          # HTML shell
+├── vite.config.js
+├── package.json
+├── public/favicon.svg
+└── src/
+    ├── main.jsx        # ReactDOM entry point
+    ├── App.jsx         # All 49 components  (3 998 lines)
+    └── index.css       # Reset, splash, login animations
+```
+
+## Data Persistence
+All data stored in `localStorage` under the `ecrm_` prefix.
+
+| Key | Contents |
+|---|---|
+| `ecrm_session` | Active session |
+| `ecrm_users` | User accounts |
+| `ecrm_accts` | Accounts (15 pre-loaded) |
+| `ecrm_contacts` | Contacts (20 pre-loaded) |
+| `ecrm_opps` | Opportunities |
+| `ecrm_acts` | Activities |
+| `ecrm_leads` | Leads |
+| `ecrm_contracts` | Contracts |
+
+---
+© Ensemble Digital Labs

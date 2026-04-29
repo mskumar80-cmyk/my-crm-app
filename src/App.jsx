@@ -9,7 +9,7 @@
 //  Pre-loaded: 15 Accounts + 20 Contacts (incl. Customers.xls import)
 //  Login credentials display removed from login screen.
 // ═══════════════════════════════════════════════════════════════════
-import { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 
 
 /* ═══ CONSTANTS ═══ */
@@ -2060,7 +2060,7 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
                             <Btn sz="sm" v="danger" onClick={()=>setConfirmDel(u.id)}>Delete</Btn>
                           )}
                         </div>
-                      ):<span style={{fontSize:11,color:"#94a3b8",fontSize:12}}>—</span>}
+                      ):<span style={{color:"#94a3b8",fontSize:12}}>—</span>}
                     </td>
                   </tr>
                 );
@@ -2771,15 +2771,20 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
 
   /* ── CSV parser ── */
   function parseCSV(text){
-    const lines=text.trim().split(/\r?\n/);
+    // Strip UTF-8 BOM if present
+    const clean=text.replace(/^\uFEFF/,"").trim();
+    const lines=clean.split(/\r?\n/);
     if(lines.length<2)return{headers:[],rows:[]};
-    const headers=lines[0].split(",").map(h=>h.trim().replace(/^"|"$/g,""));
-    const rows=lines.slice(1).map(line=>{
+    const headers=lines[0].split(",").map(h=>h.trim().replace(/^"|"$/g,"").trim());
+    const rows=lines.slice(1).filter(l=>l.trim()).map(line=>{
       const vals=[];let cur="",inQ=false;
       for(let i=0;i<line.length;i++){
-        if(line[i]==='"'){inQ=!inQ;}
-        else if(line[i]===","&&!inQ){vals.push(cur.trim());cur="";}
-        else cur+=line[i];
+        const ch=line[i];
+        if(ch==='"'){
+          if(inQ&&line[i+1]==='"'){cur+='"';i++;}  // escaped quote
+          else{inQ=!inQ;}
+        } else if(ch===","&&!inQ){vals.push(cur.trim());cur="";}
+        else{cur+=ch;}
       }
       vals.push(cur.trim());
       return Object.fromEntries(headers.map((h,i)=>[h,vals[i]||""]));
@@ -2859,33 +2864,42 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
 
   /* ── CSV builder ── */
   function toCSV(headers,dataRows){
-    const esc=v=>typeof v==="string"&&v.includes(",")? `"${v}"`:String(v??"");
-    return[headers.join(","),...dataRows.map(r=>headers.map(h=>esc(r[h]||"")).join(","))].join("\n");
+    const esc=v=>{
+      const s=String(v??"");
+      return(s.includes(",")||s.includes('"')||s.includes("\n"))?`"${s.replace(/"/g,'""')}"`:s;
+    };
+    return[headers.join(","),...dataRows.map(r=>headers.map(h=>esc(r[h]??"")).join(","))].join("\n");
   }
 
   function downloadCSV(name,text){
+    const blob=new Blob(["\uFEFF"+text],{type:"text/csv;charset=utf-8;"});
+    const url=URL.createObjectURL(blob);
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(new Blob([text],{type:"text/csv"}));
-    a.download=name;a.click();URL.revokeObjectURL(a.href);
+    a.href=url;a.download=name;a.style.display="none";
+    document.body.appendChild(a);a.click();
+    setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},200);
   }
 
   function downloadJSON(name,data){
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+    const url=URL.createObjectURL(blob);
     const a=document.createElement("a");
-    a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));
-    a.download=name;a.click();URL.revokeObjectURL(a.href);
+    a.href=url;a.download=name;a.style.display="none";
+    document.body.appendChild(a);a.click();
+    setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(url);},200);
   }
 
   function exportModule(mod){
     const s=SCHEMAS[mod];
-    const data={accounts,contacts,opps,leads,contracts}[mod==="opps"?"opportunities":mod];
-    const src=mod==="opps"?opps:mod==="opportunities"?opps:{accounts,contacts,leads,contracts,opps}[mod]||[];
-    const actualData=mod==="opportunities"?opps:mod==="opps"?opps:({accounts,contacts,leads,contracts}[mod]||[]);
+    const dataMap={accounts,contacts,leads,opportunities:opps,contracts};
+    const actualData=dataMap[mod]||[];
+    if(!actualData.length){notify("No data to export.");return;}
     downloadCSV(`ensemble_${mod}_${new Date().toISOString().slice(0,10)}.csv`,toCSV(s.fields,actualData));
-    notify(`${s.label} exported as CSV ✓`);
+    notify(`${s.label} exported ✓`);
   }
 
   function exportAll(){
-    const payload={exportedAt:new Date().toISOString(),version:"4.0",accounts,contacts,opps,leads,contracts,acts};
+    const payload={exportedAt:new Date().toISOString(),version:"5.1",accounts,contacts,opps,leads,contracts,acts};
     downloadJSON(`ensemble_backup_${new Date().toISOString().slice(0,10)}.json`,payload);
     notify("Full backup exported ✓");
   }
