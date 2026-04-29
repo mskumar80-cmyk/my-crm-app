@@ -21,8 +21,8 @@ const ACT_TYPES=["Call","Email","Meeting","Proposal","Follow-up","Demo","Note"];
 const LEAD_ACT_TYPES=["In Person","Email","Video Conferencing","Phone Call","Follow-up","Demo"];
 const LEAD_ACT_META={
   "In Person":{e:"🤝",c:"#10b981",bg:"#ecfdf5"},
-  "Email":{e:"✉️",c:"#C8943A",bg:"#F5EDD8"},
-  "Video Conferencing":{e:"🎥",c:"#B8832C",bg:"#F5EDD8"},
+  "Email":{e:"✉️",c:"#6366f1",bg:"#eef2ff"},
+  "Video Conferencing":{e:"🎥",c:"#8b5cf6",bg:"#f5f3ff"},
   "Phone Call":{e:"📞",c:"#0ea5e9",bg:"#e0f2fe"},
   "Follow-up":{e:"🔔",c:"#f59e0b",bg:"#fef3c7"},
   "Demo":{e:"🖥️",c:"#f97316",bg:"#fff7ed"},
@@ -33,16 +33,16 @@ const TEAM=["Senthil","Sijesh","Arun","Unassigned"];
 const PERIODS=["Monthly","Quarterly","Annually"];
 
 const AT_META={
-  Client:{c:"#10b981",bg:"#ecfdf5"},Prospect:{c:"#C8943A",bg:"#F5EDD8"},
-  Partner:{c:"#f59e0b",bg:"#fef3c7"},Vendor:{c:"#7A6E60",bg:"#F7F4EF"},
+  Client:{c:"#10b981",bg:"#ecfdf5"},Prospect:{c:"#6366f1",bg:"#eef2ff"},
+  Partner:{c:"#f59e0b",bg:"#fef3c7"},Vendor:{c:"#64748b",bg:"#f1f5f9"},
 };
 const AS_META={
   Active:{c:"#10b981",bg:"#ecfdf5"},"At Risk":{c:"#f97316",bg:"#fff7ed"},
-  Inactive:{c:"#7A6E60",bg:"#F7F4EF"},Churned:{c:"#ef4444",bg:"#fef2f2"},
+  Inactive:{c:"#64748b",bg:"#f1f5f9"},Churned:{c:"#ef4444",bg:"#fef2f2"},
 };
 const OS_META={
-  Prospecting:{c:"#7A6E60",bg:"#F7F4EF"},Qualification:{c:"#0ea5e9",bg:"#e0f2fe"},
-  "Needs Analysis":{c:"#B8832C",bg:"#F5EDD8"},Proposal:{c:"#C8943A",bg:"#F5EDD8"},
+  Prospecting:{c:"#64748b",bg:"#f1f5f9"},Qualification:{c:"#0ea5e9",bg:"#e0f2fe"},
+  "Needs Analysis":{c:"#8b5cf6",bg:"#f5f3ff"},Proposal:{c:"#6366f1",bg:"#eef2ff"},
   Negotiation:{c:"#f97316",bg:"#fff7ed"},"Closed Won":{c:"#10b981",bg:"#ecfdf5"},
   "Closed Lost":{c:"#ef4444",bg:"#fef2f2"},
 };
@@ -51,11 +51,11 @@ const CONTRACT_TYPES=["BAA","Signed Contract","NDA","MSA","SOW","LOI","Other"];
 const CT_META={
   BAA:{c:"#0ea5e9",bg:"#e0f2fe",icon:"🏥"},
   "Signed Contract":{c:"#10b981",bg:"#ecfdf5",icon:"✅"},
-  NDA:{c:"#B8832C",bg:"#F5EDD8",icon:"🔒"},
+  NDA:{c:"#8b5cf6",bg:"#f5f3ff",icon:"🔒"},
   MSA:{c:"#f59e0b",bg:"#fef3c7",icon:"📋"},
-  SOW:{c:"#C8943A",bg:"#F5EDD8",icon:"📝"},
+  SOW:{c:"#6366f1",bg:"#eef2ff",icon:"📝"},
   LOI:{c:"#f97316",bg:"#fff7ed",icon:"📨"},
-  Other:{c:"#7A6E60",bg:"#F7F4EF",icon:"📄"},
+  Other:{c:"#64748b",bg:"#f1f5f9",icon:"📄"},
 };
 
 /* ─── Lead Constants ─── */
@@ -63,12 +63,12 @@ const LEAD_STATUSES=["New","Contacted","Working","Qualified","Unqualified","Conv
 const LEAD_SOURCES=["Website","Referral","LinkedIn","Cold Outreach","Event / Conference","Partner","Inbound Call","Trade Show","Email Campaign","Other"];
 const LEAD_RATINGS=["Hot","Warm","Cold"];
 const LS_META={
-  New:{c:"#C8943A",bg:"#F5EDD8"},
+  New:{c:"#6366f1",bg:"#eef2ff"},
   Contacted:{c:"#0ea5e9",bg:"#e0f2fe"},
-  Working:{c:"#B8832C",bg:"#F5EDD8"},
+  Working:{c:"#8b5cf6",bg:"#f5f3ff"},
   Qualified:{c:"#10b981",bg:"#ecfdf5"},
-  Unqualified:{c:"#7A6E60",bg:"#F7F4EF"},
-  Converted:{c:"#A87020",bg:"#F5EDD8"},
+  Unqualified:{c:"#64748b",bg:"#f1f5f9"},
+  Converted:{c:"#7c3aed",bg:"#ede9fe"},
 };
 const LR_META={
   Hot:{c:"#ef4444",bg:"#fef2f2"},
@@ -80,10 +80,10 @@ const LR_META={
 const USER_ROLES=["Admin","Manager","Sales Rep","Viewer"];
 const USER_STATUSES=["Active","Inactive"];
 const ROLE_META={
-  Admin:    {c:"#A87020",bg:"#F5EDD8",icon:"🛡️"},
+  Admin:    {c:"#7c3aed",bg:"#ede9fe",icon:"🛡️"},
   Manager:  {c:"#0ea5e9",bg:"#e0f2fe",icon:"📊"},
   "Sales Rep":{c:"#10b981",bg:"#ecfdf5",icon:"💼"},
-  Viewer:   {c:"#7A6E60",bg:"#F7F4EF",icon:"👁️"},
+  Viewer:   {c:"#64748b",bg:"#f1f5f9",icon:"👁️"},
 };
 /* Default built-in Admin — always present */
 const DEFAULT_ADMIN={id:"u0",username:"Admin",password:"Admin",name:"Administrator",email:"admin@ensembledigilabs.com",role:"Admin",status:"Active",createdAt:"2025-01-01",lastLogin:null};
@@ -201,21 +201,21 @@ function Tag({text,color,bg,size="sm"}){
   const s=size==="sm"?{fontSize:11,padding:"2px 9px"}:{fontSize:12,padding:"3px 11px"};
   return<span style={{background:bg,color,borderRadius:20,fontWeight:600,whiteSpace:"nowrap",...s}}>{text}</span>
 }
-function Avatar({name,size=32,color="#C8943A",bg="#F5EDD8"}){
+function Avatar({name,size=32,color="#6366f1",bg="#eef2ff"}){
   return<div style={{width:size,height:size,borderRadius:"50%",background:bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:size*0.35,fontWeight:700,color,flexShrink:0}}>{initials(name)}</div>
 }
-function Lbl({children}){return<div style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.06em",color:"#9C9486",marginBottom:4}}>{children}</div>}
-function StatCard({label,value,sub,color="#C8943A"}){
-  return<div style={{background:"#fff",borderRadius:12,border:"1px solid #E4E0D8",padding:"15px 18px"}}>
-    <div style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:5}}>{label}</div>
+function Lbl({children}){return<div style={{fontSize:11,fontWeight:600,textTransform:"uppercase",letterSpacing:"0.06em",color:"#94a3b8",marginBottom:4}}>{children}</div>}
+function StatCard({label,value,sub,color="#6366f1"}){
+  return<div style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"15px 18px"}}>
+    <div style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:5}}>{label}</div>
     <div style={{fontSize:24,fontWeight:700,color,lineHeight:1}}>{value}</div>
-    {sub&&<div style={{fontSize:11,color:"#9C9486",marginTop:4}}>{sub}</div>}
+    {sub&&<div style={{fontSize:11,color:"#94a3b8",marginTop:4}}>{sub}</div>}
   </div>
 }
 function SectionCard({title,count,action,children,noPad=false}){
-  return<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-    <div style={{padding:"14px 20px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-      <span style={{fontSize:14,fontWeight:600,color:"#1A1612"}}>{title}{count!=null&&<span style={{fontSize:12,color:"#9C9486",fontWeight:400,marginLeft:6}}>({count})</span>}</span>
+  return<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+    <div style={{padding:"14px 20px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+      <span style={{fontSize:14,fontWeight:600,color:"#0f172a"}}>{title}{count!=null&&<span style={{fontSize:12,color:"#94a3b8",fontWeight:400,marginLeft:6}}>({count})</span>}</span>
       {action}
     </div>
     <div style={noPad?{}:{padding:"6px 20px 16px"}}>{children}</div>
@@ -224,21 +224,21 @@ function SectionCard({title,count,action,children,noPad=false}){
 function Btn({children,onClick,v="primary",sz="md",style={}}){
   const base={border:"none",borderRadius:8,cursor:"pointer",fontWeight:600,fontFamily:"inherit",transition:"opacity .15s"};
   const szs={sm:{padding:"5px 12px",fontSize:12},md:{padding:"8px 16px",fontSize:13},lg:{padding:"10px 20px",fontSize:14}};
-  const vs={primary:{background:"#C8943A",color:"#fff"},ghost:{background:"#F5F1EB",color:"#5A5245",border:"1px solid #E4E0D8"},danger:{background:"#FFF0F0",color:"#ef4444",border:"1px solid #fee2e2"},indigo:{background:"#F5EDD8",color:"#C8943A",border:"1px solid #E8D5A8"}};
+  const vs={primary:{background:"#6366f1",color:"#fff"},ghost:{background:"#f8fafc",color:"#475569",border:"1px solid #e2e8f0"},danger:{background:"#fff0f0",color:"#ef4444",border:"1px solid #fee2e2"},indigo:{background:"#eef2ff",color:"#6366f1",border:"1px solid #c7d2fe"}};
   return<button onClick={onClick} style={{...base,...szs[sz],...vs[v],...style}}>{children}</button>
 }
 function Field({label,value,onChange,type="text",placeholder="",span=1}){
   return<div style={{gridColumn:`span ${span}`}}>
     <Lbl>{label}</Lbl>
     <input type={type} value={value||""} placeholder={placeholder} onChange={e=>onChange(e.target.value)}
-      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
+      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
   </div>
 }
 function Select({label,value,onChange,options,span=1}){
   return<div style={{gridColumn:`span ${span}`}}>
     <Lbl>{label}</Lbl>
     <select value={value||""} onChange={e=>onChange(e.target.value)}
-      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
+      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
       {options.map(o=><option key={o}>{o}</option>)}
     </select>
   </div>
@@ -247,7 +247,7 @@ function TextArea({label,value,onChange,rows=3,span=2}){
   return<div style={{gridColumn:`span ${span}`}}>
     <Lbl>{label}</Lbl>
     <textarea value={value||""} onChange={e=>onChange(e.target.value)} rows={rows}
-      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",resize:"vertical"}}/>
+      style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",resize:"vertical"}}/>
   </div>
 }
 
@@ -255,12 +255,12 @@ function TextArea({label,value,onChange,rows=3,span=2}){
 function Modal({title,onClose,onSave,wide=false,children}){
   return<div style={{position:"fixed",inset:0,background:"rgba(0,0,0,0.45)",zIndex:500,display:"flex",alignItems:"flex-start",justifyContent:"center",padding:"20px 16px",overflowY:"auto"}}>
     <div style={{background:"#fff",borderRadius:16,width:"100%",maxWidth:wide?740:560,boxShadow:"0 20px 60px rgba(0,0,0,0.2)",marginTop:20,marginBottom:20}}>
-      <div style={{padding:"18px 24px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-        <span style={{fontSize:15,fontWeight:700,color:"#1A1612"}}>{title}</span>
-        <button onClick={onClose} style={{background:"#F7F4EF",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",fontSize:14,color:"#7A6E60"}}>✕</button>
+      <div style={{padding:"18px 24px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <span style={{fontSize:15,fontWeight:700,color:"#0f172a"}}>{title}</span>
+        <button onClick={onClose} style={{background:"#f1f5f9",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",fontSize:14,color:"#64748b"}}>✕</button>
       </div>
       <div style={{padding:"20px 24px",maxHeight:"72vh",overflowY:"auto"}}>{children}</div>
-      <div style={{padding:"14px 24px",borderTop:"1px solid #F7F4EF",display:"flex",justifyContent:"flex-end",gap:8}}>
+      <div style={{padding:"14px 24px",borderTop:"1px solid #f1f5f9",display:"flex",justifyContent:"flex-end",gap:8}}>
         <Btn v="ghost" onClick={onClose}>Cancel</Btn>
         <Btn onClick={onSave}>Save</Btn>
       </div>
@@ -292,7 +292,7 @@ function ContactForm({contact,accounts,defaultAccountId,onClose,onSave}){
   return<Modal title={contact?"Edit Contact":"New Contact"} onClose={onClose} onSave={()=>{if(!f.name.trim())return alert("Contact name required.");onSave(f);}}>
     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
       <div style={{gridColumn:"span 2"}}><Lbl>Account *</Lbl>
-        <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
+        <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
           {accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
       </div>
@@ -302,7 +302,7 @@ function ContactForm({contact,accounts,defaultAccountId,onClose,onSave}){
       <Select label="Role / Influence" value={f.role} onChange={v=>set("role",v)} options={ROLES}/>
       <div style={{display:"flex",alignItems:"center",gap:8,paddingTop:18}}>
         <input type="checkbox" id="pchk" checked={f.primary} onChange={e=>set("primary",e.target.checked)} style={{width:15,height:15,cursor:"pointer"}}/>
-        <label htmlFor="pchk" style={{fontSize:13,color:"#3D3428",cursor:"pointer",fontWeight:500}}>Primary contact</label>
+        <label htmlFor="pchk" style={{fontSize:13,color:"#334155",cursor:"pointer",fontWeight:500}}>Primary contact</label>
       </div>
       <Field label="Phone" value={f.phone} onChange={v=>set("phone",v)}/>
       <Field label="Email" value={f.email} onChange={v=>set("email",v)} type="email"/>
@@ -317,7 +317,7 @@ function OppForm({opp,accounts,defaultAccountId,onClose,onSave}){
   return<Modal title={opp?"Edit Opportunity":"New Opportunity"} onClose={onClose} onSave={()=>{if(!f.name.trim())return alert("Opportunity name required.");onSave(f);}} wide>
     <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
       <div style={{gridColumn:"span 2"}}><Lbl>Account *</Lbl>
-        <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
+        <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
           {accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
       </div>
@@ -341,7 +341,7 @@ function ActivityForm({accountId,oppId,accounts,onClose,onSave}){
   const set=(k,v)=>sf(p=>({...p,[k]:v}));
   return<Modal title="Log Activity" onClose={onClose} onSave={()=>{if(!f.description.trim())return alert("Description required.");onSave(f);}}>
     {!accountId&&<div style={{marginBottom:14}}><Lbl>Account</Lbl>
-      <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
+      <select value={f.accountId} onChange={e=>set("accountId",e.target.value)} style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff",cursor:"pointer"}}>
         {accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
       </select>
     </div>}
@@ -351,7 +351,7 @@ function ActivityForm({accountId,oppId,accounts,onClose,onSave}){
     </div>
     <div style={{marginTop:14}}><Lbl>Description *</Lbl>
       <textarea value={f.description} onChange={e=>set("description",e.target.value)} rows={3} placeholder="What happened? Key points, next steps…"
-        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",resize:"vertical"}}/>
+        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",resize:"vertical"}}/>
     </div>
   </Modal>
 }
@@ -363,7 +363,7 @@ function StageBar({stage}){
     {OPP_STAGES.map((s,i)=>{
       const m=OS_META[s];
       const active=i===idx,past=i<idx&&idx<OPP_STAGES.length-2;
-      return<div key={s} style={{flex:1,padding:"4px 0",background:active?m.c:past?"#E8D5A8":"#F7F4EF",color:active?"#fff":past?"#9A7020":"#9C9486",fontSize:9,fontWeight:active?700:400,textAlign:"center",borderRadius:i===0?"5px 0 0 5px":i===OPP_STAGES.length-1?"0 5px 5px 0":"0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{s}</div>
+      return<div key={s} style={{flex:1,padding:"4px 0",background:active?m.c:past?"#c7d2fe":"#f1f5f9",color:active?"#fff":past?"#4338ca":"#94a3b8",fontSize:9,fontWeight:active?700:400,textAlign:"center",borderRadius:i===0?"5px 0 0 5px":i===OPP_STAGES.length-1?"0 5px 5px 0":"0",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{s}</div>
     })}
   </div>
 }
@@ -371,18 +371,18 @@ function StageBar({stage}){
 /* ═══ TIMELINE BAR ═══ */
 function Timeline({opps}){
   const valid=opps.filter(o=>o.startDate&&o.endDate);
-  if(!valid.length)return<div style={{padding:"20px",textAlign:"center",color:"#9C9486",fontSize:13}}>Add opportunities with start and end dates to see the timeline.</div>;
+  if(!valid.length)return<div style={{padding:"20px",textAlign:"center",color:"#94a3b8",fontSize:13}}>Add opportunities with start and end dates to see the timeline.</div>;
   const dates=valid.flatMap(o=>[new Date(o.startDate),new Date(o.endDate)]);
   const minD=Math.min(...dates.map(d=>d.getTime()));
   const maxD=Math.max(...dates.map(d=>d.getTime()));
   const range=maxD-minD||1;
-  const colors=["#C8943A","#10b981","#f59e0b","#0ea5e9","#f97316","#B8832C","#ef4444","#14b8a6"];
+  const colors=["#6366f1","#10b981","#f59e0b","#0ea5e9","#f97316","#8b5cf6","#ef4444","#14b8a6"];
   return<div style={{padding:"16px 20px"}}>
     <div style={{position:"relative",paddingTop:20}}>
       {(()=>{const mk=[];const sy=new Date(minD).getFullYear(),ey=new Date(maxD).getFullYear();
         for(let y=sy;y<=ey+1;y++){const p=((new Date(y,0,1)-minD)/range)*100;
-          if(p>=0&&p<=105)mk.push(<div key={y} style={{position:"absolute",left:`${p}%`,top:0,bottom:0,borderLeft:"1px dashed #E4E0D8"}}>
-            <span style={{fontSize:9,color:"#D8D0C0",position:"absolute",top:-16,transform:"translateX(-50%)"}}>{y}</span>
+          if(p>=0&&p<=105)mk.push(<div key={y} style={{position:"absolute",left:`${p}%`,top:0,bottom:0,borderLeft:"1px dashed #e2e8f0"}}>
+            <span style={{fontSize:9,color:"#cbd5e1",position:"absolute",top:-16,transform:"translateX(-50%)"}}>{y}</span>
           </div>);}
         return mk;})()}
       {valid.map((o,i)=>{
@@ -399,7 +399,7 @@ function Timeline({opps}){
     <div style={{display:"flex",flexWrap:"wrap",gap:"5px 14px",marginTop:12}}>
       {valid.map((o,i)=><div key={o.id} style={{display:"flex",alignItems:"center",gap:5}}>
         <span style={{width:8,height:8,borderRadius:2,background:colors[i%colors.length],display:"inline-block"}}/>
-        <span style={{fontSize:10,color:"#7A6E60"}}>{o.name}</span>
+        <span style={{fontSize:10,color:"#64748b"}}>{o.name}</span>
       </div>)}
     </div>
   </div>;
@@ -430,22 +430,22 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
   const tabs=[["overview","Overview"],["contacts",`Contacts (${contacts.length})`],["opportunities",`Opportunities (${opps.length})`],["contracts",`Contracts (${contracts.length})`],["timeline","Timeline"],["activity",`Activity (${acts.length})`]];
 
   return<div style={{padding:"22px 24px",maxWidth:980,margin:"0 auto"}}>
-    <button onClick={onBack} style={{background:"none",border:"none",color:"#C8943A",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Accounts</button>
+    <button onClick={onBack} style={{background:"none",border:"none",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Accounts</button>
 
     {/* Header */}
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"22px 26px",marginBottom:16}}>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"22px 26px",marginBottom:16}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:12,marginBottom:16}}>
         <div style={{display:"flex",alignItems:"center",gap:14}}>
           <Avatar name={account.name} size={48} color={tm.c} bg={tm.bg}/>
           <div>
             <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:5}}>
-              <h2 style={{fontSize:21,fontWeight:700,color:"#1A1612"}}>{account.name}</h2>
+              <h2 style={{fontSize:21,fontWeight:700,color:"#0f172a"}}>{account.name}</h2>
               <Tag text={account.type} color={tm.c} bg={tm.bg}/>
               <Tag text={account.status} color={sm.c} bg={sm.bg}/>
             </div>
-            <div style={{fontSize:13,color:"#7A6E60",display:"flex",gap:12,flexWrap:"wrap"}}>
+            <div style={{fontSize:13,color:"#64748b",display:"flex",gap:12,flexWrap:"wrap"}}>
               <span>{account.industry}</span>
-              {account.website&&<a href={`https://${account.website}`} target="_blank" rel="noopener" style={{color:"#C8943A"}}>{account.website}</a>}
+              {account.website&&<a href={`https://${account.website}`} target="_blank" rel="noopener" style={{color:"#6366f1"}}>{account.website}</a>}
               {account.phone&&<span>{account.phone}</span>}
               {account.address&&<span>📍 {account.address}</span>}
             </div>
@@ -462,7 +462,7 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
         <Lbl>Account Status</Lbl>
         <div style={{display:"flex",gap:6,marginTop:4,flexWrap:"wrap"}}>
           {ACCT_STATUS.map(s=>{const m=AS_META[s];const active=account.status===s;
-            return<button key={s} onClick={()=>onStatusChange(s)} style={{padding:"5px 13px",borderRadius:20,border:`1.5px solid ${active?m.c:"#E4E0D8"}`,background:active?m.bg:"#fff",color:active?m.c:"#9C9486",fontSize:12,fontWeight:active?700:400,cursor:"pointer"}}>{s}</button>;
+            return<button key={s} onClick={()=>onStatusChange(s)} style={{padding:"5px 13px",borderRadius:20,border:`1.5px solid ${active?m.c:"#e2e8f0"}`,background:active?m.bg:"#fff",color:active?m.c:"#94a3b8",fontSize:12,fontWeight:active?700:400,cursor:"pointer"}}>{s}</button>;
           })}
         </div>
       </div>
@@ -470,110 +470,110 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
       {/* KPI strip */}
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(120px,1fr))",gap:10,marginBottom:account.notes?14:0}}>
         {[["Won Revenue",currency(wonValue)],["Open Pipeline",currency(pipeline)],["Total Contract",currency(totalContract)],["One-time",currency(totalOT)],["Monthly Rec.",totalRC>0?`${currency(totalRC)}/mo`:"—"],["Assigned To",account.assignedTo],["Since",fmt(account.createdAt)]].map(([l,v])=>
-          <div key={l} style={{background:"#F5F1EB",borderRadius:9,padding:"10px 12px"}}>
-            <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
-            <div style={{fontSize:13,fontWeight:700,color:"#3D3428"}}>{v}</div>
+          <div key={l} style={{background:"#f8fafc",borderRadius:9,padding:"10px 12px"}}>
+            <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
+            <div style={{fontSize:13,fontWeight:700,color:"#334155"}}>{v}</div>
           </div>)}
       </div>
-      {account.notes&&<div style={{padding:"11px 14px",background:"#FFFBEB",border:"1px solid #fef3c7",borderRadius:9,marginTop:4}}>
+      {account.notes&&<div style={{padding:"11px 14px",background:"#fffbeb",border:"1px solid #fef3c7",borderRadius:9,marginTop:4}}>
         <div style={{fontSize:9,fontWeight:700,color:"#92400e",textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:3}}>NOTES</div>
         <div style={{fontSize:13,color:"#78350f",lineHeight:1.6}}>{account.notes}</div>
       </div>}
     </div>
 
     {/* Tabs */}
-    <div style={{display:"flex",gap:2,background:"#fff",padding:4,borderRadius:10,border:"1px solid #E4E0D8",width:"fit-content",marginBottom:16,flexWrap:"wrap"}}>
-      {tabs.map(([k,lbl])=><button key={k} onClick={()=>setTab(k)} style={{padding:"7px 14px",borderRadius:7,border:"none",background:tab===k?"#C8943A":"transparent",color:tab===k?"#fff":"#7A6E60",fontSize:12,fontWeight:tab===k?600:400,cursor:"pointer",whiteSpace:"nowrap"}}>{lbl}</button>)}
+    <div style={{display:"flex",gap:2,background:"#fff",padding:4,borderRadius:10,border:"1px solid #e2e8f0",width:"fit-content",marginBottom:16,flexWrap:"wrap"}}>
+      {tabs.map(([k,lbl])=><button key={k} onClick={()=>setTab(k)} style={{padding:"7px 14px",borderRadius:7,border:"none",background:tab===k?"#6366f1":"transparent",color:tab===k?"#fff":"#64748b",fontSize:12,fontWeight:tab===k?600:400,cursor:"pointer",whiteSpace:"nowrap"}}>{lbl}</button>)}
     </div>
 
     {/* Overview tab */}
     {tab==="overview"&&<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
       {/* Primary contact */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:20}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:20}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
           Primary Contact
-          <button onClick={()=>{setEC(null);setSCF(true);}} style={{background:"none",border:"none",color:"#C8943A",fontSize:12,cursor:"pointer",fontWeight:600}}>+ Add</button>
+          <button onClick={()=>{setEC(null);setSCF(true);}} style={{background:"none",border:"none",color:"#6366f1",fontSize:12,cursor:"pointer",fontWeight:600}}>+ Add</button>
         </div>
         {pc?<div style={{display:"flex",gap:12,alignItems:"center",cursor:"pointer"}} onClick={()=>onViewContact(pc)}>
           <Avatar name={pc.name} size={42}/>
           <div>
-            <div style={{fontWeight:600,fontSize:14,color:"#1A1612"}}>{pc.name}</div>
-            <div style={{fontSize:12,color:"#7A6E60"}}>{pc.title} · {pc.role}</div>
-            <div style={{fontSize:12,color:"#C8943A",marginTop:2}}>{pc.email}</div>
+            <div style={{fontWeight:600,fontSize:14,color:"#0f172a"}}>{pc.name}</div>
+            <div style={{fontSize:12,color:"#64748b"}}>{pc.title} · {pc.role}</div>
+            <div style={{fontSize:12,color:"#6366f1",marginTop:2}}>{pc.email}</div>
           </div>
-        </div>:<div style={{color:"#9C9486",fontSize:13}}>No contacts yet.</div>}
-        {contacts.length>1&&<div style={{marginTop:10,fontSize:12,color:"#9C9486",cursor:"pointer"}} onClick={()=>setTab("contacts")}>+{contacts.length-1} more contact{contacts.length-1!==1?"s":""} →</div>}
+        </div>:<div style={{color:"#94a3b8",fontSize:13}}>No contacts yet.</div>}
+        {contacts.length>1&&<div style={{marginTop:10,fontSize:12,color:"#94a3b8",cursor:"pointer"}} onClick={()=>setTab("contacts")}>+{contacts.length-1} more contact{contacts.length-1!==1?"s":""} →</div>}
       </div>
 
       {/* Open opportunities */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:20}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:20}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
           Open Opportunities
-          <button onClick={()=>{setEO(null);setSOF(true);}} style={{background:"none",border:"none",color:"#C8943A",fontSize:12,cursor:"pointer",fontWeight:600}}>+ Add</button>
+          <button onClick={()=>{setEO(null);setSOF(true);}} style={{background:"none",border:"none",color:"#6366f1",fontSize:12,cursor:"pointer",fontWeight:600}}>+ Add</button>
         </div>
         {opps.filter(o=>!["Closed Won","Closed Lost"].includes(o.stage)).slice(0,3).map(o=>{
           const m=OS_META[o.stage];
-          return<div key={o.id} style={{marginBottom:10,paddingBottom:10,borderBottom:"1px solid #F7F4EF"}}>
+          return<div key={o.id} style={{marginBottom:10,paddingBottom:10,borderBottom:"1px solid #f1f5f9"}}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
-              <div style={{fontSize:13,fontWeight:600,color:"#1A1612",flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{o.name}</div>
+              <div style={{fontSize:13,fontWeight:600,color:"#0f172a",flex:1,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{o.name}</div>
               <span style={{marginLeft:8,flexShrink:0,fontSize:12,fontWeight:700,color:"#10b981"}}>{currency(oppTotal(o))}</span>
             </div>
             <Tag text={o.stage} color={m.c} bg={m.bg}/>
           </div>;
         })}
-        {opps.filter(o=>!["Closed Won","Closed Lost"].includes(o.stage)).length===0&&<div style={{color:"#9C9486",fontSize:13}}>No open opportunities.</div>}
+        {opps.filter(o=>!["Closed Won","Closed Lost"].includes(o.stage)).length===0&&<div style={{color:"#94a3b8",fontSize:13}}>No open opportunities.</div>}
       </div>
 
       {/* Recent activity */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:20,gridColumn:"span 2"}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:20,gridColumn:"span 2"}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:14,display:"flex",justifyContent:"space-between"}}>
           Recent Activity
           <Btn sz="sm" onClick={()=>setSAF(true)}>+ Log</Btn>
         </div>
         {sortedActs.slice(0,4).map((act,i)=>{
           const am=AM[act.type]||{e:"•"};
-          return<div key={act.id} style={{display:"flex",gap:10,padding:"10px 0",borderBottom:i<Math.min(3,sortedActs.length-1)?"1px solid #F7F4EF":"none"}}>
-            <div style={{width:30,height:30,borderRadius:8,background:"#F5F1EB",border:"1px solid #E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{am.e}</div>
+          return<div key={act.id} style={{display:"flex",gap:10,padding:"10px 0",borderBottom:i<Math.min(3,sortedActs.length-1)?"1px solid #f1f5f9":"none"}}>
+            <div style={{width:30,height:30,borderRadius:8,background:"#f8fafc",border:"1px solid #e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,flexShrink:0}}>{am.e}</div>
             <div style={{flex:1,minWidth:0}}>
               <div style={{display:"flex",justifyContent:"space-between"}}>
-                <span style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{act.type}</span>
-                <span style={{fontSize:11,color:"#9C9486"}}>{fmtS(act.date)}</span>
+                <span style={{fontSize:13,fontWeight:600,color:"#334155"}}>{act.type}</span>
+                <span style={{fontSize:11,color:"#94a3b8"}}>{fmtS(act.date)}</span>
               </div>
-              <div style={{fontSize:12,color:"#7A6E60",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.description}</div>
+              <div style={{fontSize:12,color:"#64748b",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.description}</div>
             </div>
           </div>;
         })}
-        {sortedActs.length===0&&<div style={{color:"#9C9486",fontSize:13}}>No activity yet.</div>}
+        {sortedActs.length===0&&<div style={{color:"#94a3b8",fontSize:13}}>No activity yet.</div>}
       </div>
     </div>}
 
     {/* Contacts tab */}
     {tab==="contacts"&&<SectionCard title="Contacts" count={contacts.length} noPad
       action={<Btn sz="sm" onClick={()=>{setEC(null);setSCF(true);}}>+ Add Contact</Btn>}>
-      {contacts.length===0&&<div style={{padding:24,textAlign:"center",color:"#9C9486",fontSize:13}}>No contacts yet.</div>}
+      {contacts.length===0&&<div style={{padding:24,textAlign:"center",color:"#94a3b8",fontSize:13}}>No contacts yet.</div>}
       {contacts.length>0&&<div style={{overflowX:"auto"}}>
         <table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-          <thead><tr style={{background:"#F5F1EB"}}>
-            {["","Name","Title","Department","Role","Phone","Email",""].map((h,i)=><th key={i} style={{padding:"10px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}
+          <thead><tr style={{background:"#f8fafc"}}>
+            {["","Name","Title","Department","Role","Phone","Email",""].map((h,i)=><th key={i} style={{padding:"10px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}
           </tr></thead>
           <tbody>
-            {contacts.map((c,i)=><tr key={c.id} style={{borderTop:"1px solid #F7F4EF",cursor:"pointer"}}
-              onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"}
+            {contacts.map((c,i)=><tr key={c.id} style={{borderTop:"1px solid #f1f5f9",cursor:"pointer"}}
+              onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"}
               onMouseLeave={e=>e.currentTarget.style.background=""}>
               <td style={{padding:"10px 8px 10px 16px",width:28}} onClick={()=>onViewContact(c)}>
                 {c.primary&&<span style={{background:"#fef3c7",color:"#92400e",fontSize:9,fontWeight:700,padding:"2px 6px",borderRadius:20}}>Primary</span>}
               </td>
               <td style={{padding:"10px 16px"}} onClick={()=>onViewContact(c)}>
                 <div style={{display:"flex",alignItems:"center",gap:8}}>
-                  <Avatar name={c.name} size={28} color="#C8943A" bg="#F5EDD8"/>
-                  <span style={{fontWeight:600,color:"#1A1612"}}>{c.name}</span>
+                  <Avatar name={c.name} size={28} color="#6366f1" bg="#eef2ff"/>
+                  <span style={{fontWeight:600,color:"#0f172a"}}>{c.name}</span>
                 </div>
               </td>
-              <td style={{padding:"10px 16px",color:"#7A6E60"}} onClick={()=>onViewContact(c)}>{c.title||"—"}</td>
-              <td style={{padding:"10px 16px"}} onClick={()=>onViewContact(c)}><span style={{background:"#F7F4EF",color:"#5A5245",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.dept}</span></td>
-              <td style={{padding:"10px 16px",color:"#7A6E60"}} onClick={()=>onViewContact(c)}>{c.role}</td>
-              <td style={{padding:"10px 16px"}}><a href={`tel:${c.phone}`} style={{color:"#3D3428",fontSize:12}}>{c.phone||"—"}</a></td>
-              <td style={{padding:"10px 16px"}}><a href={`mailto:${c.email}`} style={{color:"#C8943A",fontSize:12}}>{c.email||"—"}</a></td>
+              <td style={{padding:"10px 16px",color:"#64748b"}} onClick={()=>onViewContact(c)}>{c.title||"—"}</td>
+              <td style={{padding:"10px 16px"}} onClick={()=>onViewContact(c)}><span style={{background:"#f1f5f9",color:"#475569",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.dept}</span></td>
+              <td style={{padding:"10px 16px",color:"#64748b"}} onClick={()=>onViewContact(c)}>{c.role}</td>
+              <td style={{padding:"10px 16px"}}><a href={`tel:${c.phone}`} style={{color:"#334155",fontSize:12}}>{c.phone||"—"}</a></td>
+              <td style={{padding:"10px 16px"}}><a href={`mailto:${c.email}`} style={{color:"#6366f1",fontSize:12}}>{c.email||"—"}</a></td>
               <td style={{padding:"10px 16px",textAlign:"right"}}>
                 <div style={{display:"flex",gap:6,justifyContent:"flex-end"}}>
                   <Btn sz="sm" v="ghost" onClick={()=>{setEC(c);setSCF(true);}}>Edit</Btn>
@@ -589,17 +589,17 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
     {/* Opportunities tab */}
     {tab==="opportunities"&&<SectionCard title="Opportunities" count={opps.length}
       action={<Btn sz="sm" onClick={()=>{setEO(null);setSOF(true);}}>+ Add Opportunity</Btn>}>
-      {opps.length===0&&<div style={{paddingTop:12,paddingBottom:4,textAlign:"center",color:"#9C9486",fontSize:13}}>No opportunities yet.</div>}
+      {opps.length===0&&<div style={{paddingTop:12,paddingBottom:4,textAlign:"center",color:"#94a3b8",fontSize:13}}>No opportunities yet.</div>}
       {opps.map((o,i)=>{
         const m=OS_META[o.stage];
         const dur=o.startDate&&o.endDate?Math.max(0,Math.round((new Date(o.endDate)-new Date(o.startDate))/(1000*60*60*24*30.44))):null;
-        return<div key={o.id} style={{paddingTop:14,paddingBottom:14,borderBottom:i<opps.length-1?"1px solid #F7F4EF":"none"}}>
+        return<div key={o.id} style={{paddingTop:14,paddingBottom:14,borderBottom:i<opps.length-1?"1px solid #f1f5f9":"none"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8,marginBottom:10}}>
             <div>
-              <div style={{fontSize:15,fontWeight:700,color:"#1A1612",marginBottom:5,cursor:onViewOpp?"pointer":"default"}}
+              <div style={{fontSize:15,fontWeight:700,color:"#0f172a",marginBottom:5,cursor:onViewOpp?"pointer":"default"}}
                 onClick={()=>onViewOpp&&onViewOpp(o)}>{o.name}</div>
               <Tag text={o.stage} color={m.c} bg={m.bg}/>
-              {o.probability!=null&&Number(o.probability)>0&&<span style={{marginLeft:8,fontSize:11,color:"#9C9486"}}>{o.probability}% probability</span>}
+              {o.probability!=null&&Number(o.probability)>0&&<span style={{marginLeft:8,fontSize:11,color:"#94a3b8"}}>{o.probability}% probability</span>}
             </div>
             <div style={{display:"flex",gap:6}}>
               <Btn sz="sm" v="indigo" onClick={()=>onViewOpp&&onViewOpp(o)}>View Details →</Btn>
@@ -609,19 +609,19 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
           </div>
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(110px,1fr))",gap:8,marginBottom:10}}>
             {[["One-time",Number(o.oneTime)>0?currency(o.oneTime):"—"],["Recurring",Number(o.recurring)>0?`${currency(o.recurring)}/${o.recurringPeriod||"mo"}`:"—"],["Duration",dur!=null?`${dur} mo`:"—"],["Total",currency(oppTotal(o))],["Start",fmt(o.startDate)],["Close",fmt(o.endDate)]].map(([l,v])=>
-              <div key={l} style={{background:"#F5F1EB",borderRadius:8,padding:"8px 11px"}}>
-                <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.06em",marginBottom:2}}>{l}</div>
-                <div style={{fontSize:13,fontWeight:700,color:l==="Total"?"#10b981":"#3D3428"}}>{v}</div>
+              <div key={l} style={{background:"#f8fafc",borderRadius:8,padding:"8px 11px"}}>
+                <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.06em",marginBottom:2}}>{l}</div>
+                <div style={{fontSize:13,fontWeight:700,color:l==="Total"?"#10b981":"#334155"}}>{v}</div>
               </div>)}
           </div>
           <StageBar stage={o.stage}/>
-          {o.notes&&<div style={{marginTop:8,fontSize:12,color:"#7A6E60",fontStyle:"italic"}}>{o.notes}</div>}
+          {o.notes&&<div style={{marginTop:8,fontSize:12,color:"#64748b",fontStyle:"italic"}}>{o.notes}</div>}
         </div>;
       })}
-      {opps.length>1&&<div style={{paddingTop:12,borderTop:"1px solid #F7F4EF",display:"flex",gap:20,flexWrap:"wrap",marginTop:4}}>
-        <div><span style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Total one-time </span><span style={{fontWeight:700,color:"#3D3428",fontSize:14}}>{currency(totalOT)}</span></div>
-        {totalRC>0&&<div><span style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Monthly rec. </span><span style={{fontWeight:700,color:"#3D3428",fontSize:14}}>{currency(totalRC)}/mo</span></div>}
-        <div><span style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Total contract </span><span style={{fontWeight:700,color:"#10b981",fontSize:14}}>{currency(totalContract)}</span></div>
+      {opps.length>1&&<div style={{paddingTop:12,borderTop:"1px solid #f1f5f9",display:"flex",gap:20,flexWrap:"wrap",marginTop:4}}>
+        <div><span style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Total one-time </span><span style={{fontWeight:700,color:"#334155",fontSize:14}}>{currency(totalOT)}</span></div>
+        {totalRC>0&&<div><span style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Monthly rec. </span><span style={{fontWeight:700,color:"#334155",fontSize:14}}>{currency(totalRC)}/mo</span></div>}
+        <div><span style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".05em"}}>Total contract </span><span style={{fontWeight:700,color:"#10b981",fontSize:14}}>{currency(totalContract)}</span></div>
       </div>}
     </SectionCard>}
 
@@ -632,20 +632,20 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
 
     {/* Activity tab */}
     {tab==="activity"&&<SectionCard title="Activity Log" count={acts.length} action={<Btn sz="sm" onClick={()=>setSAF(true)}>+ Log Activity</Btn>}>
-      {sortedActs.length===0&&<div style={{paddingTop:12,textAlign:"center",color:"#9C9486",fontSize:13}}>No activities yet.</div>}
+      {sortedActs.length===0&&<div style={{paddingTop:12,textAlign:"center",color:"#94a3b8",fontSize:13}}>No activities yet.</div>}
       {sortedActs.map((act,i)=>{
         const am=AM[act.type]||{e:"•"};
-        return<div key={act.id} style={{display:"flex",gap:12,padding:"13px 0",borderBottom:i<sortedActs.length-1?"1px solid #F7F4EF":"none"}}>
-          <div style={{width:34,height:34,borderRadius:9,background:"#F5F1EB",border:"1px solid #E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>{am.e}</div>
+        return<div key={act.id} style={{display:"flex",gap:12,padding:"13px 0",borderBottom:i<sortedActs.length-1?"1px solid #f1f5f9":"none"}}>
+          <div style={{width:34,height:34,borderRadius:9,background:"#f8fafc",border:"1px solid #e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>{am.e}</div>
           <div style={{flex:1,minWidth:0}}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}>
-              <span style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{act.type}</span>
+              <span style={{fontSize:13,fontWeight:600,color:"#334155"}}>{act.type}</span>
               <div style={{display:"flex",gap:8,alignItems:"center",flexShrink:0,marginLeft:8}}>
-                <span style={{fontSize:11,color:"#9C9486"}}>{fmt(act.date)}</span>
+                <span style={{fontSize:11,color:"#94a3b8"}}>{fmt(act.date)}</span>
                 <button onClick={()=>{if(window.confirm("Remove?"))onDeleteAct(act.id);}} style={{background:"none",border:"none",color:"#ef4444",fontSize:11,cursor:"pointer",padding:0}}>✕</button>
               </div>
             </div>
-            <div style={{fontSize:13,color:"#7A6E60",lineHeight:1.5}}>{act.description}</div>
+            <div style={{fontSize:13,color:"#64748b",lineHeight:1.5}}>{act.description}</div>
           </div>
         </div>;
       })}
@@ -660,10 +660,10 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
 
     {/* Contracts tab content */}
     {tab==="contracts"&&<SectionCard title="Contracts & Proposals" count={contracts.length} action={<Btn sz="sm" onClick={()=>{setECT(null);setSCTF(true);}}>+ New Contract</Btn>}>
-      {contracts.length===0&&<div style={{paddingTop:16,paddingBottom:8,textAlign:"center",color:"#9C9486",fontSize:13}}>No contracts yet. Click + New Contract to add one.</div>}
+      {contracts.length===0&&<div style={{paddingTop:16,paddingBottom:8,textAlign:"center",color:"#94a3b8",fontSize:13}}>No contracts yet. Click + New Contract to add one.</div>}
       {contracts.map(function(ct,idx){
         const cm=CT_META[ct.type]||CT_META.Other;
-        const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#7A6E60":ct.status==="Pending"?"#f59e0b":"#ef4444";
+        const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
         const isExpired=ct.endDate&&new Date(ct.endDate)<new Date();
         const daysLeft=ct.endDate?Math.round((new Date(ct.endDate)-new Date())/86400000):null;
         const urgent=daysLeft!==null&&daysLeft>=0&&daysLeft<=30;
@@ -681,15 +681,15 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
           reader.readAsDataURL(file);
         }
 
-        return<div key={ct.id} style={{paddingTop:16,paddingBottom:16,borderBottom:idx<contracts.length-1?"1px solid #F7F4EF":"none"}}>
+        return<div key={ct.id} style={{paddingTop:16,paddingBottom:16,borderBottom:idx<contracts.length-1?"1px solid #f1f5f9":"none"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:10,marginBottom:12}}>
             <div style={{display:"flex",alignItems:"center",gap:10}}>
               <div style={{width:36,height:36,borderRadius:9,background:cm.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{cm.icon}</div>
               <div>
-                <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:3}}>{ct.name}</div>
+                <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:3}}>{ct.name}</div>
                 <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
                   <span style={{background:cm.bg,color:cm.c,borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>{ct.type}</span>
-                  <span style={{background:ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#F7F4EF":ct.status==="Pending"?"#fef3c7":"#fef2f2",color:statColor,borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>{ct.status}</span>
+                  <span style={{background:ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2",color:statColor,borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>{ct.status}</span>
                   {urgent&&<span style={{background:"#fff7ed",color:"#f97316",borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>⚠️ {daysLeft}d left</span>}
                   {isExpired&&ct.status!=="Expired"&&<span style={{background:"#fef2f2",color:"#ef4444",borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>Expired</span>}
                 </div>
@@ -697,7 +697,7 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
             </div>
             <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
               {/* Quick attach button */}
-              <label style={{display:"inline-flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:8,border:"1px solid #E4E0D8",background:"#F5F1EB",color:"#5A5245",fontSize:12,fontWeight:600,cursor:"pointer"}}>
+              <label style={{display:"inline-flex",alignItems:"center",gap:4,padding:"5px 10px",borderRadius:8,border:"1px solid #e2e8f0",background:"#f8fafc",color:"#475569",fontSize:12,fontWeight:600,cursor:"pointer"}}>
                 📎 Attach
                 <input type="file" accept=".pdf,.doc,.docx,.txt" onChange={handleQuickFile} style={{display:"none"}}/>
               </label>
@@ -708,35 +708,35 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
 
           <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(110px,1fr))",gap:8,marginBottom:ct.notes||ct.fileName?10:0}}>
             {[["Start",ct.startDate?fmt(ct.startDate):"—"],["End",ct.endDate?fmt(ct.endDate):"—"],["Duration",ct.startDate&&ct.endDate?Math.round((new Date(ct.endDate)-new Date(ct.startDate))/86400000)+"d":"—"],["Value",ct.value?("$"+Number(ct.value).toLocaleString()):"—"]].map(function(pair){
-              return<div key={pair[0]} style={{background:"#F5F1EB",borderRadius:8,padding:"8px 12px"}}>
-                <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{pair[0]}</div>
-                <div style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{pair[1]}</div>
+              return<div key={pair[0]} style={{background:"#f8fafc",borderRadius:8,padding:"8px 12px"}}>
+                <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{pair[0]}</div>
+                <div style={{fontSize:13,fontWeight:600,color:"#334155"}}>{pair[1]}</div>
               </div>;
             })}
           </div>
 
-          {ct.notes&&<div style={{fontSize:12,color:"#7A6E60",lineHeight:1.5,marginBottom:ct.fileName?8:0,fontStyle:"italic"}}>{ct.notes}</div>}
+          {ct.notes&&<div style={{fontSize:12,color:"#64748b",lineHeight:1.5,marginBottom:ct.fileName?8:0,fontStyle:"italic"}}>{ct.notes}</div>}
 
-          {ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"#F5F1EB",border:"1px solid #E4E0D8",borderRadius:9,marginTop:8}}>
+          {ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"#f8fafc",border:"1px solid #e2e8f0",borderRadius:9,marginTop:8}}>
             <span style={{fontSize:18}}>{ct.fileName.toLowerCase().endsWith(".pdf")?"📄":"📝"}</span>
             <div style={{flex:1,minWidth:0}}>
-              <div style={{fontSize:12,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
-              <div style={{fontSize:10,color:"#9C9486"}}>{fmtBytes(ct.fileSize)}</div>
+              <div style={{fontSize:12,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
+              <div style={{fontSize:10,color:"#94a3b8"}}>{fmtBytes(ct.fileSize)}</div>
             </div>
             <div style={{display:"flex",gap:6,flexShrink:0}}>
               {ct.fileData&&<button onClick={()=>{
                 const w=window.open();
                 w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);
-              }} style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:6,padding:"4px 11px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📂 Open</button>}
+              }} style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:6,padding:"4px 11px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📂 Open</button>}
               {ct.fileData&&<a href={ct.fileData} download={ct.fileName} style={{background:"#ecfdf5",color:"#10b981",borderRadius:6,padding:"4px 11px",fontSize:11,fontWeight:700,textDecoration:"none",display:"flex",alignItems:"center"}}>↓ Save</a>}
-              {!ct.fileData&&<span style={{background:"#F5F1EB",color:"#9C9486",borderRadius:6,padding:"4px 11px",fontSize:11,fontStyle:"italic"}}>Demo file</span>}
+              {!ct.fileData&&<span style={{background:"#f8fafc",color:"#94a3b8",borderRadius:6,padding:"4px 11px",fontSize:11,fontStyle:"italic"}}>Demo file</span>}
             </div>
           </div>}
 
-          {!ct.fileName&&<div style={{marginTop:8,padding:"10px 14px",border:"1.5px dashed #E4E0D8",borderRadius:9,display:"flex",alignItems:"center",gap:8}}>
-            <span style={{fontSize:14,color:"#9C9486"}}>📎</span>
-            <span style={{fontSize:12,color:"#9C9486",flex:1}}>No file attached</span>
-            <label style={{background:"#F5EDD8",color:"#C8943A",borderRadius:6,padding:"4px 11px",fontSize:11,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>
+          {!ct.fileName&&<div style={{marginTop:8,padding:"10px 14px",border:"1.5px dashed #e2e8f0",borderRadius:9,display:"flex",alignItems:"center",gap:8}}>
+            <span style={{fontSize:14,color:"#94a3b8"}}>📎</span>
+            <span style={{fontSize:12,color:"#94a3b8",flex:1}}>No file attached</span>
+            <label style={{background:"#eef2ff",color:"#6366f1",borderRadius:6,padding:"4px 11px",fontSize:11,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>
               + Attach File
               <input type="file" accept=".pdf,.doc,.docx,.txt" onChange={handleQuickFile} style={{display:"none"}}/>
             </label>
@@ -758,17 +758,17 @@ function AccountDetail({account,contacts,opps,acts,contracts,allAccounts,onBack,
 function ContactDetail({contact,account,opps,onBack,onEdit,onDelete,onViewAccount}){
   const tm=AT_META[account?.type]||AT_META.Prospect;
   return<div style={{padding:"22px 24px",maxWidth:680,margin:"0 auto"}}>
-    <button onClick={onBack} style={{background:"none",border:"none",color:"#C8943A",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Contacts</button>
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"24px 28px",marginBottom:16}}>
+    <button onClick={onBack} style={{background:"none",border:"none",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Contacts</button>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"24px 28px",marginBottom:16}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
         <div style={{display:"flex",gap:14,alignItems:"center"}}>
           <Avatar name={contact.name} size={52}/>
           <div>
             <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4,flexWrap:"wrap"}}>
-              <h2 style={{fontSize:20,fontWeight:700,color:"#1A1612"}}>{contact.name}</h2>
+              <h2 style={{fontSize:20,fontWeight:700,color:"#0f172a"}}>{contact.name}</h2>
               {contact.primary&&<span style={{background:"#fef3c7",color:"#92400e",fontSize:10,fontWeight:700,padding:"2px 8px",borderRadius:20}}>Primary</span>}
             </div>
-            <div style={{fontSize:13,color:"#7A6E60"}}>{contact.title}{contact.dept&&` · ${contact.dept}`}</div>
+            <div style={{fontSize:13,color:"#64748b"}}>{contact.title}{contact.dept&&` · ${contact.dept}`}</div>
           </div>
         </div>
         <div style={{display:"flex",gap:8}}>
@@ -778,31 +778,31 @@ function ContactDetail({contact,account,opps,onBack,onEdit,onDelete,onViewAccoun
       </div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:10,marginBottom:16}}>
         {[["Role",contact.role],["Department",contact.dept||"—"],["Phone",contact.phone||"—"],["Email",contact.email||"—"]].map(([l,v])=>
-          <div key={l} style={{background:"#F5F1EB",borderRadius:9,padding:"10px 12px"}}>
-            <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
-            <div style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{v}</div>
+          <div key={l} style={{background:"#f8fafc",borderRadius:9,padding:"10px 12px"}}>
+            <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#334155"}}>{v}</div>
           </div>)}
       </div>
-      {account&&<div style={{padding:"12px 14px",background:"#F5F1EB",borderRadius:9,cursor:"pointer",display:"flex",alignItems:"center",gap:10}} onClick={()=>onViewAccount(account)}>
+      {account&&<div style={{padding:"12px 14px",background:"#f8fafc",borderRadius:9,cursor:"pointer",display:"flex",alignItems:"center",gap:10}} onClick={()=>onViewAccount(account)}>
         <Avatar name={account.name} size={30} color={tm.c} bg={tm.bg}/>
         <div>
-          <div style={{fontSize:12,color:"#9C9486",fontWeight:600}}>ACCOUNT</div>
-          <div style={{fontSize:14,fontWeight:600,color:"#C8943A"}}>{account.name}</div>
+          <div style={{fontSize:12,color:"#94a3b8",fontWeight:600}}>ACCOUNT</div>
+          <div style={{fontSize:14,fontWeight:600,color:"#6366f1"}}>{account.name}</div>
         </div>
-        <div style={{marginLeft:"auto",fontSize:11,color:"#9C9486"}}>View account →</div>
+        <div style={{marginLeft:"auto",fontSize:11,color:"#94a3b8"}}>View account →</div>
       </div>}
     </div>
     {opps.length>0&&<SectionCard title="Related Opportunities" count={opps.length}>
       {opps.map((o,i)=>{
         const m=OS_META[o.stage];
-        return<div key={o.id} style={{padding:"10px 0",borderBottom:i<opps.length-1?"1px solid #F7F4EF":"none",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        return<div key={o.id} style={{padding:"10px 0",borderBottom:i<opps.length-1?"1px solid #f1f5f9":"none",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
           <div>
-            <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:3}}>{o.name}</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:3}}>{o.name}</div>
             <Tag text={o.stage} color={m.c} bg={m.bg}/>
           </div>
           <div style={{textAlign:"right"}}>
             <div style={{fontSize:14,fontWeight:700,color:"#10b981"}}>{currency(oppTotal(o))}</div>
-            <div style={{fontSize:11,color:"#9C9486"}}>{fmt(o.startDate)} – {fmt(o.endDate)}</div>
+            <div style={{fontSize:11,color:"#94a3b8"}}>{fmt(o.startDate)} – {fmt(o.endDate)}</div>
           </div>
         </div>;
       })}
@@ -816,11 +816,11 @@ function ViewToggle({view,setView}){
   var li='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><circle cx="3" cy="6" r="1.5"></circle><circle cx="3" cy="12" r="1.5"></circle><circle cx="3" cy="18" r="1.5"></circle></svg>';
   return<div style={{display:"flex",gap:4}}>
     <button title="Tile view" onClick={function(){setView("tile");}}
-      style={{padding:"5px 8px",borderRadius:6,border:"1px solid "+(view==="tile"?"#C8943A":"#E4E0D8"),background:view==="tile"?"#C8943A":"#fff",cursor:"pointer",display:"flex",alignItems:"center",color:view==="tile"?"#fff":"#7A6E60"}}>
+      style={{padding:"5px 8px",borderRadius:6,border:"1px solid "+(view==="tile"?"#6366f1":"#e2e8f0"),background:view==="tile"?"#6366f1":"#fff",cursor:"pointer",display:"flex",alignItems:"center",color:view==="tile"?"#fff":"#64748b"}}>
       <span dangerouslySetInnerHTML={{__html:gi}}></span>
     </button>
     <button title="List view" onClick={function(){setView("list");}}
-      style={{padding:"5px 8px",borderRadius:6,border:"1px solid "+(view==="list"?"#C8943A":"#E4E0D8"),background:view==="list"?"#C8943A":"#fff",cursor:"pointer",display:"flex",alignItems:"center",color:view==="list"?"#fff":"#7A6E60"}}>
+      style={{padding:"5px 8px",borderRadius:6,border:"1px solid "+(view==="list"?"#6366f1":"#e2e8f0"),background:view==="list"?"#6366f1":"#fff",cursor:"pointer",display:"flex",alignItems:"center",color:view==="list"?"#fff":"#64748b"}}>
       <span dangerouslySetInnerHTML={{__html:li}}></span>
     </button>
   </div>;
@@ -839,19 +839,19 @@ function AccountsList({accounts,contacts,opps,onView,onAdd}){
   });
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,flexWrap:"wrap",gap:12}}>
-      <div><h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Accounts</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>{filtered.length} of {accounts.length}</p></div>
+      <div><h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Accounts</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>{filtered.length} of {accounts.length}</p></div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}><ViewToggle view={view} setView={setView}/><Btn onClick={onAdd}>+ New Account</Btn></div>
     </div>
     <div style={{display:"flex",gap:10,marginBottom:18,flexWrap:"wrap"}}>
-      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search accounts…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
-      <select value={fType} onChange={e=>setFType(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search accounts…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+      <select value={fType} onChange={e=>setFType(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Types</option>{ACCT_TYPES.map(t=><option key={t}>{t}</option>)}
       </select>
-      <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Statuses</option>{ACCT_STATUS.map(s=><option key={s}>{s}</option>)}
       </select>
-      {(fType!=="All"||fStatus!=="All"||search)&&<button onClick={()=>{setFType("All");setFStatus("All");setSearch("");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#FFF0F0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
+      {(fType!=="All"||fStatus!=="All"||search)&&<button onClick={()=>{setFType("All");setFStatus("All");setSearch("");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff0f0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
     </div>
     {view==="tile"&&<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(300px,1fr))",gap:13}}>
       {filtered.map(a=>{
@@ -859,42 +859,42 @@ function AccountsList({accounts,contacts,opps,onView,onAdd}){
         const ac=contacts.filter(c=>c.accountId===a.id),ao=opps.filter(o=>o.accountId===a.id);
         const pc=ac.find(c=>c.primary)||ac[0],tv=ao.reduce((s,o)=>s+oppTotal(o),0);
         const open=ao.filter(o=>!["Closed Won","Closed Lost"].includes(o.stage)).length;
-        return<div key={a.id} onClick={()=>onView(a)} style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"16px 18px",cursor:"pointer"}}
+        return<div key={a.id} onClick={()=>onView(a)} style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"16px 18px",cursor:"pointer"}}
           onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 18px rgba(0,0,0,0.09)"}
           onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
             <div style={{display:"flex",gap:10,alignItems:"center",flex:1,minWidth:0}}>
               <Avatar name={a.name} size={34} color={tm.c} bg={tm.bg}/>
-              <div style={{minWidth:0}}><div style={{fontWeight:700,fontSize:14,color:"#1A1612",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.name}</div><div style={{fontSize:11,color:"#7A6E60"}}>{a.industry}</div></div>
+              <div style={{minWidth:0}}><div style={{fontWeight:700,fontSize:14,color:"#0f172a",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{a.name}</div><div style={{fontSize:11,color:"#64748b"}}>{a.industry}</div></div>
             </div>
             <Tag text={a.type} color={tm.c} bg={tm.bg}/>
           </div>
-          {pc&&<div style={{fontSize:12,color:"#7A6E60",marginBottom:10,display:"flex",alignItems:"center",gap:5}}><span>👤</span><span>{pc.name}</span><span style={{color:"#D8D0C0"}}>·</span><span style={{color:"#9C9486"}}>{pc.role}</span></div>}
-          <div style={{borderTop:"1px solid #F7F4EF",paddingTop:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <div><div style={{fontSize:15,fontWeight:700,color:"#1A1612"}}>{tv>0?currency(tv):"—"}</div><div style={{fontSize:10,color:"#9C9486"}}>{open} open opp{open!==1?"s":""} · {ac.length} contact{ac.length!==1?"s":""}</div></div>
+          {pc&&<div style={{fontSize:12,color:"#64748b",marginBottom:10,display:"flex",alignItems:"center",gap:5}}><span>👤</span><span>{pc.name}</span><span style={{color:"#cbd5e1"}}>·</span><span style={{color:"#94a3b8"}}>{pc.role}</span></div>}
+          <div style={{borderTop:"1px solid #f1f5f9",paddingTop:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div><div style={{fontSize:15,fontWeight:700,color:"#0f172a"}}>{tv>0?currency(tv):"—"}</div><div style={{fontSize:10,color:"#94a3b8"}}>{open} open opp{open!==1?"s":""} · {ac.length} contact{ac.length!==1?"s":""}</div></div>
             <Tag text={a.status} color={sm.c} bg={sm.bg}/>
           </div>
         </div>;})}
-      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#9C9486",fontSize:14}}>No accounts match.</div>}
+      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#94a3b8",fontSize:14}}>No accounts match.</div>}
     </div>}
-    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#9C9486",fontSize:14}}>No accounts match.</div>
+    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#94a3b8",fontSize:14}}>No accounts match.</div>
       :<div style={{overflowX:"auto"}}><table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-        <thead><tr style={{background:"#F5F1EB"}}>{["","Account","Industry","Type","Status","Pipeline","Contacts","Assigned"].map(h=><th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
+        <thead><tr style={{background:"#f8fafc"}}>{["","Account","Industry","Type","Status","Pipeline","Contacts","Assigned"].map(h=><th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
         <tbody>{filtered.map(a=>{
           const tm=AT_META[a.type]||AT_META.Prospect,sm=AS_META[a.status]||AS_META.Active;
           const ac=contacts.filter(c=>c.accountId===a.id),ao=opps.filter(o=>o.accountId===a.id);
           const tv=ao.filter(o=>!["Closed Won","Closed Lost"].includes(o.stage)).reduce((s,o)=>s+oppTotal(o),0);
-          return<tr key={a.id} onClick={()=>onView(a)} style={{borderTop:"1px solid #F7F4EF",cursor:"pointer"}}
-            onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"} onMouseLeave={e=>e.currentTarget.style.background=""}>
+          return<tr key={a.id} onClick={()=>onView(a)} style={{borderTop:"1px solid #f1f5f9",cursor:"pointer"}}
+            onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"} onMouseLeave={e=>e.currentTarget.style.background=""}>
             <td style={{padding:"10px 6px 10px 14px",width:38}}><Avatar name={a.name} size={30} color={tm.c} bg={tm.bg}/></td>
-            <td style={{padding:"10px 14px"}}><div style={{fontWeight:600,color:"#1A1612"}}>{a.name}</div><div style={{fontSize:11,color:"#9C9486"}}>{a.website||""}</div></td>
-            <td style={{padding:"10px 14px",color:"#7A6E60"}}>{a.industry}</td>
+            <td style={{padding:"10px 14px"}}><div style={{fontWeight:600,color:"#0f172a"}}>{a.name}</div><div style={{fontSize:11,color:"#94a3b8"}}>{a.website||""}</div></td>
+            <td style={{padding:"10px 14px",color:"#64748b"}}>{a.industry}</td>
             <td style={{padding:"10px 14px"}}><Tag text={a.type} color={tm.c} bg={tm.bg}/></td>
             <td style={{padding:"10px 14px"}}><Tag text={a.status} color={sm.c} bg={sm.bg}/></td>
-            <td style={{padding:"10px 14px",fontWeight:600,color:"#3D3428"}}>{tv>0?currency(tv):"—"}</td>
-            <td style={{padding:"10px 14px",color:"#7A6E60",textAlign:"center"}}>{ac.length}</td>
-            <td style={{padding:"10px 14px",color:"#7A6E60"}}>{a.assignedTo||"—"}</td>
+            <td style={{padding:"10px 14px",fontWeight:600,color:"#334155"}}>{tv>0?currency(tv):"—"}</td>
+            <td style={{padding:"10px 14px",color:"#64748b",textAlign:"center"}}>{ac.length}</td>
+            <td style={{padding:"10px 14px",color:"#64748b"}}>{a.assignedTo||"—"}</td>
           </tr>;})}
         </tbody>
       </table></div>}
@@ -916,59 +916,59 @@ function ContactsGlobal({contacts,accounts,opps,onView,onAdd,onViewAccount}){
   });
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,flexWrap:"wrap",gap:12}}>
-      <div><h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Contacts</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>{filtered.length} of {contacts.length}</p></div>
+      <div><h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Contacts</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>{filtered.length} of {contacts.length}</p></div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}><ViewToggle view={view} setView={setView}/><Btn onClick={onAdd}>+ New Contact</Btn></div>
     </div>
     <div style={{display:"flex",gap:10,marginBottom:18,flexWrap:"wrap"}}>
-      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search name, email…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
-      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search name, email…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Accounts</option>{accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
       </select>
-      <select value={fRole} onChange={e=>setFRole(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <select value={fRole} onChange={e=>setFRole(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Roles</option>{ROLES.map(r=><option key={r}>{r}</option>)}
       </select>
-      {(fRole!=="All"||fAcct!=="All"||search)&&<button onClick={()=>{setFRole("All");setFAcct("All");setSearch("");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#FFF0F0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
+      {(fRole!=="All"||fAcct!=="All"||search)&&<button onClick={()=>{setFRole("All");setFAcct("All");setSearch("");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff0f0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
     </div>
     {view==="tile"&&<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))",gap:13}}>
       {filtered.map(c=>{
         const acct=accounts.find(a=>a.id===c.accountId),tm=AT_META[acct?.type]||AT_META.Prospect;
-        return<div key={c.id} onClick={()=>onView(c)} style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"16px 18px",cursor:"pointer"}}
+        return<div key={c.id} onClick={()=>onView(c)} style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"16px 18px",cursor:"pointer"}}
           onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 18px rgba(0,0,0,0.09)"}
           onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
           <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:12}}>
             <Avatar name={c.name} size={40}/>
             <div style={{flex:1,minWidth:0}}>
-              <div style={{fontWeight:700,fontSize:14,color:"#1A1612",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.name}</div>
-              <div style={{fontSize:12,color:"#7A6E60"}}>{c.title||c.role}</div>
+              <div style={{fontWeight:700,fontSize:14,color:"#0f172a",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{c.name}</div>
+              <div style={{fontSize:12,color:"#64748b"}}>{c.title||c.role}</div>
             </div>
             {c.primary&&<span style={{background:"#fef3c7",color:"#92400e",fontSize:9,fontWeight:700,padding:"2px 7px",borderRadius:20,flexShrink:0}}>Primary</span>}
           </div>
-          {acct&&<div onClick={e=>{e.stopPropagation();onViewAccount(acct);}} style={{display:"flex",alignItems:"center",gap:7,padding:"6px 10px",background:"#F5F1EB",borderRadius:8,marginBottom:10,cursor:"pointer"}}>
+          {acct&&<div onClick={e=>{e.stopPropagation();onViewAccount(acct);}} style={{display:"flex",alignItems:"center",gap:7,padding:"6px 10px",background:"#f8fafc",borderRadius:8,marginBottom:10,cursor:"pointer"}}>
             <Avatar name={acct.name} size={20} color={tm.c} bg={tm.bg}/>
-            <span style={{fontSize:12,color:"#C8943A",fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{acct.name}</span>
+            <span style={{fontSize:12,color:"#6366f1",fontWeight:500,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{acct.name}</span>
           </div>}
           <div style={{display:"flex",gap:6,flexWrap:"wrap"}}>
-            <span style={{background:"#F7F4EF",color:"#5A5245",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.role}</span>
-            {c.email&&<a href={"mailto:"+c.email} onClick={e=>e.stopPropagation()} style={{color:"#C8943A",fontSize:11}}>{c.email}</a>}
+            <span style={{background:"#f1f5f9",color:"#475569",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.role}</span>
+            {c.email&&<a href={"mailto:"+c.email} onClick={e=>e.stopPropagation()} style={{color:"#6366f1",fontSize:11}}>{c.email}</a>}
           </div>
         </div>;})}
-      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#9C9486",fontSize:14}}>No contacts match.</div>}
+      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#94a3b8",fontSize:14}}>No contacts match.</div>}
     </div>}
-    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#9C9486",fontSize:14}}>No contacts match.</div>
+    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#94a3b8",fontSize:14}}>No contacts match.</div>
       :<div style={{overflowX:"auto"}}><table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-        <thead><tr style={{background:"#F5F1EB"}}>{["Name","Account","Title","Role","Phone","Email"].map(h=><th key={h} style={{padding:"10px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
+        <thead><tr style={{background:"#f8fafc"}}>{["Name","Account","Title","Role","Phone","Email"].map(h=><th key={h} style={{padding:"10px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
         <tbody>{filtered.map(c=>{
           const acct=accounts.find(a=>a.id===c.accountId),tm=AT_META[acct?.type]||AT_META.Prospect;
-          return<tr key={c.id} style={{borderTop:"1px solid #F7F4EF",cursor:"pointer"}}
-            onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"} onMouseLeave={e=>e.currentTarget.style.background=""}>
-            <td style={{padding:"12px 16px"}} onClick={()=>onView(c)}><div style={{display:"flex",alignItems:"center",gap:10}}><Avatar name={c.name} size={30}/><div><div style={{fontWeight:600,color:"#1A1612"}}>{c.name}</div>{c.primary&&<span style={{background:"#fef3c7",color:"#92400e",fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:20}}>Primary</span>}</div></div></td>
-            <td style={{padding:"12px 16px"}} onClick={()=>acct&&onViewAccount(acct)}>{acct&&<div style={{display:"flex",alignItems:"center",gap:7}}><Avatar name={acct.name} size={22} color={tm.c} bg={tm.bg}/><span style={{color:"#C8943A",fontWeight:500,fontSize:12}}>{acct.name}</span></div>}</td>
-            <td style={{padding:"12px 16px",color:"#7A6E60"}} onClick={()=>onView(c)}>{c.title||"—"}</td>
-            <td style={{padding:"12px 16px"}} onClick={()=>onView(c)}><span style={{background:"#F7F4EF",color:"#5A5245",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.role}</span></td>
-            <td style={{padding:"12px 16px"}}><a href={"tel:"+c.phone} style={{color:"#3D3428",fontSize:12}}>{c.phone||"—"}</a></td>
-            <td style={{padding:"12px 16px"}}><a href={"mailto:"+c.email} style={{color:"#C8943A",fontSize:12}}>{c.email||"—"}</a></td>
+          return<tr key={c.id} style={{borderTop:"1px solid #f1f5f9",cursor:"pointer"}}
+            onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"} onMouseLeave={e=>e.currentTarget.style.background=""}>
+            <td style={{padding:"12px 16px"}} onClick={()=>onView(c)}><div style={{display:"flex",alignItems:"center",gap:10}}><Avatar name={c.name} size={30}/><div><div style={{fontWeight:600,color:"#0f172a"}}>{c.name}</div>{c.primary&&<span style={{background:"#fef3c7",color:"#92400e",fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:20}}>Primary</span>}</div></div></td>
+            <td style={{padding:"12px 16px"}} onClick={()=>acct&&onViewAccount(acct)}>{acct&&<div style={{display:"flex",alignItems:"center",gap:7}}><Avatar name={acct.name} size={22} color={tm.c} bg={tm.bg}/><span style={{color:"#6366f1",fontWeight:500,fontSize:12}}>{acct.name}</span></div>}</td>
+            <td style={{padding:"12px 16px",color:"#64748b"}} onClick={()=>onView(c)}>{c.title||"—"}</td>
+            <td style={{padding:"12px 16px"}} onClick={()=>onView(c)}><span style={{background:"#f1f5f9",color:"#475569",borderRadius:6,padding:"2px 8px",fontSize:11}}>{c.role}</span></td>
+            <td style={{padding:"12px 16px"}}><a href={"tel:"+c.phone} style={{color:"#334155",fontSize:12}}>{c.phone||"—"}</a></td>
+            <td style={{padding:"12px 16px"}}><a href={"mailto:"+c.email} style={{color:"#6366f1",fontSize:12}}>{c.email||"—"}</a></td>
           </tr>;})}
         </tbody>
       </table></div>}
@@ -990,29 +990,29 @@ function OpportunitiesPipeline({opps,accounts,onAdd,onEdit,onDelete,onView}){
   const won=filtered.filter(o=>o.stage==="Closed Won").reduce((s,o)=>s+oppTotal(o),0);
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,flexWrap:"wrap",gap:12}}>
-      <div><h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Opportunities</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>{filtered.length} opportunities · {currency(pipeline)} open · {currency(won)} won</p></div>
+      <div><h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Opportunities</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>{filtered.length} opportunities · {currency(pipeline)} open · {currency(won)} won</p></div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}><ViewToggle view={view} setView={setView}/><Btn onClick={onAdd}>+ New Opportunity</Btn></div>
     </div>
     <div style={{display:"flex",gap:10,marginBottom:18,flexWrap:"wrap"}}>
-      <select value={fStage} onChange={e=>setFStage(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <select value={fStage} onChange={e=>setFStage(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Stages</option>{OPP_STAGES.map(s=><option key={s}>{s}</option>)}
       </select>
-      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Accounts</option>{accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
       </select>
-      {(fStage!=="All"||fAcct!=="All")&&<button onClick={()=>{setFStage("All");setFAcct("All");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#FFF0F0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
+      {(fStage!=="All"||fAcct!=="All")&&<button onClick={()=>{setFStage("All");setFAcct("All");}} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff0f0",color:"#ef4444",cursor:"pointer"}}>✕ Clear</button>}
     </div>
     {view==="tile"&&<div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(290px,1fr))",gap:13}}>
       {filtered.map(o=>{
         const m=OS_META[o.stage],acct=accounts.find(a=>a.id===o.accountId),tm=AT_META[acct?.type]||AT_META.Prospect;
         const dur=o.startDate&&o.endDate?Math.max(0,Math.round((new Date(o.endDate)-new Date(o.startDate))/(1000*60*60*24*30.44))):null;
-        return<div key={o.id} style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"16px 18px",cursor:"pointer"}}
+        return<div key={o.id} style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"16px 18px",cursor:"pointer"}}
           onMouseEnter={e=>e.currentTarget.style.boxShadow="0 4px 18px rgba(0,0,0,0.09)"}
           onMouseLeave={e=>e.currentTarget.style.boxShadow="none"}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
             <div style={{flex:1,minWidth:0,cursor:"pointer"}} onClick={()=>onView&&onView(o)}>
-              <div style={{fontSize:14,fontWeight:700,color:"#C8943A",marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",textDecoration:"underline",textDecorationStyle:"dotted",textUnderlineOffset:3}}>{o.name}</div>
+              <div style={{fontSize:14,fontWeight:700,color:"#6366f1",marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",textDecoration:"underline",textDecorationStyle:"dotted",textUnderlineOffset:3}}>{o.name}</div>
               <Tag text={o.stage} color={m.c} bg={m.bg}/>
             </div>
             <div style={{display:"flex",gap:5,marginLeft:10,flexShrink:0}}>
@@ -1020,37 +1020,37 @@ function OpportunitiesPipeline({opps,accounts,onAdd,onEdit,onDelete,onView}){
               <Btn sz="sm" v="danger" onClick={e=>{e.stopPropagation();if(window.confirm("Remove?"))onDelete(o.id);}}>✕</Btn>
             </div>
           </div>
-          {acct&&<div style={{display:"flex",alignItems:"center",gap:6,marginBottom:10,padding:"6px 10px",background:"#F5F1EB",borderRadius:7}}><Avatar name={acct.name} size={20} color={tm.c} bg={tm.bg}/><span style={{fontSize:12,color:"#3D3428",fontWeight:500}}>{acct.name}</span></div>}
+          {acct&&<div style={{display:"flex",alignItems:"center",gap:6,marginBottom:10,padding:"6px 10px",background:"#f8fafc",borderRadius:7}}><Avatar name={acct.name} size={20} color={tm.c} bg={tm.bg}/><span style={{fontSize:12,color:"#334155",fontWeight:500}}>{acct.name}</span></div>}
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:10}}>
             {[["One-time",Number(o.oneTime)>0?currency(o.oneTime):"—"],["Recurring",Number(o.recurring)>0?`${currency(o.recurring)}/${o.recurringPeriod||"mo"}`:"—"],["Duration",dur!==null?`${dur} mo`:"—"],["Total",currency(oppTotal(o))]].map(([l,v])=>
-              <div key={l} style={{background:"#F5F1EB",borderRadius:7,padding:"7px 10px"}}><div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.06em",marginBottom:1}}>{l}</div><div style={{fontSize:13,fontWeight:700,color:l==="Total"?"#10b981":"#3D3428"}}>{v}</div></div>)}
+              <div key={l} style={{background:"#f8fafc",borderRadius:7,padding:"7px 10px"}}><div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.06em",marginBottom:1}}>{l}</div><div style={{fontSize:13,fontWeight:700,color:l==="Total"?"#10b981":"#334155"}}>{v}</div></div>)}
           </div>
           <StageBar stage={o.stage}/>
-          {o.probability!=null&&Number(o.probability)>0&&<div style={{marginTop:6,fontSize:11,color:"#9C9486",textAlign:"right"}}>{o.probability}% · Close: {fmt(o.endDate)}</div>}
-          <div style={{marginTop:10,paddingTop:10,borderTop:"1px solid #F7F4EF"}}>
-            <button onClick={()=>onView&&onView(o)} style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:7,padding:"5px 12px",fontSize:11,fontWeight:700,cursor:"pointer",width:"100%"}}>View Details & Activities →</button>
+          {o.probability!=null&&Number(o.probability)>0&&<div style={{marginTop:6,fontSize:11,color:"#94a3b8",textAlign:"right"}}>{o.probability}% · Close: {fmt(o.endDate)}</div>}
+          <div style={{marginTop:10,paddingTop:10,borderTop:"1px solid #f1f5f9"}}>
+            <button onClick={()=>onView&&onView(o)} style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:7,padding:"5px 12px",fontSize:11,fontWeight:700,cursor:"pointer",width:"100%"}}>View Details & Activities →</button>
           </div>
         </div>;})}
-      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#9C9486",fontSize:14}}>No opportunities match.</div>}
+      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#94a3b8",fontSize:14}}>No opportunities match.</div>}
     </div>}
-    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#9C9486",fontSize:14}}>No opportunities match.</div>
+    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#94a3b8",fontSize:14}}>No opportunities match.</div>
       :<div style={{overflowX:"auto"}}><table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-        <thead><tr style={{background:"#F5F1EB"}}>{["Opportunity","Account","Stage","One-time","Recurring","Total","Close","Prob.",""].map(h=><th key={h} style={{padding:"10px 12px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
+        <thead><tr style={{background:"#f8fafc"}}>{["Opportunity","Account","Stage","One-time","Recurring","Total","Close","Prob.",""].map(h=><th key={h} style={{padding:"10px 12px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
         <tbody>{filtered.map(o=>{
           const m=OS_META[o.stage],acct=accounts.find(a=>a.id===o.accountId);
-          return<tr key={o.id} style={{borderTop:"1px solid #F7F4EF"}}
-            onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"} onMouseLeave={e=>e.currentTarget.style.background=""}>
+          return<tr key={o.id} style={{borderTop:"1px solid #f1f5f9"}}
+            onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"} onMouseLeave={e=>e.currentTarget.style.background=""}>
             <td style={{padding:"11px 12px"}} onClick={()=>onView&&onView(o)}>
-              <div style={{fontWeight:600,color:"#C8943A",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:200,cursor:"pointer"}}>{o.name}</div>
+              <div style={{fontWeight:600,color:"#6366f1",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:200,cursor:"pointer"}}>{o.name}</div>
             </td>
-            <td style={{padding:"11px 12px",color:"#7A6E60"}}>{acct?.name||"—"}</td>
+            <td style={{padding:"11px 12px",color:"#64748b"}}>{acct?.name||"—"}</td>
             <td style={{padding:"11px 12px"}}><Tag text={o.stage} color={m.c} bg={m.bg}/></td>
-            <td style={{padding:"11px 12px",fontWeight:600,color:"#3D3428"}}>{Number(o.oneTime)>0?currency(o.oneTime):"—"}</td>
-            <td style={{padding:"11px 12px",color:"#7A6E60"}}>{Number(o.recurring)>0?`${currency(o.recurring)}/${o.recurringPeriod||"mo"}`:"—"}</td>
+            <td style={{padding:"11px 12px",fontWeight:600,color:"#334155"}}>{Number(o.oneTime)>0?currency(o.oneTime):"—"}</td>
+            <td style={{padding:"11px 12px",color:"#64748b"}}>{Number(o.recurring)>0?`${currency(o.recurring)}/${o.recurringPeriod||"mo"}`:"—"}</td>
             <td style={{padding:"11px 12px",fontWeight:700,color:"#10b981"}}>{currency(oppTotal(o))}</td>
-            <td style={{padding:"11px 12px",color:"#7A6E60"}}>{fmt(o.endDate)}</td>
-            <td style={{padding:"11px 12px",color:"#9C9486"}}>{o.probability!=null&&Number(o.probability)>0?o.probability+"%":"—"}</td>
+            <td style={{padding:"11px 12px",color:"#64748b"}}>{fmt(o.endDate)}</td>
+            <td style={{padding:"11px 12px",color:"#94a3b8"}}>{o.probability!=null&&Number(o.probability)>0?o.probability+"%":"—"}</td>
             <td style={{padding:"11px 12px"}}><div style={{display:"flex",gap:5}}>
               <Btn sz="sm" v="indigo" onClick={()=>onView&&onView(o)}>Details</Btn>
               <Btn sz="sm" v="ghost" onClick={()=>onEdit(o)}>Edit</Btn>
@@ -1076,21 +1076,21 @@ function Dashboard({accounts,contacts,opps,acts,onViewAccount}){
 
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{marginBottom:22}}>
-      <h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Good day, Senthil 👋</h1>
-      <p style={{fontSize:13,color:"#7A6E60"}}>Ensemble Digital Labs — Account & Opportunity Pipeline</p>
+      <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Good day, Senthil 👋</h1>
+      <p style={{fontSize:13,color:"#64748b"}}>Ensemble Digital Labs — Account & Opportunity Pipeline</p>
     </div>
     <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(145px,1fr))",gap:12,marginBottom:22}}>
       <StatCard label="Won Revenue" value={currency(wonRev)} sub={`${wonOpps.length} closed deals`} color="#10b981"/>
-      <StatCard label="Open Pipeline" value={currency(pipelineVal)} sub={`${openOpps.length} opportunities`} color="#C8943A"/>
+      <StatCard label="Open Pipeline" value={currency(pipelineVal)} sub={`${openOpps.length} opportunities`} color="#6366f1"/>
       <StatCard label="Win Rate" value={`${wr}%`} sub="closed deals" color="#f59e0b"/>
       <StatCard label="Accounts" value={accounts.length} sub={`${clients.length} clients`} color="#0ea5e9"/>
-      <StatCard label="Contacts" value={contacts.length} sub="across all accounts" color="#B8832C"/>
+      <StatCard label="Contacts" value={contacts.length} sub="across all accounts" color="#8b5cf6"/>
     </div>
 
     <div style={{display:"grid",gridTemplateColumns:"1.5fr 1fr",gap:16,marginBottom:16}}>
       {/* Stage funnel */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:20}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:16}}>Pipeline by Stage</div>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:20}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:16}}>Pipeline by Stage</div>
         {OPP_STAGES.filter(s=>s!=="Closed Lost").map(s=>{
           const cnt=opps.filter(o=>o.stage===s).length;
           const val=opps.filter(o=>o.stage===s).reduce((a,o)=>a+oppTotal(o),0);
@@ -1098,13 +1098,13 @@ function Dashboard({accounts,contacts,opps,acts,onViewAccount}){
           const m=OS_META[s];
           return<div key={s} style={{marginBottom:10}}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:3}}>
-              <span style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#3D3428"}}>
+              <span style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#334155"}}>
                 <span style={{width:7,height:7,borderRadius:"50%",background:m.c,display:"inline-block"}}/>
                 {s}
               </span>
-              <span style={{fontSize:11,color:"#9C9486"}}>{cnt} · {val>0?currency(val):""}</span>
+              <span style={{fontSize:11,color:"#94a3b8"}}>{cnt} · {val>0?currency(val):""}</span>
             </div>
-            <div style={{height:5,background:"#F7F4EF",borderRadius:10,overflow:"hidden"}}>
+            <div style={{height:5,background:"#f1f5f9",borderRadius:10,overflow:"hidden"}}>
               <div style={{height:"100%",width:`${pct}%`,background:m.c,borderRadius:10}}></div>
             </div>
           </div>;
@@ -1112,34 +1112,34 @@ function Dashboard({accounts,contacts,opps,acts,onViewAccount}){
       </div>
 
       {/* Recent activity */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:20}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:14}}>Recent Activity</div>
-        {recent.length===0&&<div style={{fontSize:13,color:"#9C9486"}}>No activity yet.</div>}
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:20}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:14}}>Recent Activity</div>
+        {recent.length===0&&<div style={{fontSize:13,color:"#94a3b8"}}>No activity yet.</div>}
         {recent.map(act=>{
           const acct=accounts.find(a=>a.id===act.accountId);
           const am=AM[act.type]||{e:"•"};
           return<div key={act.id} style={{display:"flex",gap:9,marginBottom:11,cursor:"pointer"}} onClick={()=>acct&&onViewAccount(acct)}>
-            <div style={{width:26,height:26,borderRadius:7,background:"#F5F1EB",border:"1px solid #E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,flexShrink:0}}>{am.e}</div>
+            <div style={{width:26,height:26,borderRadius:7,background:"#f8fafc",border:"1px solid #e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,flexShrink:0}}>{am.e}</div>
             <div style={{flex:1,minWidth:0}}>
-              <div style={{fontSize:11,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{acct?.name||"?"}</div>
-              <div style={{fontSize:11,color:"#7A6E60",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.description}</div>
+              <div style={{fontSize:11,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{acct?.name||"?"}</div>
+              <div style={{fontSize:11,color:"#64748b",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{act.description}</div>
             </div>
-            <span style={{fontSize:10,color:"#9C9486",flexShrink:0}}>{fmtS(act.date)}</span>
+            <span style={{fontSize:10,color:"#94a3b8",flexShrink:0}}>{fmtS(act.date)}</span>
           </div>;
         })}
       </div>
     </div>
 
     {/* Accounts table */}
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden",marginBottom:16}}>
-      <div style={{padding:"13px 18px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-        <span style={{fontSize:13,fontWeight:600,color:"#1A1612"}}>Top Accounts</span>
-        <button onClick={()=>{}} style={{background:"none",border:"none",color:"#C8943A",fontSize:12,cursor:"pointer",fontWeight:600}}>View all →</button>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",marginBottom:16}}>
+      <div style={{padding:"13px 18px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+        <span style={{fontSize:13,fontWeight:600,color:"#0f172a"}}>Top Accounts</span>
+        <button onClick={()=>{}} style={{background:"none",border:"none",color:"#6366f1",fontSize:12,cursor:"pointer",fontWeight:600}}>View all →</button>
       </div>
       <div style={{overflowX:"auto"}}>
         <table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-          <thead><tr style={{background:"#F5F1EB"}}>
-            {["Account","Primary Contact","Industry","Open Opps","Pipeline","Type","Status"].map(h=><th key={h} style={{padding:"9px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}
+          <thead><tr style={{background:"#f8fafc"}}>
+            {["Account","Primary Contact","Industry","Open Opps","Pipeline","Type","Status"].map(h=><th key={h} style={{padding:"9px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}
           </tr></thead>
           <tbody>
             {accounts.filter(a=>a.status==="Active").slice(0,7).map(a=>{
@@ -1148,19 +1148,19 @@ function Dashboard({accounts,contacts,opps,acts,onViewAccount}){
               const pc=contacts.find(c=>c.accountId===a.id&&c.primary)||contacts.find(c=>c.accountId===a.id);
               const ao=opps.filter(o=>o.accountId===a.id&&!["Closed Won","Closed Lost"].includes(o.stage));
               const av=ao.reduce((s,o)=>s+oppTotal(o),0);
-              return<tr key={a.id} onClick={()=>onViewAccount(a)} style={{cursor:"pointer",borderTop:"1px solid #F7F4EF"}}
-                onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"}
+              return<tr key={a.id} onClick={()=>onViewAccount(a)} style={{cursor:"pointer",borderTop:"1px solid #f1f5f9"}}
+                onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"}
                 onMouseLeave={e=>e.currentTarget.style.background=""}>
                 <td style={{padding:"11px 14px"}}>
                   <div style={{display:"flex",alignItems:"center",gap:9}}>
                     <Avatar name={a.name} size={28} color={tm.c} bg={tm.bg}/>
-                    <span style={{fontWeight:600,color:"#1A1612"}}>{a.name}</span>
+                    <span style={{fontWeight:600,color:"#0f172a"}}>{a.name}</span>
                   </div>
                 </td>
-                <td style={{padding:"11px 14px",color:"#7A6E60"}}>{pc?.name||"—"}</td>
-                <td style={{padding:"11px 14px",color:"#7A6E60"}}>{a.industry}</td>
-                <td style={{padding:"11px 14px",color:"#7A6E60",textAlign:"center"}}>{ao.length}</td>
-                <td style={{padding:"11px 14px",fontWeight:600,color:"#3D3428"}}>{av>0?currency(av):"—"}</td>
+                <td style={{padding:"11px 14px",color:"#64748b"}}>{pc?.name||"—"}</td>
+                <td style={{padding:"11px 14px",color:"#64748b"}}>{a.industry}</td>
+                <td style={{padding:"11px 14px",color:"#64748b",textAlign:"center"}}>{ao.length}</td>
+                <td style={{padding:"11px 14px",fontWeight:600,color:"#334155"}}>{av>0?currency(av):"—"}</td>
                 <td style={{padding:"11px 14px"}}><Tag text={a.type} color={tm.c} bg={tm.bg}/></td>
                 <td style={{padding:"11px 14px"}}><Tag text={a.status} color={sm.c} bg={sm.bg}/></td>
               </tr>;
@@ -1241,22 +1241,22 @@ function LeadConvertModal({lead,accounts,onClose,onConvert}){
   }
 
   return<Modal title="Convert Lead to Account" onClose={onClose} onSave={doConvert} wide>
-    <div style={{background:"#F5EDD8",border:"1px solid #E8D5A8",borderRadius:10,padding:"12px 16px",marginBottom:18,display:"flex",alignItems:"center",gap:12}}>
+    <div style={{background:"#f5f3ff",border:"1px solid #ddd6fe",borderRadius:10,padding:"12px 16px",marginBottom:18,display:"flex",alignItems:"center",gap:12}}>
       <div style={{fontSize:24}}>⚡</div>
       <div>
-        <div style={{fontWeight:700,color:"#9A6C1E",fontSize:14}}>{leadName.trim()||lead.company}</div>
-        <div style={{fontSize:12,color:"#A87020"}}>{lead.company}{lead.title?" · "+lead.title:""}</div>
+        <div style={{fontWeight:700,color:"#6d28d9",fontSize:14}}>{leadName.trim()||lead.company}</div>
+        <div style={{fontSize:12,color:"#7c3aed"}}>{lead.company}{lead.title?" · "+lead.title:""}</div>
       </div>
     </div>
 
-    <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:10}}>1. Account</div>
+    <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:10}}>1. Account</div>
     <div style={{display:"flex",gap:8,marginBottom:12}}>
       <button onClick={()=>setUseExisting(false)}
-        style={{flex:1,padding:"9px",borderRadius:8,border:"1.5px solid "+(useExisting?"#E4E0D8":"#C8943A"),background:useExisting?"#fff":"#F5EDD8",color:useExisting?"#7A6E60":"#9A7020",fontSize:12,fontWeight:600,cursor:"pointer"}}>
+        style={{flex:1,padding:"9px",borderRadius:8,border:"1.5px solid "+(useExisting?"#e2e8f0":"#6366f1"),background:useExisting?"#fff":"#eef2ff",color:useExisting?"#64748b":"#4338ca",fontSize:12,fontWeight:600,cursor:"pointer"}}>
         Create new account
       </button>
       <button onClick={()=>setUseExisting(true)}
-        style={{flex:1,padding:"9px",borderRadius:8,border:"1.5px solid "+(useExisting?"#C8943A":"#E4E0D8"),background:useExisting?"#F5EDD8":"#fff",color:useExisting?"#9A7020":"#7A6E60",fontSize:12,fontWeight:600,cursor:"pointer"}}>
+        style={{flex:1,padding:"9px",borderRadius:8,border:"1.5px solid "+(useExisting?"#6366f1":"#e2e8f0"),background:useExisting?"#eef2ff":"#fff",color:useExisting?"#4338ca":"#64748b",fontSize:12,fontWeight:600,cursor:"pointer"}}>
         Link existing account
       </button>
     </div>
@@ -1264,7 +1264,7 @@ function LeadConvertModal({lead,accounts,onClose,onConvert}){
       ?<div style={{marginBottom:16}}>
         <Lbl>Select Account</Lbl>
         <select value={existAcctId} onChange={e=>setExistAcctId(e.target.value)}
-          style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}>
+          style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}>
           {accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
       </div>
@@ -1274,8 +1274,8 @@ function LeadConvertModal({lead,accounts,onClose,onConvert}){
       </div>
     }
 
-    <div style={{borderTop:"1px solid #F7F4EF",paddingTop:14,marginBottom:10}}>
-      <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:10}}>2. Contact</div>
+    <div style={{borderTop:"1px solid #f1f5f9",paddingTop:14,marginBottom:10}}>
+      <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:10}}>2. Contact</div>
       <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
         <Field label="Contact Name *" value={conName} onChange={setConName} span={2}/>
         <Field label="Job Title" value={conTitle} onChange={setConTitle}/>
@@ -1284,10 +1284,10 @@ function LeadConvertModal({lead,accounts,onClose,onConvert}){
       </div>
     </div>
 
-    <div style={{borderTop:"1px solid #F7F4EF",paddingTop:14}}>
+    <div style={{borderTop:"1px solid #f1f5f9",paddingTop:14}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10}}>
-        <div style={{fontSize:13,fontWeight:600,color:"#1A1612"}}>3. Opportunity</div>
-        <label style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#7A6E60",cursor:"pointer"}}>
+        <div style={{fontSize:13,fontWeight:600,color:"#0f172a"}}>3. Opportunity</div>
+        <label style={{display:"flex",alignItems:"center",gap:6,fontSize:12,color:"#64748b",cursor:"pointer"}}>
           <input type="checkbox" checked={createOpp} onChange={e=>setCreateOpp(e.target.checked)} style={{cursor:"pointer"}}/>
           Create opportunity
         </label>
@@ -1308,26 +1308,26 @@ function LeadDetail({lead,convertedAccount,leadActs,leadProposals,onBack,onEdit,
   const rm=LR_META[lead.rating]||LR_META.Warm;
   const[tab,setTab]=useState("details");
   return<div style={{padding:"24px",maxWidth:900,margin:"0 auto"}}>
-    <button onClick={onBack} style={{background:"none",border:"none",color:"#C8943A",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>&#8592; Leads</button>
-    {lead.isConverted&&<div style={{background:"#F5EDD8",border:"1px solid #E8D5A8",borderRadius:12,padding:"14px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
+    <button onClick={onBack} style={{background:"none",border:"none",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>&#8592; Leads</button>
+    {lead.isConverted&&<div style={{background:"#f5f3ff",border:"1px solid #ddd6fe",borderRadius:12,padding:"14px 18px",marginBottom:16,display:"flex",alignItems:"center",gap:12}}>
       <div style={{fontSize:20}}>&#9889;</div>
       <div style={{flex:1}}>
-        <div style={{fontSize:13,fontWeight:700,color:"#9A6C1E",marginBottom:2}}>This lead has been converted</div>
-        <div style={{fontSize:12,color:"#A87020"}}>{convertedAccount?"Linked account: "+convertedAccount.name:"Converted on "+lead.convertedAt}</div>
+        <div style={{fontSize:13,fontWeight:700,color:"#6d28d9",marginBottom:2}}>This lead has been converted</div>
+        <div style={{fontSize:12,color:"#7c3aed"}}>{convertedAccount?"Linked account: "+convertedAccount.name:"Converted on "+lead.convertedAt}</div>
       </div>
-      {convertedAccount&&<span style={{fontSize:12,color:"#9A6C1E",fontWeight:600,cursor:"pointer",background:"#F5EDD8",padding:"4px 12px",borderRadius:20}}>View Account</span>}
+      {convertedAccount&&<span style={{fontSize:12,color:"#6d28d9",fontWeight:600,cursor:"pointer",background:"#ede9fe",padding:"4px 12px",borderRadius:20}}>View Account</span>}
     </div>}
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"22px 26px",marginBottom:16}}>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"22px 26px",marginBottom:16}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:12,marginBottom:16}}>
         <div style={{display:"flex",gap:12,alignItems:"center"}}>
           <Avatar name={fullName.trim()||lead.company} size={46} color={lm.c} bg={lm.bg}/>
           <div>
             <div style={{display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",marginBottom:4}}>
-              <span style={{fontSize:20,fontWeight:700,color:"#1A1612"}}>{fullName.trim()}</span>
+              <span style={{fontSize:20,fontWeight:700,color:"#0f172a"}}>{fullName.trim()}</span>
               <Tag text={lead.status} color={lm.c} bg={lm.bg}/>
               <Tag text={lead.rating} color={rm.c} bg={rm.bg}/>
             </div>
-            <div style={{fontSize:13,color:"#7A6E60"}}>{lead.title&&lead.title+" "}{lead.company}</div>
+            <div style={{fontSize:13,color:"#64748b"}}>{lead.title&&lead.title+" "}{lead.company}</div>
           </div>
         </div>
         <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
@@ -1342,7 +1342,7 @@ function LeadDetail({lead,convertedAccount,leadActs,leadProposals,onBack,onEdit,
           {LEAD_STATUSES.filter(s=>s!=="Converted").map(s=>{
             const m=LS_META[s],active=lead.status===s;
             return<button key={s} onClick={()=>onStatusChange(s)}
-              style={{padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#E4E0D8"),background:active?m.bg:"#fff",color:active?m.c:"#9C9486",fontSize:12,fontWeight:active?700:400,cursor:"pointer"}}>
+              style={{padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#e2e8f0"),background:active?m.bg:"#fff",color:active?m.c:"#94a3b8",fontSize:12,fontWeight:active?700:400,cursor:"pointer"}}>
               {s}
             </button>;
           })}
@@ -1350,45 +1350,45 @@ function LeadDetail({lead,convertedAccount,leadActs,leadProposals,onBack,onEdit,
       </div>}
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10}}>
         {[["Company",lead.company],["Industry",lead.industry||""],["Source",lead.source],["Assigned",lead.assignedTo],["Phone",lead.phone||""],["Email",lead.email||""],["Created",lead.createdAt]].map(function(pair){
-          return<div key={pair[0]} style={{background:"#F5F1EB",borderRadius:9,padding:"10px 12px"}}>
-            <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{pair[0]}</div>
-            <div style={{fontSize:13,fontWeight:600,color:"#3D3428",wordBreak:"break-all"}}>{pair[1]||"—"}</div>
+          return<div key={pair[0]} style={{background:"#f8fafc",borderRadius:9,padding:"10px 12px"}}>
+            <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{pair[0]}</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#334155",wordBreak:"break-all"}}>{pair[1]||"—"}</div>
           </div>;
         })}
       </div>
-      {lead.notes&&<div style={{marginTop:14,padding:"11px 14px",background:"#FFFBEB",border:"1px solid #fef3c7",borderRadius:9}}>
+      {lead.notes&&<div style={{marginTop:14,padding:"11px 14px",background:"#fffbeb",border:"1px solid #fef3c7",borderRadius:9}}>
         <div style={{fontSize:9,fontWeight:700,color:"#92400e",textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:3}}>Notes</div>
         <div style={{fontSize:13,color:"#78350f",lineHeight:1.6}}>{lead.notes}</div>
       </div>}
     </div>
-    <div style={{display:"flex",gap:2,background:"#fff",border:"1px solid #E4E0D8",borderRadius:10,padding:3,width:"fit-content",marginBottom:16}}>
+    <div style={{display:"flex",gap:2,background:"#fff",border:"1px solid #e2e8f0",borderRadius:10,padding:3,width:"fit-content",marginBottom:16}}>
       {[["details","Details"],["activities","Activities ("+leadActs.length+")"],["proposals","Proposals ("+leadProposals.length+")"]].map(function(pair){
         var k=pair[0],lbl=pair[1],active=tab===k;
         return<button key={k} onClick={function(){setTab(k);}}
-          style={{padding:"7px 16px",borderRadius:7,border:"none",background:active?"#C8943A":"transparent",color:active?"#fff":"#7A6E60",fontSize:12,fontWeight:active?600:400,cursor:"pointer",whiteSpace:"nowrap"}}>
+          style={{padding:"7px 16px",borderRadius:7,border:"none",background:active?"#6366f1":"transparent",color:active?"#fff":"#64748b",fontSize:12,fontWeight:active?600:400,cursor:"pointer",whiteSpace:"nowrap"}}>
           {lbl}
         </button>;
       })}
     </div>
-    {tab==="details"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"20px 22px"}}>
-      <div style={{fontSize:13,fontWeight:600,color:"#1A1612",marginBottom:14}}>Lead Details</div>
+    {tab==="details"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"20px 22px"}}>
+      <div style={{fontSize:13,fontWeight:600,color:"#0f172a",marginBottom:14}}>Lead Details</div>
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(180px,1fr))",gap:12}}>
         {[["First Name",lead.firstName||""],["Last Name",lead.lastName||""],["Company",lead.company],["Job Title",lead.title||""],["Email",lead.email||""],["Phone",lead.phone||""],["Lead Source",lead.source],["Industry",lead.industry||""],["Status",lead.status],["Rating",lead.rating],["Assigned To",lead.assignedTo],["Created",lead.createdAt]].map(function(pair){
           return<div key={pair[0]}>
-            <div style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:3}}>{pair[0]}</div>
-            <div style={{fontSize:13,color:"#3D3428",fontWeight:500}}>{pair[1]||"—"}</div>
+            <div style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:3}}>{pair[0]}</div>
+            <div style={{fontSize:13,color:"#334155",fontWeight:500}}>{pair[1]||"—"}</div>
           </div>;
         })}
       </div>
-      {lead.notes&&<div style={{marginTop:16,paddingTop:16,borderTop:"1px solid #F7F4EF"}}>
-        <div style={{fontSize:10,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:4}}>Notes</div>
-        <div style={{fontSize:13,color:"#7A6E60",lineHeight:1.6}}>{lead.notes}</div>
+      {lead.notes&&<div style={{marginTop:16,paddingTop:16,borderTop:"1px solid #f1f5f9"}}>
+        <div style={{fontSize:10,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:4}}>Notes</div>
+        <div style={{fontSize:13,color:"#64748b",lineHeight:1.6}}>{lead.notes}</div>
       </div>}
     </div>}
-    {tab==="activities"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"20px 22px"}}>
+    {tab==="activities"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"20px 22px"}}>
       <LeadActivitiesPanel acts={leadActs} onAdd={function(d){onSaveAct({...d,leadId:lead.id});}} onDelete={onDeleteAct}/>
     </div>}
-    {tab==="proposals"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"20px 22px"}}>
+    {tab==="proposals"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"20px 22px"}}>
       <LeadProposalsPanel proposals={leadProposals} onAdd={function(d){onSaveProposal({...d,leadId:lead.id});}} onEdit={onEditProposal} onDelete={onDeleteProposal}/>
     </div>}
   </div>
@@ -1411,31 +1411,31 @@ function LeadsList({leads,onView,onAdd,onConvert}){
   const active=leads.filter(l=>!l.isConverted),hot=active.filter(l=>l.rating==="Hot").length,converted=leads.filter(l=>l.isConverted).length;
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,flexWrap:"wrap",gap:12}}>
-      <div><h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Leads</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>{active.length} active · {hot} hot · {converted} converted</p></div>
+      <div><h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Leads</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>{active.length} active · {hot} hot · {converted} converted</p></div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}><ViewToggle view={view} setView={setView}/><Btn onClick={onAdd}>+ New Lead</Btn></div>
     </div>
     <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(110px,1fr))",gap:10,marginBottom:18}}>
       {LEAD_STATUSES.filter(s=>s!=="Converted").map(function(s){
         const m=LS_META[s],cnt=leads.filter(l=>l.status===s&&!l.isConverted).length;
-        return<div key={s} style={{background:"#fff",borderRadius:10,border:"1.5px solid "+(fStatus===s?m.c:"#E4E0D8"),padding:"10px 14px",cursor:"pointer"}} onClick={()=>setFStatus(fStatus===s?"All":s)}>
-          <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:3}}><span style={{width:7,height:7,borderRadius:"50%",background:m.c,display:"inline-block"}}></span><span style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em"}}>{s}</span></div>
+        return<div key={s} style={{background:"#fff",borderRadius:10,border:"1.5px solid "+(fStatus===s?m.c:"#e2e8f0"),padding:"10px 14px",cursor:"pointer"}} onClick={()=>setFStatus(fStatus===s?"All":s)}>
+          <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:3}}><span style={{width:7,height:7,borderRadius:"50%",background:m.c,display:"inline-block"}}></span><span style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em"}}>{s}</span></div>
           <div style={{fontSize:20,fontWeight:700,color:m.c}}>{cnt}</div>
         </div>;})}
-      <div style={{background:"#F5EDD8",borderRadius:10,border:"1px solid #E8D5A8",padding:"10px 14px"}}>
-        <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:3}}><span style={{width:7,height:7,borderRadius:"50%",background:"#A87020",display:"inline-block"}}></span><span style={{fontSize:9,color:"#A87020",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em"}}>Converted</span></div>
-        <div style={{fontSize:20,fontWeight:700,color:"#A87020"}}>{converted}</div>
+      <div style={{background:"#f5f3ff",borderRadius:10,border:"1px solid #ddd6fe",padding:"10px 14px"}}>
+        <div style={{display:"flex",alignItems:"center",gap:5,marginBottom:3}}><span style={{width:7,height:7,borderRadius:"50%",background:"#7c3aed",display:"inline-block"}}></span><span style={{fontSize:9,color:"#7c3aed",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em"}}>Converted</span></div>
+        <div style={{fontSize:20,fontWeight:700,color:"#7c3aed"}}>{converted}</div>
       </div>
     </div>
     <div style={{display:"flex",gap:10,marginBottom:18,flexWrap:"wrap",alignItems:"center"}}>
-      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search name, company, email…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
-      <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search name, company, email…" style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+      <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Statuses</option>{LEAD_STATUSES.map(s=><option key={s}>{s}</option>)}
       </select>
-      <select value={fRating} onChange={e=>setFRating(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+      <select value={fRating} onChange={e=>setFRating(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Ratings</option>{LEAD_RATINGS.map(r=><option key={r}>{r}</option>)}
       </select>
-      <label style={{display:"flex",alignItems:"center",gap:6,fontSize:13,color:"#5A5245",cursor:"pointer",padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",background:"#fff"}}>
+      <label style={{display:"flex",alignItems:"center",gap:6,fontSize:13,color:"#475569",cursor:"pointer",padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",background:"#fff"}}>
         <input type="checkbox" checked={showConverted} onChange={e=>setShowConverted(e.target.checked)} style={{cursor:"pointer"}}/>Show converted
       </label>
     </div>
@@ -1443,38 +1443,38 @@ function LeadsList({leads,onView,onAdd,onConvert}){
       {filtered.map(function(lead){
         var lm=LS_META[lead.status]||LS_META.New,rm=LR_META[lead.rating]||LR_META.Warm;
         var fullName=((lead.firstName||"")+" "+(lead.lastName||"")).trim();
-        return<div key={lead.id} style={{background:"#fff",borderRadius:14,border:"1px solid "+(lead.isConverted?"#E8D5A8":"#E4E0D8"),padding:"16px 18px",cursor:"pointer",opacity:lead.isConverted?0.88:1}}
+        return<div key={lead.id} style={{background:"#fff",borderRadius:14,border:"1px solid "+(lead.isConverted?"#ddd6fe":"#e2e8f0"),padding:"16px 18px",cursor:"pointer",opacity:lead.isConverted?0.88:1}}
           onClick={()=>onView(lead)} onMouseEnter={function(e){e.currentTarget.style.boxShadow="0 4px 18px rgba(0,0,0,0.09)";}} onMouseLeave={function(e){e.currentTarget.style.boxShadow="none";}}>
-          {lead.isConverted&&<div style={{fontSize:10,color:"#A87020",fontWeight:700,letterSpacing:".05em",marginBottom:8,background:"#F5EDD8",padding:"2px 8px",borderRadius:20,display:"inline-block"}}>CONVERTED</div>}
+          {lead.isConverted&&<div style={{fontSize:10,color:"#7c3aed",fontWeight:700,letterSpacing:".05em",marginBottom:8,background:"#ede9fe",padding:"2px 8px",borderRadius:20,display:"inline-block"}}>CONVERTED</div>}
           <div style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
             <Avatar name={fullName||lead.company} size={36} color={lm.c} bg={lm.bg}/>
-            <div style={{flex:1,minWidth:0}}><div style={{fontWeight:700,fontSize:14,color:"#1A1612",marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{fullName||lead.company}</div><div style={{fontSize:12,color:"#7A6E60",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{lead.title?lead.title+" · ":""}{lead.company}</div></div>
+            <div style={{flex:1,minWidth:0}}><div style={{fontWeight:700,fontSize:14,color:"#0f172a",marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{fullName||lead.company}</div><div style={{fontSize:12,color:"#64748b",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{lead.title?lead.title+" · ":""}{lead.company}</div></div>
           </div>
-          <div style={{display:"flex",gap:6,marginBottom:10,flexWrap:"wrap"}}><Tag text={lead.status} color={lm.c} bg={lm.bg}/><Tag text={lead.rating} color={rm.c} bg={rm.bg}/><span style={{background:"#F7F4EF",color:"#5A5245",borderRadius:6,padding:"2px 8px",fontSize:11}}>{lead.source}</span></div>
-          <div style={{borderTop:"1px solid #F7F4EF",paddingTop:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-            <span style={{fontSize:12,color:"#7A6E60"}}>{lead.industry||"—"} · {lead.assignedTo}</span>
-            {!lead.isConverted&&<button onClick={function(e){e.stopPropagation();onConvert(lead);}} style={{background:"#F5EDD8",border:"1px solid #E8D5A8",color:"#A87020",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,cursor:"pointer"}}>Convert ⚡</button>}
+          <div style={{display:"flex",gap:6,marginBottom:10,flexWrap:"wrap"}}><Tag text={lead.status} color={lm.c} bg={lm.bg}/><Tag text={lead.rating} color={rm.c} bg={rm.bg}/><span style={{background:"#f1f5f9",color:"#475569",borderRadius:6,padding:"2px 8px",fontSize:11}}>{lead.source}</span></div>
+          <div style={{borderTop:"1px solid #f1f5f9",paddingTop:10,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <span style={{fontSize:12,color:"#64748b"}}>{lead.industry||"—"} · {lead.assignedTo}</span>
+            {!lead.isConverted&&<button onClick={function(e){e.stopPropagation();onConvert(lead);}} style={{background:"#f5f3ff",border:"1px solid #ddd6fe",color:"#7c3aed",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,cursor:"pointer"}}>Convert ⚡</button>}
           </div>
         </div>;})}
-      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#9C9486",fontSize:14}}>No leads match your filters.</div>}
+      {filtered.length===0&&<div style={{gridColumn:"1/-1",textAlign:"center",padding:"50px 0",color:"#94a3b8",fontSize:14}}>No leads match your filters.</div>}
     </div>}
-    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#9C9486",fontSize:14}}>No leads match.</div>
+    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      {filtered.length===0?<div style={{padding:"40px",textAlign:"center",color:"#94a3b8",fontSize:14}}>No leads match.</div>
       :<div style={{overflowX:"auto"}}><table style={{width:"100%",fontSize:13,borderCollapse:"collapse"}}>
-        <thead><tr style={{background:"#F5F1EB"}}>{["Name","Company","Status","Rating","Source","Industry","Assigned",""].map(h=><th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
+        <thead><tr style={{background:"#f8fafc"}}>{["Name","Company","Status","Rating","Source","Industry","Assigned",""].map(h=><th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:"0.06em",whiteSpace:"nowrap"}}>{h}</th>)}</tr></thead>
         <tbody>{filtered.map(function(lead){
           var lm=LS_META[lead.status]||LS_META.New,rm=LR_META[lead.rating]||LR_META.Warm;
           var fullName=((lead.firstName||"")+" "+(lead.lastName||"")).trim();
-          return<tr key={lead.id} style={{borderTop:"1px solid #F7F4EF",cursor:"pointer",opacity:lead.isConverted?0.75:1}}
-            onClick={()=>onView(lead)} onMouseEnter={function(e){e.currentTarget.style.background="#F5F1EB";}} onMouseLeave={function(e){e.currentTarget.style.background="";}}>
-            <td style={{padding:"11px 14px"}}><div style={{display:"flex",alignItems:"center",gap:9}}><Avatar name={fullName||lead.company} size={28} color={lm.c} bg={lm.bg}/><div><div style={{fontWeight:600,color:"#1A1612"}}>{fullName||lead.company}</div>{lead.isConverted&&<span style={{background:"#F5EDD8",color:"#A87020",fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:20}}>Converted</span>}</div></div></td>
-            <td style={{padding:"11px 14px",color:"#7A6E60"}}>{lead.company}</td>
+          return<tr key={lead.id} style={{borderTop:"1px solid #f1f5f9",cursor:"pointer",opacity:lead.isConverted?0.75:1}}
+            onClick={()=>onView(lead)} onMouseEnter={function(e){e.currentTarget.style.background="#f8fafc";}} onMouseLeave={function(e){e.currentTarget.style.background="";}}>
+            <td style={{padding:"11px 14px"}}><div style={{display:"flex",alignItems:"center",gap:9}}><Avatar name={fullName||lead.company} size={28} color={lm.c} bg={lm.bg}/><div><div style={{fontWeight:600,color:"#0f172a"}}>{fullName||lead.company}</div>{lead.isConverted&&<span style={{background:"#ede9fe",color:"#7c3aed",fontSize:9,fontWeight:700,padding:"1px 6px",borderRadius:20}}>Converted</span>}</div></div></td>
+            <td style={{padding:"11px 14px",color:"#64748b"}}>{lead.company}</td>
             <td style={{padding:"11px 14px"}}><Tag text={lead.status} color={lm.c} bg={lm.bg}/></td>
             <td style={{padding:"11px 14px"}}><Tag text={lead.rating} color={rm.c} bg={rm.bg}/></td>
-            <td style={{padding:"11px 14px",color:"#7A6E60"}}>{lead.source}</td>
-            <td style={{padding:"11px 14px",color:"#7A6E60"}}>{lead.industry||"—"}</td>
-            <td style={{padding:"11px 14px",color:"#7A6E60"}}>{lead.assignedTo}</td>
-            <td style={{padding:"11px 14px"}} onClick={function(e){e.stopPropagation();}}>{!lead.isConverted&&<button onClick={function(e){e.stopPropagation();onConvert(lead);}} style={{background:"#F5EDD8",border:"1px solid #E8D5A8",color:"#A87020",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>Convert ⚡</button>}</td>
+            <td style={{padding:"11px 14px",color:"#64748b"}}>{lead.source}</td>
+            <td style={{padding:"11px 14px",color:"#64748b"}}>{lead.industry||"—"}</td>
+            <td style={{padding:"11px 14px",color:"#64748b"}}>{lead.assignedTo}</td>
+            <td style={{padding:"11px 14px"}} onClick={function(e){e.stopPropagation();}}>{!lead.isConverted&&<button onClick={function(e){e.stopPropagation();onConvert(lead);}} style={{background:"#f5f3ff",border:"1px solid #ddd6fe",color:"#7c3aed",borderRadius:6,padding:"3px 8px",fontSize:11,fontWeight:600,cursor:"pointer",whiteSpace:"nowrap"}}>Convert ⚡</button>}</td>
           </tr>;})}
         </tbody>
       </table></div>}
@@ -1544,14 +1544,14 @@ function ActivitiesGlobal({acts,accounts,onAdd,onDelete,onViewAccount,onSaveAct}
   return<div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:18,flexWrap:"wrap",gap:12}}>
       <div>
-        <h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:2}}>Activities</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>{acts.length} total · {filtered.length} shown</p>
+        <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:2}}>Activities</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>{acts.length} total · {filtered.length} shown</p>
       </div>
       <div style={{display:"flex",gap:8,alignItems:"center"}}>
         {/* View Toggle */}
-        <div style={{display:"flex",background:"#F7F4EF",borderRadius:8,padding:3,gap:2}}>
+        <div style={{display:"flex",background:"#f1f5f9",borderRadius:8,padding:3,gap:2}}>
           {[["list","📋 List"],["calendar","📅 Calendar"]].map(([v,lbl])=><button key={v} onClick={()=>setView(v)}
-            style={{padding:"5px 14px",borderRadius:6,border:"none",background:view===v?"#fff":"transparent",color:view===v?"#C8943A":"#7A6E60",fontSize:12,fontWeight:view===v?700:400,cursor:"pointer",boxShadow:view===v?"0 1px 3px rgba(0,0,0,0.08)":"none",whiteSpace:"nowrap"}}>{lbl}</button>)}
+            style={{padding:"5px 14px",borderRadius:6,border:"none",background:view===v?"#fff":"transparent",color:view===v?"#6366f1":"#64748b",fontSize:12,fontWeight:view===v?700:400,cursor:"pointer",boxShadow:view===v?"0 1px 3px rgba(0,0,0,0.08)":"none",whiteSpace:"nowrap"}}>{lbl}</button>)}
         </div>
         <Btn onClick={()=>setShowAF(true)}>+ Log Activity</Btn>
       </div>
@@ -1564,8 +1564,8 @@ function ActivitiesGlobal({acts,accounts,onAdd,onDelete,onViewAccount,onSaveAct}
         const cnt=typeCounts[t]||0;
         const active=fType===t;
         return<button key={t} onClick={()=>setFType(active?"All":t)}
-          style={{display:"flex",alignItems:"center",gap:6,padding:"6px 13px",borderRadius:20,border:"1.5px solid "+(active?"#C8943A":"#E4E0D8"),background:active?"#C8943A":"#fff",color:active?"#fff":"#7A6E60",cursor:"pointer",fontSize:12,fontWeight:active?700:400,transition:"all .15s"}}>
-          <span style={{fontSize:14}}>{am.e}</span>{t}<span style={{fontSize:11,fontWeight:700,background:active?"rgba(255,255,255,0.25)":"#F7F4EF",borderRadius:10,padding:"1px 6px",marginLeft:2}}>{cnt}</span>
+          style={{display:"flex",alignItems:"center",gap:6,padding:"6px 13px",borderRadius:20,border:"1.5px solid "+(active?"#6366f1":"#e2e8f0"),background:active?"#6366f1":"#fff",color:active?"#fff":"#64748b",cursor:"pointer",fontSize:12,fontWeight:active?700:400,transition:"all .15s"}}>
+          <span style={{fontSize:14}}>{am.e}</span>{t}<span style={{fontSize:11,fontWeight:700,background:active?"rgba(255,255,255,0.25)":"#f1f5f9",borderRadius:10,padding:"1px 6px",marginLeft:2}}>{cnt}</span>
         </button>;
       })}
     </div>
@@ -1573,38 +1573,38 @@ function ActivitiesGlobal({acts,accounts,onAdd,onDelete,onViewAccount,onSaveAct}
     {/* Filters */}
     <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap"}}>
       <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search activities…"
-        style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
-      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+        style={{flex:"1 1 200px",padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
+      <select value={fAcct} onChange={e=>setFAcct(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
         <option value="All">All Accounts</option>{accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
       </select>
       {(fType!=="All"||fAcct!=="All"||search)&&<button onClick={()=>{setFType("All");setFAcct("All");setSearch("");}}
-        style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",fontSize:13,background:"#FFF0F0",color:"#ef4444",cursor:"pointer",fontWeight:600}}>✕ Clear</button>}
+        style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",fontSize:13,background:"#fff0f0",color:"#ef4444",cursor:"pointer",fontWeight:600}}>✕ Clear</button>}
     </div>
 
     {/* ── LIST VIEW ── */}
-    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      {filtered.length===0&&<div style={{padding:"48px 0",textAlign:"center",color:"#9C9486",fontSize:14}}>No activities match.</div>}
+    {view==="list"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      {filtered.length===0&&<div style={{padding:"48px 0",textAlign:"center",color:"#94a3b8",fontSize:14}}>No activities match.</div>}
       {filtered.map((act,i)=>{
         const am=AM[act.type]||{e:"•"};
         const acct=accounts.find(a=>a.id===act.accountId);
         return<div key={act.id}
-          style={{display:"flex",gap:14,padding:"15px 20px",borderBottom:i<filtered.length-1?"1px solid #F7F4EF":"none",alignItems:"flex-start"}}
-          onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"} onMouseLeave={e=>e.currentTarget.style.background=""}>
-          <div style={{width:40,height:40,borderRadius:11,background:"#F7F4EF",border:"1px solid #E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{am.e}</div>
+          style={{display:"flex",gap:14,padding:"15px 20px",borderBottom:i<filtered.length-1?"1px solid #f1f5f9":"none",alignItems:"flex-start"}}
+          onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"} onMouseLeave={e=>e.currentTarget.style.background=""}>
+          <div style={{width:40,height:40,borderRadius:11,background:"#f1f5f9",border:"1px solid #e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{am.e}</div>
           <div style={{flex:1,minWidth:0}}>
             <div style={{display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6,marginBottom:3}}>
               <div style={{display:"flex",alignItems:"center",gap:8}}>
-                <span style={{fontSize:13,fontWeight:700,color:"#3D3428"}}>{act.type}</span>
+                <span style={{fontSize:13,fontWeight:700,color:"#334155"}}>{act.type}</span>
                 {acct&&<span onClick={()=>onViewAccount(acct)}
-                  style={{fontSize:11,color:"#C8943A",fontWeight:600,cursor:"pointer",padding:"2px 9px",background:"#F5EDD8",borderRadius:20}}>{acct.name}</span>}
+                  style={{fontSize:11,color:"#6366f1",fontWeight:600,cursor:"pointer",padding:"2px 9px",background:"#eef2ff",borderRadius:20}}>{acct.name}</span>}
               </div>
               <div style={{display:"flex",gap:10,alignItems:"center",flexShrink:0}}>
-                <span style={{fontSize:11,color:"#9C9486"}}>{fmt(act.date)}</span>
+                <span style={{fontSize:11,color:"#94a3b8"}}>{fmt(act.date)}</span>
                 <button onClick={()=>{if(window.confirm("Remove activity?"))onDelete(act.id);}}
                   style={{background:"none",border:"none",color:"#ef4444",fontSize:12,cursor:"pointer",padding:0}}>✕</button>
               </div>
             </div>
-            <div style={{fontSize:13,color:"#7A6E60",lineHeight:1.6}}>{act.description}</div>
+            <div style={{fontSize:13,color:"#64748b",lineHeight:1.6}}>{act.description}</div>
           </div>
         </div>;
       })}
@@ -1613,63 +1613,63 @@ function ActivitiesGlobal({acts,accounts,onAdd,onDelete,onViewAccount,onSaveAct}
     {/* ── CALENDAR VIEW ── */}
     {view==="calendar"&&<div style={{display:"grid",gridTemplateColumns:"1fr 320px",gap:16,alignItems:"start"}}>
       {/* Month grid */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
         {/* Nav header */}
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 20px",borderBottom:"1px solid #F7F4EF"}}>
+        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"14px 20px",borderBottom:"1px solid #f1f5f9"}}>
           <button onClick={()=>{let m=calMonth-1,y=calYear;if(m<0){m=11;y--;}setCalMonth(m);setCalYear(y);setCalSelDay(null);}}
-            style={{background:"#F7F4EF",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",fontSize:14,color:"#3D3428",display:"flex",alignItems:"center",justifyContent:"center"}}>‹</button>
-          <span style={{fontSize:15,fontWeight:700,color:"#1A1612"}}>{MONTH_NAMES[calMonth]} {calYear}</span>
+            style={{background:"#f1f5f9",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",fontSize:14,color:"#334155",display:"flex",alignItems:"center",justifyContent:"center"}}>‹</button>
+          <span style={{fontSize:15,fontWeight:700,color:"#0f172a"}}>{MONTH_NAMES[calMonth]} {calYear}</span>
           <button onClick={()=>{let m=calMonth+1,y=calYear;if(m>11){m=0;y++;}setCalMonth(m);setCalYear(y);setCalSelDay(null);}}
-            style={{background:"#F7F4EF",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",fontSize:14,color:"#3D3428",display:"flex",alignItems:"center",justifyContent:"center"}}>›</button>
+            style={{background:"#f1f5f9",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",fontSize:14,color:"#334155",display:"flex",alignItems:"center",justifyContent:"center"}}>›</button>
         </div>
         {/* Day names */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",background:"#F5F1EB",borderBottom:"1px solid #F7F4EF"}}>
-          {DAY_NAMES.map(d=><div key={d} style={{textAlign:"center",padding:"8px 0",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".05em"}}>{d}</div>)}
+        <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)",background:"#f8fafc",borderBottom:"1px solid #f1f5f9"}}>
+          {DAY_NAMES.map(d=><div key={d} style={{textAlign:"center",padding:"8px 0",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".05em"}}>{d}</div>)}
         </div>
         {/* Days grid */}
         <div style={{display:"grid",gridTemplateColumns:"repeat(7,1fr)"}}>
           {calDays.map((d,i)=>{
-            if(d===null)return<div key={"e"+i} style={{minHeight:70,borderRight:i%7!==6?"1px solid #F7F4EF":"none",borderBottom:"1px solid #F7F4EF",background:"#fafafa"}}></div>;
+            if(d===null)return<div key={"e"+i} style={{minHeight:70,borderRight:i%7!==6?"1px solid #f1f5f9":"none",borderBottom:"1px solid #f1f5f9",background:"#fafafa"}}></div>;
             const key=`${calYear}-${String(calMonth+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
             const dayActs=actsByDate[key]||[];
             const isToday=today.getFullYear()===calYear&&today.getMonth()===calMonth&&today.getDate()===d;
             const isSel=calSelDay===d;
             return<div key={d} onClick={()=>setCalSelDay(isSel?null:d)}
-              style={{minHeight:70,padding:"6px 5px",borderRight:i%7!==6?"1px solid #F7F4EF":"none",borderBottom:"1px solid #F7F4EF",cursor:"pointer",background:isSel?"#F5EDD8":"#fff",transition:"background .1s"}}
-              onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background="#F5F1EB";}} onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background="#fff";}}>
-              <div style={{fontSize:12,fontWeight:isToday?700:400,color:isToday?"#fff":"#3D3428",width:22,height:22,borderRadius:"50%",background:isToday?"#C8943A":"transparent",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:3}}>{d}</div>
+              style={{minHeight:70,padding:"6px 5px",borderRight:i%7!==6?"1px solid #f1f5f9":"none",borderBottom:"1px solid #f1f5f9",cursor:"pointer",background:isSel?"#eef2ff":"#fff",transition:"background .1s"}}
+              onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background="#f8fafc";}} onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background="#fff";}}>
+              <div style={{fontSize:12,fontWeight:isToday?700:400,color:isToday?"#fff":"#334155",width:22,height:22,borderRadius:"50%",background:isToday?"#6366f1":"transparent",display:"flex",alignItems:"center",justifyContent:"center",marginBottom:3}}>{d}</div>
               {dayActs.slice(0,3).map((a,ai)=>{
                 const am=AM[a.type]||{e:"•"};
-                return<div key={a.id} style={{fontSize:9,background:"#F5EDD8",color:"#9A7020",borderRadius:4,padding:"1px 5px",marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",fontWeight:600}}>
+                return<div key={a.id} style={{fontSize:9,background:"#eef2ff",color:"#4338ca",borderRadius:4,padding:"1px 5px",marginBottom:2,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",fontWeight:600}}>
                   {am.e} {a.type}
                 </div>;
               })}
-              {dayActs.length>3&&<div style={{fontSize:9,color:"#9C9486",fontWeight:600}}>+{dayActs.length-3} more</div>}
+              {dayActs.length>3&&<div style={{fontSize:9,color:"#94a3b8",fontWeight:600}}>+{dayActs.length-3} more</div>}
             </div>;
           })}
         </div>
       </div>
 
       {/* Day detail panel */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden",position:"sticky",top:0}}>
-        <div style={{padding:"14px 18px",borderBottom:"1px solid #F7F4EF"}}>
-          <div style={{fontSize:13,fontWeight:700,color:"#1A1612"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",position:"sticky",top:0}}>
+        <div style={{padding:"14px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{fontSize:13,fontWeight:700,color:"#0f172a"}}>
             {calSelDay?`${MONTH_NAMES[calMonth]} ${calSelDay}, ${calYear}`:"Select a day"}
           </div>
-          <div style={{fontSize:11,color:"#9C9486",marginTop:2}}>
+          <div style={{fontSize:11,color:"#94a3b8",marginTop:2}}>
             {calSelKey?(actsByDate[calSelKey]||[]).length+" activities":"Click a day to view activities"}</div>
         </div>
-        {calSelDay&&selDayActs.length===0&&<div style={{padding:"32px 18px",textAlign:"center",color:"#9C9486",fontSize:13}}>No activities on this day.</div>}
+        {calSelDay&&selDayActs.length===0&&<div style={{padding:"32px 18px",textAlign:"center",color:"#94a3b8",fontSize:13}}>No activities on this day.</div>}
         {selDayActs.map((act,i)=>{
           const am=AM[act.type]||{e:"•"};
           const acct=accounts.find(a=>a.id===act.accountId);
-          return<div key={act.id} style={{padding:"13px 18px",borderBottom:i<selDayActs.length-1?"1px solid #F7F4EF":"none"}}>
+          return<div key={act.id} style={{padding:"13px 18px",borderBottom:i<selDayActs.length-1?"1px solid #f1f5f9":"none"}}>
             <div style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-              <div style={{width:34,height:34,borderRadius:9,background:"#F7F4EF",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{am.e}</div>
+              <div style={{width:34,height:34,borderRadius:9,background:"#f1f5f9",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{am.e}</div>
               <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:700,color:"#3D3428",marginBottom:2}}>{act.type}</div>
-                {acct&&<div style={{fontSize:11,color:"#C8943A",fontWeight:600,marginBottom:4,cursor:"pointer"}} onClick={()=>onViewAccount(acct)}>{acct.name}</div>}
-                <div style={{fontSize:11,color:"#7A6E60",lineHeight:1.5}}>{act.description}</div>
+                <div style={{fontSize:12,fontWeight:700,color:"#334155",marginBottom:2}}>{act.type}</div>
+                {acct&&<div style={{fontSize:11,color:"#6366f1",fontWeight:600,marginBottom:4,cursor:"pointer"}} onClick={()=>onViewAccount(acct)}>{acct.name}</div>}
+                <div style={{fontSize:11,color:"#64748b",lineHeight:1.5}}>{act.description}</div>
               </div>
             </div>
           </div>;
@@ -1677,15 +1677,15 @@ function ActivitiesGlobal({acts,accounts,onAdd,onDelete,onViewAccount,onSaveAct}
         {!calSelDay&&<div style={{padding:"20px 18px"}}>
           {/* mini month summary */}
           {Object.entries(actsByDate).filter(([k])=>k.startsWith(`${calYear}-${String(calMonth+1).padStart(2,"0")}`)).length===0
-            ?<div style={{textAlign:"center",color:"#9C9486",fontSize:13}}>No activities this month.</div>
+            ?<div style={{textAlign:"center",color:"#94a3b8",fontSize:13}}>No activities this month.</div>
             :<div>
-              <div style={{fontSize:11,fontWeight:700,color:"#7A6E60",textTransform:"uppercase",letterSpacing:".05em",marginBottom:10}}>This month</div>
+              <div style={{fontSize:11,fontWeight:700,color:"#64748b",textTransform:"uppercase",letterSpacing:".05em",marginBottom:10}}>This month</div>
               {Object.entries(actsByDate).filter(([k])=>k.startsWith(`${calYear}-${String(calMonth+1).padStart(2,"0")}`))
                 .sort(([a],[b])=>a.localeCompare(b)).slice(0,5).map(([k,dayActs])=><div key={k} style={{display:"flex",gap:8,marginBottom:8,alignItems:"center"}}>
-                  <div style={{fontSize:11,fontWeight:700,color:"#9C9486",width:22,textAlign:"right"}}>{parseInt(k.split("-")[2])}</div>
+                  <div style={{fontSize:11,fontWeight:700,color:"#94a3b8",width:22,textAlign:"right"}}>{parseInt(k.split("-")[2])}</div>
                   <div style={{flex:1}}>
-                    {dayActs.slice(0,2).map(a=>{const am=AM[a.type]||{e:"•"};return<div key={a.id} style={{fontSize:11,color:"#3D3428"}}>{am.e} {a.type}</div>;})}
-                    {dayActs.length>2&&<div style={{fontSize:10,color:"#9C9486"}}>+{dayActs.length-2} more</div>}
+                    {dayActs.slice(0,2).map(a=>{const am=AM[a.type]||{e:"•"};return<div key={a.id} style={{fontSize:11,color:"#334155"}}>{am.e} {a.type}</div>;})}
+                    {dayActs.length>2&&<div style={{fontSize:10,color:"#94a3b8"}}>+{dayActs.length-2} more</div>}
                   </div>
                 </div>)}
             </div>}
@@ -1708,20 +1708,20 @@ function OppDetail({opp,account,acts,allAccounts,onBack,onEdit,onDelete,onSaveAc
   const accountActs=[...acts].filter(a=>a.accountId===opp.accountId&&a.oppId!==opp.id).sort((a,b)=>new Date(b.date)-new Date(a.date));
 
   return<div style={{padding:"22px 24px",maxWidth:980,margin:"0 auto"}}>
-    <button onClick={onBack} style={{background:"none",border:"none",color:"#C8943A",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Opportunities</button>
+    <button onClick={onBack} style={{background:"none",border:"none",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer",marginBottom:18,display:"flex",alignItems:"center",gap:4}}>← Opportunities</button>
 
     {/* Header card */}
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"22px 26px",marginBottom:16}}>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"22px 26px",marginBottom:16}}>
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:12,marginBottom:16}}>
         <div>
           <div style={{display:"flex",alignItems:"center",gap:10,flexWrap:"wrap",marginBottom:8}}>
-            <h2 style={{fontSize:20,fontWeight:700,color:"#1A1612"}}>{opp.name}</h2>
+            <h2 style={{fontSize:20,fontWeight:700,color:"#0f172a"}}>{opp.name}</h2>
             <Tag text={opp.stage} color={m.c} bg={m.bg}/>
-            {opp.probability!=null&&Number(opp.probability)>0&&<span style={{fontSize:12,color:"#9C9486",background:"#F5F1EB",borderRadius:20,padding:"2px 9px"}}>{opp.probability}% probability</span>}
+            {opp.probability!=null&&Number(opp.probability)>0&&<span style={{fontSize:12,color:"#94a3b8",background:"#f8fafc",borderRadius:20,padding:"2px 9px"}}>{opp.probability}% probability</span>}
           </div>
           {account&&<div style={{display:"flex",alignItems:"center",gap:7}}>
             <Avatar name={account.name} size={22} color={tm.c} bg={tm.bg}/>
-            <span style={{fontSize:13,color:"#7A6E60",fontWeight:500}}>{account.name}</span>
+            <span style={{fontSize:13,color:"#64748b",fontWeight:500}}>{account.name}</span>
           </div>}
         </div>
         <div style={{display:"flex",gap:8}}>
@@ -1739,24 +1739,24 @@ function OppDetail({opp,account,acts,allAccounts,onBack,onEdit,onDelete,onSaveAc
           ["Total Value",currency(oppTotal(opp))],
           ["Start",fmt(opp.startDate)],
           ["Close / End",fmt(opp.endDate)],
-        ].map(([l,v])=><div key={l} style={{background:"#F5F1EB",borderRadius:9,padding:"10px 12px"}}>
-          <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
-          <div style={{fontSize:13,fontWeight:700,color:l==="Total Value"?"#10b981":"#3D3428"}}>{v}</div>
+        ].map(([l,v])=><div key={l} style={{background:"#f8fafc",borderRadius:9,padding:"10px 12px"}}>
+          <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
+          <div style={{fontSize:13,fontWeight:700,color:l==="Total Value"?"#10b981":"#334155"}}>{v}</div>
         </div>)}
       </div>
       <StageBar stage={opp.stage}/>
-      {opp.notes&&<div style={{marginTop:12,padding:"11px 14px",background:"#FFFBEB",border:"1px solid #fef3c7",borderRadius:9}}>
+      {opp.notes&&<div style={{marginTop:12,padding:"11px 14px",background:"#fffbeb",border:"1px solid #fef3c7",borderRadius:9}}>
         <div style={{fontSize:9,fontWeight:700,color:"#92400e",textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:3}}>NOTES</div>
         <div style={{fontSize:13,color:"#78350f",lineHeight:1.6}}>{opp.notes}</div>
       </div>}
     </div>
 
     {/* Activities card */}
-    <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-      <div style={{padding:"14px 20px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+    <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+      <div style={{padding:"14px 20px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <div>
-          <span style={{fontSize:14,fontWeight:600,color:"#1A1612"}}>Activities</span>
-          <span style={{marginLeft:8,fontSize:12,color:"#9C9486"}}>{childActs.length} linked to this opportunity</span>
+          <span style={{fontSize:14,fontWeight:600,color:"#0f172a"}}>Activities</span>
+          <span style={{marginLeft:8,fontSize:12,color:"#94a3b8"}}>{childActs.length} linked to this opportunity</span>
         </div>
         <Btn sz="sm" onClick={()=>setShowAF(true)}>+ Log Activity</Btn>
       </div>
@@ -1765,50 +1765,50 @@ function OppDetail({opp,account,acts,allAccounts,onBack,onEdit,onDelete,onSaveAc
         {/* Linked activities */}
         {childActs.length>0&&<>
           <div style={{display:"flex",alignItems:"center",gap:6,padding:"12px 0 8px"}}>
-            <span style={{width:7,height:7,borderRadius:"50%",background:"#C8943A",display:"inline-block"}}></span>
-            <span style={{fontSize:10,fontWeight:700,color:"#C8943A",textTransform:"uppercase",letterSpacing:".07em"}}>Linked to this opportunity ({childActs.length})</span>
+            <span style={{width:7,height:7,borderRadius:"50%",background:"#6366f1",display:"inline-block"}}></span>
+            <span style={{fontSize:10,fontWeight:700,color:"#6366f1",textTransform:"uppercase",letterSpacing:".07em"}}>Linked to this opportunity ({childActs.length})</span>
           </div>
           {childActs.map((act,i)=>{
             const am=AM[act.type]||{e:"•"};
-            return<div key={act.id} style={{display:"flex",gap:12,padding:"11px 0",borderBottom:i<childActs.length-1?"1px solid #F7F4EF":"none",background:"transparent"}}
-              onMouseEnter={e=>e.currentTarget.style.background="#F9F6F1"} onMouseLeave={e=>e.currentTarget.style.background=""}>
-              <div style={{width:36,height:36,borderRadius:9,background:"#F5EDD8",border:"1px solid #E8D5A8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{am.e}</div>
+            return<div key={act.id} style={{display:"flex",gap:12,padding:"11px 0",borderBottom:i<childActs.length-1?"1px solid #f1f5f9":"none",background:"transparent"}}
+              onMouseEnter={e=>e.currentTarget.style.background="#fafbff"} onMouseLeave={e=>e.currentTarget.style.background=""}>
+              <div style={{width:36,height:36,borderRadius:9,background:"#eef2ff",border:"1px solid #c7d2fe",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{am.e}</div>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{display:"flex",justifyContent:"space-between",marginBottom:2,gap:8}}>
-                  <span style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{act.type}</span>
+                  <span style={{fontSize:13,fontWeight:600,color:"#334155"}}>{act.type}</span>
                   <div style={{display:"flex",gap:8,alignItems:"center",flexShrink:0}}>
-                    <span style={{fontSize:11,color:"#9C9486"}}>{fmt(act.date)}</span>
+                    <span style={{fontSize:11,color:"#94a3b8"}}>{fmt(act.date)}</span>
                     <button onClick={()=>{if(window.confirm("Remove activity?"))onDeleteAct(act.id);}}
                       style={{background:"none",border:"none",color:"#ef4444",fontSize:11,cursor:"pointer",padding:0}}>✕</button>
                   </div>
                 </div>
-                <div style={{fontSize:13,color:"#7A6E60",lineHeight:1.5}}>{act.description}</div>
+                <div style={{fontSize:13,color:"#64748b",lineHeight:1.5}}>{act.description}</div>
               </div>
             </div>;
           })}
         </>}
 
-        {childActs.length===0&&<div style={{padding:"24px 0 8px",textAlign:"center",color:"#9C9486",fontSize:13,background:"#F9F6F1",borderRadius:10,marginTop:8}}>
+        {childActs.length===0&&<div style={{padding:"24px 0 8px",textAlign:"center",color:"#94a3b8",fontSize:13,background:"#fafbff",borderRadius:10,marginTop:8}}>
           No activities linked yet — click <b>+ Log Activity</b> to connect one to this opportunity.
         </div>}
 
         {/* Account-level activities */}
         {accountActs.length>0&&<>
-          <div style={{display:"flex",alignItems:"center",gap:6,padding:"16px 0 8px",marginTop:8,borderTop:"1px solid #F7F4EF"}}>
-            <span style={{width:7,height:7,borderRadius:"50%",background:"#9C9486",display:"inline-block"}}></span>
-            <span style={{fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".07em"}}>Other account activities ({accountActs.length})</span>
+          <div style={{display:"flex",alignItems:"center",gap:6,padding:"16px 0 8px",marginTop:8,borderTop:"1px solid #f1f5f9"}}>
+            <span style={{width:7,height:7,borderRadius:"50%",background:"#94a3b8",display:"inline-block"}}></span>
+            <span style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".07em"}}>Other account activities ({accountActs.length})</span>
           </div>
           {accountActs.map((act,i)=>{
             const am=AM[act.type]||{e:"•"};
-            return<div key={act.id} style={{display:"flex",gap:12,padding:"10px 0",borderBottom:i<accountActs.length-1?"1px solid #F7F4EF":"none",opacity:.75}}
+            return<div key={act.id} style={{display:"flex",gap:12,padding:"10px 0",borderBottom:i<accountActs.length-1?"1px solid #f1f5f9":"none",opacity:.75}}
               onMouseEnter={e=>{e.currentTarget.style.opacity="1";}} onMouseLeave={e=>{e.currentTarget.style.opacity=".75";}}>
-              <div style={{width:34,height:34,borderRadius:9,background:"#F5F1EB",border:"1px solid #E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>{am.e}</div>
+              <div style={{width:34,height:34,borderRadius:9,background:"#f8fafc",border:"1px solid #e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>{am.e}</div>
               <div style={{flex:1,minWidth:0}}>
                 <div style={{display:"flex",justifyContent:"space-between",marginBottom:2}}>
-                  <span style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{act.type}</span>
-                  <span style={{fontSize:11,color:"#9C9486"}}>{fmt(act.date)}</span>
+                  <span style={{fontSize:13,fontWeight:600,color:"#334155"}}>{act.type}</span>
+                  <span style={{fontSize:11,color:"#94a3b8"}}>{fmt(act.date)}</span>
                 </div>
-                <div style={{fontSize:12,color:"#7A6E60",lineHeight:1.5}}>{act.description}</div>
+                <div style={{fontSize:12,color:"#64748b",lineHeight:1.5}}>{act.description}</div>
               </div>
             </div>;
           })}
@@ -1829,6 +1829,9 @@ function LoginScreen({users,onLogin}){
   const[showPw,setShowPw]=useState(false);
   const[err,setErr]=useState("");
   const[busy,setBusy]=useState(false);
+  const[mounted,setMounted]=useState(false);
+
+  useEffect(()=>{const t=setTimeout(()=>setMounted(true),50);return()=>clearTimeout(t);},[]);
 
   function attempt(e){
     e&&e.preventDefault();
@@ -1844,309 +1847,319 @@ function LoginScreen({users,onLogin}){
     },550);
   }
 
-  const EyeOpen=()=>(
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
-    </svg>
-  );
-  const EyeClosed=()=>(
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
-      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
-      <line x1="1" y1="1" x2="23" y2="23"/>
-    </svg>
-  );
-
   return(
     <>
       <style dangerouslySetInnerHTML={{__html:`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-        .enl-login * { box-sizing: border-box; }
-        .enl-login { font-family: 'DM Sans', sans-serif; }
+        .enl-login * { box-sizing:border-box; }
+        .enl-login { font-family:'Plus Jakarta Sans',system-ui,sans-serif; }
 
-        @keyframes enl-slideLeft  { from{opacity:0;transform:translateX(-28px)} to{opacity:1;transform:translateX(0)} }
-        @keyframes enl-slideRight { from{opacity:0;transform:translateX(28px)}  to{opacity:1;transform:translateX(0)} }
-        @keyframes enl-fadeUp     { from{opacity:0;transform:translateY(18px)}  to{opacity:1;transform:translateY(0)} }
-        @keyframes enl-float1     { 0%,100%{transform:translateY(0) rotate(0deg)} 50%{transform:translateY(-18px) rotate(6deg)} }
-        @keyframes enl-float2     { 0%,100%{transform:translateY(0) rotate(45deg)} 50%{transform:translateY(-24px) rotate(51deg)} }
-        @keyframes enl-float3     { 0%,100%{transform:translateX(0) rotate(-10deg)} 50%{transform:translateX(14px) rotate(-4deg)} }
-        @keyframes enl-pulse      { 0%,100%{opacity:.4;transform:scale(1)} 50%{opacity:.7;transform:scale(1.04)} }
-        @keyframes enl-scan       { 0%{transform:translateY(0%);opacity:.6} 100%{transform:translateY(900%);opacity:0} }
+        @keyframes enl-in    { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes enl-left  { from{opacity:0;transform:translateX(-30px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes enl-right { from{opacity:0;transform:translateX(30px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes enl-orb1  { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(18px,-22px) scale(1.06)} }
+        @keyframes enl-orb2  { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(-14px,18px) scale(.94)} }
+        @keyframes enl-orb3  { 0%,100%{transform:translate(0,0) scale(1)}   50%{transform:translate(10px,12px) scale(1.04)} }
+        @keyframes enl-dot   { 0%,100%{opacity:.5;transform:scale(1)}        50%{opacity:1;transform:scale(1.25)} }
+        @keyframes enl-bar   { 0%{width:0%} 100%{width:100%} }
+        @keyframes enl-spin  { to{transform:rotate(360deg)} }
+        @keyframes enl-float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
 
-        .enl-brand { animation: enl-slideLeft .75s cubic-bezier(.22,1,.36,1) both; }
-        .enl-form-wrap { animation: enl-slideRight .75s .1s cubic-bezier(.22,1,.36,1) both; }
+        .enl-panel-left  { animation: enl-left  .65s cubic-bezier(.22,1,.36,1) both; }
+        .enl-panel-right { animation: enl-right .65s .08s cubic-bezier(.22,1,.36,1) both; }
+        .enl-row1 { animation: enl-in .5s .2s  both; }
+        .enl-row2 { animation: enl-in .5s .3s  both; }
+        .enl-row3 { animation: enl-in .5s .38s both; }
+        .enl-row4 { animation: enl-in .5s .44s both; }
+        .enl-row5 { animation: enl-in .5s .5s  both; }
+        .enl-row6 { animation: enl-in .5s .56s both; }
 
-        .enl-geo1 { animation: enl-float1 9s ease-in-out infinite; }
-        .enl-geo2 { animation: enl-float2 12s ease-in-out infinite 1.5s; }
-        .enl-geo3 { animation: enl-float3 7s ease-in-out infinite 3s; }
-        .enl-geo4 { animation: enl-float1 10s ease-in-out infinite 2s; }
+        .enl-orb1 { animation: enl-orb1 11s ease-in-out infinite; }
+        .enl-orb2 { animation: enl-orb2 14s ease-in-out infinite 2s; }
+        .enl-orb3 { animation: enl-orb3 9s  ease-in-out infinite 4s; }
+        .enl-float { animation: enl-float 4s ease-in-out infinite; }
 
-        .enl-pill { animation: enl-fadeUp .5s both; }
-        .enl-pill:nth-child(1){animation-delay:.5s}
-        .enl-pill:nth-child(2){animation-delay:.62s}
-        .enl-pill:nth-child(3){animation-delay:.74s}
-        .enl-pill:nth-child(4){animation-delay:.86s}
-        .enl-pill:nth-child(5){animation-delay:.98s}
-
-        .enl-stat { animation: enl-fadeUp .5s both; }
-        .enl-stat:nth-child(1){animation-delay:.6s}
-        .enl-stat:nth-child(2){animation-delay:.76s}
-        .enl-stat:nth-child(3){animation-delay:.92s}
-
-        .enl-headline { animation: enl-fadeUp .6s .25s both; }
-        .enl-sub      { animation: enl-fadeUp .6s .38s both; }
-        .enl-pills    { animation: enl-fadeUp .6s .44s both; }
+        .enl-feat { animation: enl-in .4s both; }
+        .enl-feat:nth-child(1){animation-delay:.55s}
+        .enl-feat:nth-child(2){animation-delay:.65s}
+        .enl-feat:nth-child(3){animation-delay:.75s}
+        .enl-feat:nth-child(4){animation-delay:.85s}
 
         .enl-input {
-          width:100%; padding:12px 14px 12px 42px;
-          border-radius:10px; border:1.5px solid #E4E0D8;
-          font-size:14px; outline:none;
-          background:#fff; color:#1A1612;
-          transition:border .2s,box-shadow .2s;
-          font-family:'DM Sans',sans-serif;
+          width:100%; padding:11px 14px 11px 42px;
+          border-radius:10px; border:1.5px solid #e2e8f0;
+          font-size:14px; font-family:'Plus Jakarta Sans',sans-serif;
+          outline:none; background:#f8fafc; color:#0f172a;
+          transition:border .18s,box-shadow .18s,background .18s;
         }
         .enl-input:focus {
-          border-color:#C8943A !important;
-          box-shadow:0 0 0 3px rgba(200,148,58,.12) !important;
+          border-color:#6366f1 !important;
+          background:#fff !important;
+          box-shadow:0 0 0 3px rgba(99,102,241,.12) !important;
         }
-        .enl-input::placeholder { color:#B8B0A4; }
+        .enl-input::placeholder { color:#94a3b8; }
 
-        .enl-submit {
-          width:100%; padding:13px;
+        .enl-btn {
+          width:100%; padding:12px;
           border-radius:10px; border:none;
           font-size:14px; font-weight:700;
-          cursor:pointer; letter-spacing:.02em;
-          font-family:'DM Sans',sans-serif;
-          transition:all .2s;
+          letter-spacing:.01em;
+          font-family:'Plus Jakarta Sans',sans-serif;
+          cursor:pointer; transition:all .18s;
           display:flex; align-items:center; justify-content:center; gap:8px;
         }
-        .enl-submit:not(:disabled):hover {
+        .enl-btn:not(:disabled):hover {
           transform:translateY(-2px);
-          box-shadow:0 10px 28px rgba(200,148,58,.45) !important;
+          box-shadow:0 10px 30px rgba(99,102,241,.38) !important;
         }
-        .enl-submit:not(:disabled):active { transform:translateY(0); }
+        .enl-btn:not(:disabled):active { transform:none; }
 
-        .enl-scan-line {
-          animation: enl-scan 3.5s linear infinite;
+        .enl-eye {
+          position:absolute; right:12px; top:50%; transform:translateY(-50%);
+          background:none; border:none; cursor:pointer;
+          color:#94a3b8; padding:3px;
+          display:flex; align-items:center;
+          transition:color .15s;
+        }
+        .enl-eye:hover { color:#6366f1; }
+
+        .enl-pill {
+          display:inline-flex; align-items:center; gap:6px;
+          padding:5px 12px; border-radius:100px;
+          font-size:11px; font-weight:600;
+          letter-spacing:.03em;
+          border:1px solid rgba(255,255,255,.1);
+          color:rgba(255,255,255,.55);
+          background:rgba(255,255,255,.05);
+          backdrop-filter:blur(4px);
+          white-space:nowrap;
         }
 
-        @media (max-width: 820px) {
-          .enl-brand { display: none !important; }
-          .enl-form-panel { padding: 40px 28px !important; }
-          .enl-form-wrap { max-width: 100% !important; }
+        @media(max-width:820px){
+          .enl-panel-left { display:none !important; }
+          .enl-right-inner { padding:36px 28px !important; }
         }
       `}}/>
 
-      <div className="enl-login" style={{minHeight:"100vh",display:"flex",background:"#F7F4EF",overflow:"hidden"}}>
+      <div className="enl-login" style={{
+        minHeight:"100vh", display:"flex",
+        background:"#f1f5f9", overflow:"hidden",
+        fontFamily:"'Plus Jakarta Sans',system-ui,sans-serif",
+      }}>
 
-        {/* ═══ LEFT BRAND PANEL ═══ */}
-        <div className="enl-brand" style={{
-          flex:"0 0 52%", background:"#0A0D12", position:"relative",
-          overflow:"hidden", display:"flex", flexDirection:"column",
-          padding:"52px 56px",
+        {/* ══════════════════════════════════════
+            LEFT — Brand storytelling panel
+        ══════════════════════════════════════ */}
+        <div className="enl-panel-left" style={{
+          flex:"0 0 50%", position:"relative", overflow:"hidden",
+          background:"#0f172a",
+          display:"flex", flexDirection:"column",
         }}>
+          {/* Mesh gradient orbs */}
+          <div className="enl-orb1" style={{position:"absolute",top:"-8%",left:"-10%",width:520,height:520,borderRadius:"50%",background:"radial-gradient(circle,rgba(99,102,241,.28) 0%,transparent 65%)",pointerEvents:"none"}}/>
+          <div className="enl-orb2" style={{position:"absolute",bottom:"-12%",right:"-8%",width:460,height:460,borderRadius:"50%",background:"radial-gradient(circle,rgba(139,92,246,.22) 0%,transparent 65%)",pointerEvents:"none"}}/>
+          <div className="enl-orb3" style={{position:"absolute",top:"42%",right:"12%",width:260,height:260,borderRadius:"50%",background:"radial-gradient(circle,rgba(99,102,241,.12) 0%,transparent 65%)",pointerEvents:"none"}}/>
 
-          {/* Dot mesh */}
-          <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(circle,rgba(255,255,255,.045) 1px,transparent 1px)",backgroundSize:"28px 28px",pointerEvents:"none"}}/>
+          {/* Fine dot grid */}
+          <div style={{position:"absolute",inset:0,backgroundImage:"radial-gradient(circle,rgba(255,255,255,.05) 1px,transparent 1px)",backgroundSize:"24px 24px",pointerEvents:"none"}}/>
 
-          {/* Ambient gold glow */}
-          <div style={{position:"absolute",top:"-10%",right:"-5%",width:500,height:500,background:"radial-gradient(ellipse,rgba(200,148,58,.13) 0%,transparent 65%)",pointerEvents:"none"}}/>
-          <div style={{position:"absolute",bottom:"-15%",left:"-8%",width:400,height:400,background:"radial-gradient(ellipse,rgba(200,148,58,.07) 0%,transparent 65%)",pointerEvents:"none"}}/>
+          {/* Diagonal accent line */}
+          <div style={{position:"absolute",top:0,right:"28%",width:1,height:"100%",background:"linear-gradient(180deg,transparent,rgba(99,102,241,.15) 30%,rgba(139,92,246,.1) 70%,transparent)",pointerEvents:"none"}}/>
 
-          {/* Scan line */}
-          <div className="enl-scan-line" style={{position:"absolute",left:0,right:0,height:1,background:"linear-gradient(90deg,transparent,rgba(200,148,58,.18),transparent)",pointerEvents:"none"}}/>
+          <div style={{position:"relative",zIndex:2,flex:1,display:"flex",flexDirection:"column",padding:"48px 52px"}}>
 
-          {/* Floating geometry */}
-          <div className="enl-geo1" style={{position:"absolute",top:"14%",right:"10%",width:72,height:72,borderRadius:14,border:"1px solid rgba(200,148,58,.18)",pointerEvents:"none"}}/>
-          <div className="enl-geo2" style={{position:"absolute",top:"38%",right:"5%",width:38,height:38,borderRadius:"50%",border:"1px solid rgba(255,255,255,.06)",pointerEvents:"none"}}/>
-          <div className="enl-geo3" style={{position:"absolute",bottom:"28%",right:"16%",width:56,height:2,background:"linear-gradient(90deg,transparent,rgba(200,148,58,.25),transparent)",pointerEvents:"none"}}/>
-          <div className="enl-geo4" style={{position:"absolute",top:"60%",left:"8%",width:32,height:32,borderLeft:"2px solid rgba(200,148,58,.18)",borderBottom:"2px solid rgba(200,148,58,.18)",pointerEvents:"none"}}/>
+            {/* Logo */}
+            <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:64}}>
+              <div style={{
+                width:40,height:40,borderRadius:11,flexShrink:0,
+                background:"linear-gradient(135deg,#6366f1,#8b5cf6)",
+                display:"flex",alignItems:"center",justifyContent:"center",
+                boxShadow:"0 0 0 5px rgba(99,102,241,.18)",
+              }}>
+                <span style={{fontSize:16,fontWeight:800,color:"#fff",letterSpacing:"-1px"}}>E</span>
+              </div>
+              <div>
+                <div style={{fontSize:13,fontWeight:700,color:"#e2e8f0",letterSpacing:".01em"}}>Ensemble Digital Labs</div>
+                <div style={{fontSize:10,color:"#334155",letterSpacing:".12em",textTransform:"uppercase",fontWeight:500,marginTop:1}}>CRM Platform</div>
+              </div>
+            </div>
 
-          {/* Logo */}
-          <div style={{display:"flex",alignItems:"center",gap:13,marginBottom:72,position:"relative",zIndex:2}}>
+            {/* Main headline */}
+            <div style={{flex:1}}>
+              <div style={{fontSize:42,fontWeight:800,color:"#f1f5f9",lineHeight:1.1,letterSpacing:"-.5px",marginBottom:18}}>
+                Grow Smarter.<br/>
+                <span style={{background:"linear-gradient(135deg,#818cf8,#a78bfa)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent",backgroundClip:"text"}}>
+                  Market Better.
+                </span>
+              </div>
+              <p style={{fontSize:14,color:"#475569",lineHeight:1.75,maxWidth:320,marginBottom:44,fontWeight:400}}>
+                Your command center for healthcare marketing, CRM pipelines, campaigns, and client delivery — all in one place.
+              </p>
+
+              {/* Feature list */}
+              <div style={{display:"flex",flexDirection:"column",gap:13,marginBottom:52}}>
+                {[
+                  {icon:"◎","label":"Pipeline & deal management"},
+                  {icon:"◈","label":"Healthcare compliance (HIPAA / BAA)"},
+                  {icon:"◉","label":"AI-powered campaign analytics"},
+                  {icon:"◐","label":"Multi-client workspace control"},
+                ].map(f=>(
+                  <div key={f.label} className="enl-feat" style={{display:"flex",alignItems:"center",gap:12}}>
+                    <div style={{
+                      width:30,height:30,borderRadius:8,flexShrink:0,
+                      background:"rgba(99,102,241,.12)",
+                      border:"1px solid rgba(99,102,241,.2)",
+                      display:"flex",alignItems:"center",justifyContent:"center",
+                      fontSize:13,color:"#818cf8",
+                    }}>{f.icon}</div>
+                    <span style={{fontSize:13,color:"#64748b",fontWeight:500}}>{f.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Service pills */}
+              <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
+                {["Healthcare","Digital Marketing","CRM Advisory","HIPAA","St. Louis, MO"].map(p=>(
+                  <span key={p} className="enl-pill">{p}</span>
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom divider + stats */}
             <div style={{
-              width:42,height:42,borderRadius:"50%",flexShrink:0,
-              background:"linear-gradient(135deg,#D4A547,#B8832C)",
-              display:"flex",alignItems:"center",justifyContent:"center",
-              boxShadow:"0 0 0 6px rgba(212,165,71,.1)",
+              marginTop:40,paddingTop:24,
+              borderTop:"1px solid rgba(255,255,255,.06)",
+              display:"flex",gap:0,
             }}>
-              <span style={{fontSize:17,fontWeight:800,color:"#0A0D12",fontFamily:"'DM Sans',sans-serif",letterSpacing:"-1px"}}>E</span>
-            </div>
-            <div>
-              <div style={{fontSize:14,fontWeight:600,color:"#EDE8DF",letterSpacing:".01em"}}>Ensemble Digital Labs</div>
-              <div style={{fontSize:10,color:"#3D4454",letterSpacing:".14em",textTransform:"uppercase",fontWeight:500}}>CRM Platform v5.1</div>
-            </div>
-          </div>
-
-          {/* Headline */}
-          <div style={{flex:1,position:"relative",zIndex:2}}>
-            <h1 className="enl-headline" style={{
-              fontFamily:"'Cormorant Garamond',Georgia,serif",
-              fontSize:54,fontWeight:700,lineHeight:1.08,
-              color:"#EDE8DF",marginBottom:22,letterSpacing:"-.3px",
-            }}>
-              Where Brands<br/>
-              <em style={{color:"#D4A547",fontStyle:"italic"}}>Become</em><br/>
-              Stories.
-            </h1>
-
-            <p className="enl-sub" style={{
-              fontSize:14,lineHeight:1.75,color:"#3D4454",
-              maxWidth:330,marginBottom:40,fontWeight:400,
-            }}>
-              The command center for Ensemble's healthcare and growth clients — pipelines, campaigns, and contracts in one place.
-            </p>
-
-            {/* Service pills */}
-            <div className="enl-pills" style={{display:"flex",flexWrap:"wrap",gap:8,marginBottom:60}}>
-              {["Healthcare Marketing","CRM Advisory","Digital Campaigns","AI-Enabled Delivery","HIPAA Compliance"].map(s=>(
-                <span key={s} className="enl-pill" style={{
-                  padding:"5px 13px",borderRadius:100,
-                  border:"1px solid rgba(212,165,71,.2)",
-                  fontSize:11,fontWeight:500,color:"#5A6070",
-                  letterSpacing:".03em",background:"rgba(255,255,255,.02)",
-                }}>{s}</span>
+              {[["15+","Clients"],["$2M+","Revenue"],["5★","Rated"]].map(([n,l],i)=>(
+                <div key={l} style={{
+                  flex:1,
+                  paddingRight:i<2?20:0, paddingLeft:i>0?20:0,
+                  borderRight:i<2?"1px solid rgba(255,255,255,.06)":"none",
+                }}>
+                  <div style={{fontSize:18,fontWeight:800,color:"#818cf8",lineHeight:1,marginBottom:3}}>{n}</div>
+                  <div style={{fontSize:10,color:"#334155",textTransform:"uppercase",letterSpacing:".08em",fontWeight:600}}>{l}</div>
+                </div>
               ))}
             </div>
           </div>
-
-          {/* Stats footer */}
-          <div style={{
-            display:"flex",gap:0,
-            borderTop:"1px solid rgba(255,255,255,.05)",
-            paddingTop:26,position:"relative",zIndex:2,
-          }}>
-            {[["15+","Healthcare Clients"],["$2M+","Revenue Managed"],["St. Louis, MO","Headquarters"]].map(([val,lbl],i)=>(
-              <div key={lbl} className="enl-stat" style={{
-                flex:1,
-                paddingRight:i<2?22:0,paddingLeft:i>0?22:0,
-                borderRight:i<2?"1px solid rgba(255,255,255,.05)":"none",
-              }}>
-                <div style={{fontSize:20,fontWeight:700,color:"#D4A547",fontFamily:"'Cormorant Garamond',serif",lineHeight:1,marginBottom:4}}>{val}</div>
-                <div style={{fontSize:10,color:"#3D4454",fontWeight:500,letterSpacing:".05em",textTransform:"uppercase"}}>{lbl}</div>
-              </div>
-            ))}
-          </div>
         </div>
 
-        {/* ═══ RIGHT FORM PANEL ═══ */}
-        <div className="enl-form-panel" style={{
-          flex:1,display:"flex",flexDirection:"column",
-          alignItems:"center",justifyContent:"center",
-          padding:"48px 56px",background:"#F7F4EF",position:"relative",
-        }}>
+        {/* ══════════════════════════════════════
+            RIGHT — Login form
+        ══════════════════════════════════════ */}
+        <div style={{flex:1,display:"flex",alignItems:"center",justifyContent:"center",background:"#f1f5f9",position:"relative",overflow:"hidden"}}>
+          {/* Soft bg accents */}
+          <div style={{position:"absolute",top:0,right:0,width:280,height:280,background:"radial-gradient(ellipse at top right,rgba(99,102,241,.06) 0%,transparent 65%)",pointerEvents:"none"}}/>
+          <div style={{position:"absolute",bottom:0,left:0,width:220,height:220,background:"radial-gradient(ellipse at bottom left,rgba(139,92,246,.05) 0%,transparent 65%)",pointerEvents:"none"}}/>
 
-          {/* Subtle corner warmth */}
-          <div style={{position:"absolute",top:0,right:0,width:220,height:220,background:"radial-gradient(ellipse at top right,rgba(212,165,71,.08) 0%,transparent 70%)",pointerEvents:"none"}}/>
-          <div style={{position:"absolute",bottom:0,left:0,width:180,height:180,background:"radial-gradient(ellipse at bottom left,rgba(212,165,71,.05) 0%,transparent 70%)",pointerEvents:"none"}}/>
+          <div className="enl-panel-right enl-right-inner" style={{width:"100%",maxWidth:400,padding:"48px 44px",position:"relative",zIndex:2}}>
 
-          <div className="enl-form-wrap" style={{width:"100%",maxWidth:380,position:"relative",zIndex:2}}>
-
-            {/* Badge */}
-            <div style={{
+            {/* Status badge */}
+            <div className="enl-row1" style={{
               display:"inline-flex",alignItems:"center",gap:7,
-              background:"#EDE8DF",borderRadius:100,
-              padding:"5px 13px",marginBottom:24,
-              border:"1px solid rgba(212,165,71,.2)",
+              background:"#eef2ff",borderRadius:100,
+              padding:"5px 14px",marginBottom:28,
+              border:"1px solid #c7d2fe",
             }}>
-              <span style={{width:6,height:6,borderRadius:"50%",background:"#D4A547",display:"inline-block",animation:"enl-pulse 2s ease-in-out infinite"}}/>
-              <span style={{fontSize:10,fontWeight:600,color:"#7A6A40",letterSpacing:".08em",textTransform:"uppercase"}}>Secure Workspace Access</span>
+              <span style={{width:6,height:6,borderRadius:"50%",background:"#6366f1",display:"inline-block",animation:"enl-dot 2s ease-in-out infinite"}}/>
+              <span style={{fontSize:11,fontWeight:700,color:"#4338ca",letterSpacing:".06em",textTransform:"uppercase"}}>Secure Access Portal</span>
             </div>
 
             {/* Heading */}
-            <h2 style={{
-              fontFamily:"'Cormorant Garamond',Georgia,serif",
-              fontSize:36,fontWeight:700,color:"#1A1612",
-              marginBottom:6,lineHeight:1.1,
-            }}>Welcome back.</h2>
-            <p style={{fontSize:14,color:"#9C9486",fontWeight:400,marginBottom:34}}>Sign in to your Ensemble CRM dashboard</p>
+            <div className="enl-row2" style={{marginBottom:28}}>
+              <h2 style={{fontSize:28,fontWeight:800,color:"#0f172a",letterSpacing:"-.4px",lineHeight:1.15,marginBottom:6}}>
+                Sign in to your<br/>workspace
+              </h2>
+              <p style={{fontSize:14,color:"#64748b",fontWeight:400,lineHeight:1.6}}>
+                Enter your credentials to access Ensemble CRM
+              </p>
+            </div>
 
             {/* Username */}
-            <div style={{marginBottom:15}}>
-              <label style={{display:"block",fontSize:12,fontWeight:600,color:"#4A4035",marginBottom:7,letterSpacing:".05em"}}>USERNAME</label>
+            <div className="enl-row3" style={{marginBottom:14}}>
+              <label style={{display:"block",fontSize:12,fontWeight:700,color:"#334155",marginBottom:6,letterSpacing:".04em",textTransform:"uppercase"}}>
+                Username
+              </label>
               <div style={{position:"relative"}}>
-                <svg style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",opacity:.4,pointerEvents:"none"}} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4035" strokeWidth="2" strokeLinecap="round">
+                <svg style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",pointerEvents:"none",opacity:.45}} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
                 </svg>
-                <input
-                  className="enl-input"
-                  value={username} onChange={e=>{setUsername(e.target.value);setErr("");}}
+                <input className="enl-input" value={username}
+                  onChange={e=>{setUsername(e.target.value);setErr("");}}
                   onKeyDown={e=>e.key==="Enter"&&attempt()}
-                  placeholder="Enter your username"
+                  placeholder="your.username"
                   autoFocus
                 />
               </div>
             </div>
 
             {/* Password */}
-            <div style={{marginBottom:26}}>
-              <label style={{display:"block",fontSize:12,fontWeight:600,color:"#4A4035",marginBottom:7,letterSpacing:".05em"}}>PASSWORD</label>
+            <div className="enl-row4" style={{marginBottom:22}}>
+              <label style={{display:"block",fontSize:12,fontWeight:700,color:"#334155",marginBottom:6,letterSpacing:".04em",textTransform:"uppercase"}}>
+                Password
+              </label>
               <div style={{position:"relative"}}>
-                <svg style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",opacity:.4,pointerEvents:"none"}} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#4A4035" strokeWidth="2" strokeLinecap="round">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                <svg style={{position:"absolute",left:13,top:"50%",transform:"translateY(-50%)",pointerEvents:"none",opacity:.45}} width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#334155" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
-                <input
-                  className="enl-input"
+                <input className="enl-input"
                   type={showPw?"text":"password"}
-                  value={password} onChange={e=>{setPassword(e.target.value);setErr("");}}
+                  value={password}
+                  onChange={e=>{setPassword(e.target.value);setErr("");}}
                   onKeyDown={e=>e.key==="Enter"&&attempt()}
-                  placeholder="Enter your password"
-                  style={{paddingRight:42}}
+                  placeholder="••••••••"
+                  style={{paddingRight:40}}
                 />
-                <button type="button" onClick={()=>setShowPw(p=>!p)} style={{
-                  position:"absolute",right:13,top:"50%",transform:"translateY(-50%)",
-                  background:"none",border:"none",cursor:"pointer",
-                  color:"#9C9486",padding:2,
-                  display:"flex",alignItems:"center",
-                  transition:"color .15s",
-                }}
-                  onMouseEnter={e=>e.currentTarget.style.color="#D4A547"}
-                  onMouseLeave={e=>e.currentTarget.style.color="#9C9486"}
-                >
-                  {showPw?<EyeClosed/>:<EyeOpen/>}
+                <button className="enl-eye" type="button" onClick={()=>setShowPw(p=>!p)}>
+                  {showPw
+                    ?<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/><path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                    :<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                  }
                 </button>
               </div>
             </div>
 
             {/* Error */}
-            {err&&<div style={{
-              background:"#FEF2F2",border:"1px solid #FECACA",borderRadius:9,
-              padding:"10px 14px",fontSize:13,color:"#DC2626",
-              marginBottom:16,display:"flex",alignItems:"center",gap:8,
-            }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#DC2626" strokeWidth="2.5" strokeLinecap="round">
-                <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
-              </svg>
-              {err}
-            </div>}
+            {err&&(
+              <div className="enl-row5" style={{
+                background:"#fef2f2",border:"1px solid #fecaca",borderRadius:9,
+                padding:"10px 14px",fontSize:13,color:"#dc2626",
+                marginBottom:16,display:"flex",alignItems:"center",gap:8,
+              }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#dc2626" strokeWidth="2.5" strokeLinecap="round">
+                  <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+                {err}
+              </div>
+            )}
 
             {/* Submit */}
-            <button onClick={attempt} disabled={busy} className="enl-submit" style={{
-              background:busy?"#EDE8DF":"linear-gradient(135deg,#D4A547 0%,#B8832C 100%)",
-              color:busy?"#9C9486":"#0A0D12",
-              boxShadow:busy?"none":"0 4px 18px rgba(212,165,71,.32)",
-            }}>
-              {busy
-                ?<><div className="auth-spin" style={{borderColor:"rgba(0,0,0,.1)",borderTopColor:"#B8832C"}}/>Signing in…</>
-                :<>Sign In <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></>
-              }
-            </button>
+            <div className="enl-row5">
+              <button onClick={attempt} disabled={busy} className="enl-btn" style={{
+                background:busy?"#e0e7ff":"linear-gradient(135deg,#6366f1 0%,#8b5cf6 100%)",
+                color:busy?"#818cf8":"#fff",
+                boxShadow:busy?"none":"0 4px 18px rgba(99,102,241,.35)",
+              }}>
+                {busy
+                  ?<><div className="auth-spin"/>Signing in…</>
+                  :<>Sign In <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></>
+                }
+              </button>
+            </div>
 
             {/* Footer */}
-            <div style={{
-              marginTop:34,paddingTop:24,
-              borderTop:"1px solid rgba(212,165,71,.18)",
+            <div className="enl-row6" style={{
+              marginTop:36,paddingTop:22,
+              borderTop:"1px solid #e2e8f0",
               display:"flex",justifyContent:"space-between",alignItems:"center",
             }}>
-              <span style={{fontSize:11,color:"#B8B0A4",fontWeight:400}}>© 2025 Ensemble Digital Labs</span>
-              <a href="https://ensembledigilabs.com" target="_blank" rel="noopener" style={{
-                fontSize:11,color:"#C8943A",fontWeight:600,
-                letterSpacing:".04em",textDecoration:"none",
-                display:"flex",alignItems:"center",gap:4,
-              }}
-                onMouseEnter={e=>e.currentTarget.style.color="#D4A547"}
-                onMouseLeave={e=>e.currentTarget.style.color="#C8943A"}
+              <span style={{fontSize:11,color:"#94a3b8",fontWeight:400}}>© 2025 Ensemble Digital Labs</span>
+              <a href="https://ensembledigilabs.com" target="_blank" rel="noopener"
+                style={{fontSize:11,color:"#6366f1",fontWeight:600,letterSpacing:".03em",display:"flex",alignItems:"center",gap:4}}
+                onMouseEnter={e=>e.currentTarget.style.color="#4338ca"}
+                onMouseLeave={e=>e.currentTarget.style.color="#6366f1"}
               >
                 ensembledigilabs.com
                 <svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
@@ -2156,7 +2169,6 @@ function LoginScreen({users,onLogin}){
             </div>
           </div>
         </div>
-
       </div>
     </>
   );
@@ -2181,7 +2193,7 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
 
   const stats={total:allUsers.length,active:allUsers.filter(u=>u.status==="Active").length,admins:allUsers.filter(u=>u.role==="Admin").length};
   const isAdmin=currentUser?.role==="Admin";
-  const avatarColor=u=>({Admin:"#A87020",Manager:"#0ea5e9","Sales Rep":"#10b981",Viewer:"#7A6E60"}[u.role]||"#C8943A");
+  const avatarColor=u=>({Admin:"#7c3aed",Manager:"#0ea5e9","Sales Rep":"#10b981",Viewer:"#64748b"}[u.role]||"#6366f1");
   const initials=n=>(n||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase();
 
   return(
@@ -2189,19 +2201,19 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
       {/* Header */}
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
         <div>
-          <h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:3}}>User Administration</h1>
-          <p style={{fontSize:13,color:"#7A6E60"}}>Manage team members, roles, and access permissions</p>
+          <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:3}}>User Administration</h1>
+          <p style={{fontSize:13,color:"#64748b"}}>Manage team members, roles, and access permissions</p>
         </div>
         {isAdmin&&<Btn onClick={()=>{setEditU(null);setShowForm(true);}}>+ Add User</Btn>}
       </div>
 
       {/* Stats */}
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(140px,1fr))",gap:10,marginBottom:18}}>
-        {[["Total Users",stats.total,"#C8943A","👥"],["Active",stats.active,"#10b981","✅"],["Admins",stats.admins,"#A87020","🛡️"],["Other Roles",stats.total-stats.admins,"#0ea5e9","💼"]].map(([l,v,c,ic])=>
-          <div key={l} style={{background:"#fff",borderRadius:12,border:"1px solid #E4E0D8",padding:"14px 16px",display:"flex",alignItems:"center",gap:12}}>
+        {[["Total Users",stats.total,"#6366f1","👥"],["Active",stats.active,"#10b981","✅"],["Admins",stats.admins,"#7c3aed","🛡️"],["Other Roles",stats.total-stats.admins,"#0ea5e9","💼"]].map(([l,v,c,ic])=>
+          <div key={l} style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"14px 16px",display:"flex",alignItems:"center",gap:12}}>
             <div style={{width:38,height:38,borderRadius:10,background:c+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:18,flexShrink:0}}>{ic}</div>
             <div>
-              <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
+              <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
               <div style={{fontSize:24,fontWeight:700,color:c,lineHeight:1}}>{v}</div>
             </div>
           </div>
@@ -2211,41 +2223,41 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
       {/* Filters */}
       <div style={{display:"flex",gap:10,marginBottom:14,flexWrap:"wrap"}}>
         <div style={{position:"relative",flex:"1 1 200px"}}>
-          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#9C9486",fontSize:13,pointerEvents:"none"}}>🔍</span>
+          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#94a3b8",fontSize:13,pointerEvents:"none"}}>🔍</span>
           <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search users…"
-            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
+            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
         </div>
-        <select value={fRole} onChange={e=>setFRole(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+        <select value={fRole} onChange={e=>setFRole(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
           <option value="All">All Roles</option>{USER_ROLES.map(r=><option key={r}>{r}</option>)}
         </select>
-        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
           <option value="All">All Statuses</option>{USER_STATUSES.map(s=><option key={s}>{s}</option>)}
         </select>
         {(search||fRole!=="All"||fStatus!=="All")&&
           <button onClick={()=>{setSearch("");setFRole("All");setFStatus("All");}}
-            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#FFF0F0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
+            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#fff0f0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
       </div>
 
       {/* Table */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
         <div style={{overflowX:"auto"}}>
           <table style={{width:"100%",fontSize:13,borderCollapse:"collapse",minWidth:700}}>
             <thead>
-              <tr style={{background:"#F5F1EB",borderBottom:"1px solid #E4E0D8"}}>
+              <tr style={{background:"#f8fafc",borderBottom:"1px solid #e2e8f0"}}>
                 {["User","Username","Role","Status","Email","Last Login",""].map(h=>
-                  <th key={h} style={{padding:"11px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
+                  <th key={h} style={{padding:"11px 16px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
               </tr>
             </thead>
             <tbody>
-              {filtered.length===0&&<tr><td colSpan={7} style={{padding:"48px",textAlign:"center",color:"#9C9486"}}>No users match your filters.</td></tr>}
+              {filtered.length===0&&<tr><td colSpan={7} style={{padding:"48px",textAlign:"center",color:"#94a3b8"}}>No users match your filters.</td></tr>}
               {filtered.map((u,i)=>{
                 const rm=ROLE_META[u.role]||ROLE_META.Viewer;
                 const isBuiltIn=u.id==="u0";
                 const isMe=u.id===currentUser?.id;
                 const isActive=u.status!=="Inactive";
                 return(
-                  <tr key={u.id} style={{borderTop:"1px solid #F7F4EF"}}
-                    onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"}
+                  <tr key={u.id} style={{borderTop:"1px solid #f1f5f9"}}
+                    onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"}
                     onMouseLeave={e=>e.currentTarget.style.background=""}>
                     {/* Avatar + Name */}
                     <td style={{padding:"13px 16px"}}>
@@ -2254,21 +2266,21 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
                           <div style={{width:36,height:36,borderRadius:"50%",background:avatarColor(u),display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:"#fff"}}>
                             {initials(u.name||u.username)}
                           </div>
-                          <span style={{position:"absolute",bottom:0,right:0,width:10,height:10,borderRadius:"50%",background:isActive?"#10b981":"#9C9486",border:"2px solid #fff"}}/>
+                          <span style={{position:"absolute",bottom:0,right:0,width:10,height:10,borderRadius:"50%",background:isActive?"#10b981":"#94a3b8",border:"2px solid #fff"}}/>
                         </div>
                         <div>
-                          <div style={{fontWeight:600,color:"#1A1612",display:"flex",alignItems:"center",gap:6}}>
+                          <div style={{fontWeight:600,color:"#0f172a",display:"flex",alignItems:"center",gap:6}}>
                             {u.name||u.username}
-                            {isMe&&<span style={{fontSize:9,fontWeight:700,background:"#F5EDD8",color:"#C8943A",borderRadius:10,padding:"1px 6px"}}>YOU</span>}
-                            {isBuiltIn&&<span style={{fontSize:9,fontWeight:700,background:"#F5EDD8",color:"#A87020",borderRadius:10,padding:"1px 6px"}}>BUILT-IN</span>}
+                            {isMe&&<span style={{fontSize:9,fontWeight:700,background:"#eef2ff",color:"#6366f1",borderRadius:10,padding:"1px 6px"}}>YOU</span>}
+                            {isBuiltIn&&<span style={{fontSize:9,fontWeight:700,background:"#ede9fe",color:"#7c3aed",borderRadius:10,padding:"1px 6px"}}>BUILT-IN</span>}
                           </div>
-                          <div style={{fontSize:11,color:"#7A6E60"}}>{u.email||"—"}</div>
+                          <div style={{fontSize:11,color:"#64748b"}}>{u.email||"—"}</div>
                         </div>
                       </div>
                     </td>
                     {/* Username */}
                     <td style={{padding:"13px 16px"}}>
-                      <code style={{fontSize:12,background:"#F7F4EF",color:"#3D3428",padding:"2px 8px",borderRadius:6,fontFamily:"monospace"}}>{u.username}</code>
+                      <code style={{fontSize:12,background:"#f1f5f9",color:"#334155",padding:"2px 8px",borderRadius:6,fontFamily:"monospace"}}>{u.username}</code>
                     </td>
                     {/* Role */}
                     <td style={{padding:"13px 16px"}}>
@@ -2278,15 +2290,15 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
                     </td>
                     {/* Status */}
                     <td style={{padding:"13px 16px"}}>
-                      <span style={{background:isActive?"#ecfdf5":"#F7F4EF",color:isActive?"#10b981":"#7A6E60",borderRadius:20,fontSize:11,fontWeight:600,padding:"3px 11px"}}>
+                      <span style={{background:isActive?"#ecfdf5":"#f1f5f9",color:isActive?"#10b981":"#64748b",borderRadius:20,fontSize:11,fontWeight:600,padding:"3px 11px"}}>
                         {isActive?"Active":"Inactive"}
                       </span>
                     </td>
                     {/* Email */}
-                    <td style={{padding:"13px 16px",color:"#7A6E60",fontSize:12}}>{u.email||"—"}</td>
+                    <td style={{padding:"13px 16px",color:"#64748b",fontSize:12}}>{u.email||"—"}</td>
                     {/* Last Login */}
                     <td style={{padding:"13px 16px"}}>
-                      {u.lastLogin?<span style={{fontSize:12,color:"#7A6E60"}}>{fmt(u.lastLogin)}</span>:<span style={{fontSize:11,color:"#9C9486",fontStyle:"italic"}}>Never</span>}
+                      {u.lastLogin?<span style={{fontSize:12,color:"#64748b"}}>{fmt(u.lastLogin)}</span>:<span style={{fontSize:11,color:"#94a3b8",fontStyle:"italic"}}>Never</span>}
                     </td>
                     {/* Actions */}
                     <td style={{padding:"13px 16px"}}>
@@ -2305,7 +2317,7 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
                             <Btn sz="sm" v="danger" onClick={()=>setConfirmDel(u.id)}>Delete</Btn>
                           )}
                         </div>
-                      ):<span style={{color:"#9C9486",fontSize:12}}>—</span>}
+                      ):<span style={{color:"#94a3b8",fontSize:12}}>—</span>}
                     </td>
                   </tr>
                 );
@@ -2316,15 +2328,15 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
       </div>
 
       {/* Permission reference */}
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden",marginTop:16}}>
-        <div style={{padding:"13px 20px",borderBottom:"1px solid #F7F4EF"}}>
-          <span style={{fontSize:13,fontWeight:700,color:"#1A1612"}}>Role Permissions</span>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",marginTop:16}}>
+        <div style={{padding:"13px 20px",borderBottom:"1px solid #f1f5f9"}}>
+          <span style={{fontSize:13,fontWeight:700,color:"#0f172a"}}>Role Permissions</span>
         </div>
         <div style={{overflowX:"auto"}}>
           <table style={{width:"100%",fontSize:12,borderCollapse:"collapse",minWidth:500}}>
             <thead>
-              <tr style={{background:"#F5F1EB"}}>
-                <th style={{padding:"9px 20px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em",width:"40%"}}>Permission</th>
+              <tr style={{background:"#f8fafc"}}>
+                <th style={{padding:"9px 20px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",width:"40%"}}>Permission</th>
                 {USER_ROLES.map(r=>{const rm=ROLE_META[r];return(
                   <th key={r} style={{padding:"9px 14px",textAlign:"center",fontSize:10,fontWeight:700,color:rm.c,textTransform:"uppercase"}}>{rm.icon} {r}</th>
                 );})}
@@ -2340,11 +2352,11 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
                 ["Manage users",               [1,0,0,0]],
                 ["System configuration",       [1,0,0,0]],
               ].map(([perm,vals],i,arr)=>(
-                <tr key={perm} style={{borderTop:"1px solid #F7F4EF"}}>
-                  <td style={{padding:"10px 20px",color:"#3D3428",fontWeight:500}}>{perm}</td>
+                <tr key={perm} style={{borderTop:"1px solid #f1f5f9"}}>
+                  <td style={{padding:"10px 20px",color:"#334155",fontWeight:500}}>{perm}</td>
                   {vals.map((v,j)=>(
                     <td key={j} style={{padding:"10px 14px",textAlign:"center"}}>
-                      {v?<span style={{color:"#10b981",fontSize:16}}>✓</span>:<span style={{color:"#E4E0D8",fontSize:16}}>—</span>}
+                      {v?<span style={{color:"#10b981",fontSize:16}}>✓</span>:<span style={{color:"#e2e8f0",fontSize:16}}>—</span>}
                     </td>
                   ))}
                 </tr>
@@ -2358,8 +2370,8 @@ function UserAdmin({users,currentUser,onSave,onDelete,onToggleStatus,notify}){
       {confirmDel&&<div style={{position:"fixed",inset:0,background:"rgba(0,0,0,.45)",zIndex:600,display:"flex",alignItems:"center",justifyContent:"center",padding:20}}>
         <div style={{background:"#fff",borderRadius:16,padding:"28px 32px",maxWidth:380,width:"100%",boxShadow:"0 20px 60px rgba(0,0,0,.22)",textAlign:"center"}}>
           <div style={{fontSize:40,marginBottom:12}}>⚠️</div>
-          <div style={{fontSize:16,fontWeight:700,color:"#1A1612",marginBottom:8}}>Delete User?</div>
-          <p style={{fontSize:13,color:"#7A6E60",lineHeight:1.5,marginBottom:22}}>
+          <div style={{fontSize:16,fontWeight:700,color:"#0f172a",marginBottom:8}}>Delete User?</div>
+          <p style={{fontSize:13,color:"#64748b",lineHeight:1.5,marginBottom:22}}>
             This will permanently remove <strong>{allUsers.find(u=>u.id===confirmDel)?.name||allUsers.find(u=>u.id===confirmDel)?.username}</strong> and all their access. This cannot be undone.
           </p>
           <div style={{display:"flex",gap:10}}>
@@ -2415,9 +2427,9 @@ function UserForm({user,allUsers,onClose,onSave}){
           <div style={{position:"relative"}}>
             <input type={showPw?"text":"password"} value={f.password} onChange={e=>set("password",e.target.value)}
               placeholder={isEdit?"Enter new password to change…":"Set a strong password"}
-              style={{width:"100%",padding:"8px 38px 8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
+              style={{width:"100%",padding:"8px 38px 8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
             <button type="button" onClick={()=>setShowPw(p=>!p)}
-              style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#9C9486",fontSize:14}}>
+              style={{position:"absolute",right:10,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:14}}>
               {showPw?"🙈":"👁"}
             </button>
           </div>
@@ -2429,12 +2441,12 @@ function UserForm({user,allUsers,onClose,onSave}){
           <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:4}}>
             {USER_ROLES.map(r=>{const rm=ROLE_META[r];const active=f.role===r;return(
               <button key={r} onClick={()=>set("role",r)}
-                style={{padding:"7px 16px",borderRadius:20,border:"1.5px solid "+(active?rm.c:"#E4E0D8"),background:active?rm.bg:"#fff",color:active?rm.c:"#7A6E60",fontSize:12,fontWeight:active?700:400,cursor:"pointer",display:"flex",alignItems:"center",gap:5,transition:"all .12s"}}>
+                style={{padding:"7px 16px",borderRadius:20,border:"1.5px solid "+(active?rm.c:"#e2e8f0"),background:active?rm.bg:"#fff",color:active?rm.c:"#64748b",fontSize:12,fontWeight:active?700:400,cursor:"pointer",display:"flex",alignItems:"center",gap:5,transition:"all .12s"}}>
                 <span style={{fontSize:13}}>{rm.icon}</span>{r}
               </button>
             );})}
           </div>
-          <div style={{marginTop:8,fontSize:11,color:"#9C9486",lineHeight:1.5}}>
+          <div style={{marginTop:8,fontSize:11,color:"#94a3b8",lineHeight:1.5}}>
             {f.role==="Admin"&&"⚡ Admin has full system access including user management."}
             {f.role==="Manager"&&"📊 Manager can create, edit, and delete records but cannot manage users."}
             {f.role==="Sales Rep"&&"💼 Sales Rep can view and edit records but cannot delete or export."}
@@ -2504,7 +2516,7 @@ function ContractForm({contract,accountId,onClose,onSave}){
             const m=CT_META[t]||CT_META.Other;
             const active=f.type===t;
             return<button key={t} onClick={()=>set("type",t)}
-              style={{padding:"5px 12px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#E4E0D8"),background:active?m.bg:"#fff",color:active?m.c:"#7A6E60",fontSize:12,fontWeight:active?600:400,cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
+              style={{padding:"5px 12px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#e2e8f0"),background:active?m.bg:"#fff",color:active?m.c:"#64748b",fontSize:12,fontWeight:active?600:400,cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
               <span>{m.icon}</span>{t}
             </button>;
           })}
@@ -2516,9 +2528,9 @@ function ContractForm({contract,accountId,onClose,onSave}){
         <div style={{display:"flex",gap:8,marginTop:4}}>
           {["Active","Expired","Pending","Terminated"].map(s=>{
             const active=f.status===s;
-            const c=s==="Active"?"#10b981":s==="Expired"?"#7A6E60":s==="Pending"?"#f59e0b":"#ef4444";
+            const c=s==="Active"?"#10b981":s==="Expired"?"#64748b":s==="Pending"?"#f59e0b":"#ef4444";
             return<button key={s} onClick={()=>set("status",s)}
-              style={{padding:"5px 12px",borderRadius:20,border:"1.5px solid "+(active?c:"#E4E0D8"),background:active?"#F5F1EB":"#fff",color:active?c:"#7A6E60",fontSize:12,fontWeight:active?600:400,cursor:"pointer"}}>
+              style={{padding:"5px 12px",borderRadius:20,border:"1.5px solid "+(active?c:"#e2e8f0"),background:active?"#f8fafc":"#fff",color:active?c:"#64748b",fontSize:12,fontWeight:active?600:400,cursor:"pointer"}}>
               {s}
             </button>;
           })}
@@ -2529,31 +2541,31 @@ function ContractForm({contract,accountId,onClose,onSave}){
       <Field label="End Date" value={f.endDate} onChange={v=>set("endDate",v)} type="date"/>
       <Field label="Contract Value ($)" value={f.value} onChange={v=>set("value",v)} type="number" placeholder="0"/>
       <div style={{display:"flex",alignItems:"flex-end",paddingBottom:6}}>
-        {days!==null&&days>=0&&<span style={{fontSize:12,color:"#7A6E60"}}>📅 {days} days · {(days/365).toFixed(1)} yr{days>=730?"s":""}</span>}
+        {days!==null&&days>=0&&<span style={{fontSize:12,color:"#64748b"}}>📅 {days} days · {(days/365).toFixed(1)} yr{days>=730?"s":""}</span>}
       </div>
 
       <TextArea label="Notes" value={f.notes} onChange={v=>set("notes",v)} span={2} rows={2}/>
     </div>
 
     {/* File attachment */}
-    <div style={{marginTop:16,padding:"14px 16px",background:"#F5F1EB",borderRadius:10,border:"1.5px dashed #D8D0C0"}}>
-      <div style={{fontSize:12,fontWeight:600,color:"#5A5245",marginBottom:8}}>📎 Attach Contract File <span style={{fontWeight:400,color:"#9C9486"}}>(PDF, DOC, DOCX — max 5 MB)</span></div>
+    <div style={{marginTop:16,padding:"14px 16px",background:"#f8fafc",borderRadius:10,border:"1.5px dashed #cbd5e1"}}>
+      <div style={{fontSize:12,fontWeight:600,color:"#475569",marginBottom:8}}>📎 Attach Contract File <span style={{fontWeight:400,color:"#94a3b8"}}>(PDF, DOC, DOCX — max 5 MB)</span></div>
       {f.fileName
-        ?<div style={{display:"flex",alignItems:"center",gap:10,padding:"8px 12px",background:"#fff",borderRadius:8,border:"1px solid #E4E0D8"}}>
+        ?<div style={{display:"flex",alignItems:"center",gap:10,padding:"8px 12px",background:"#fff",borderRadius:8,border:"1px solid #e2e8f0"}}>
           <span style={{fontSize:18}}>{f.fileName.endsWith(".pdf")?"📄":"📝"}</span>
           <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{f.fileName}</div>
-            <div style={{fontSize:11,color:"#9C9486"}}>{fmtBytes(f.fileSize)}</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{f.fileName}</div>
+            <div style={{fontSize:11,color:"#94a3b8"}}>{fmtBytes(f.fileSize)}</div>
           </div>
           <button onClick={()=>{set("fileName","");set("fileSize",0);set("fileData",null);}}
-            style={{background:"#FFF0F0",border:"none",color:"#ef4444",borderRadius:6,padding:"3px 8px",fontSize:11,cursor:"pointer",fontWeight:600}}>Remove</button>
+            style={{background:"#fff0f0",border:"none",color:"#ef4444",borderRadius:6,padding:"3px 8px",fontSize:11,cursor:"pointer",fontWeight:600}}>Remove</button>
         </div>
         :<label style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,padding:"18px",cursor:"pointer",borderRadius:8,transition:"background .15s"}}
-          onMouseEnter={function(e){e.currentTarget.style.background="#F5EDD8";}}
+          onMouseEnter={function(e){e.currentTarget.style.background="#eef2ff";}}
           onMouseLeave={function(e){e.currentTarget.style.background="transparent";}}>
           <span style={{fontSize:28}}>☁️</span>
-          <span style={{fontSize:13,color:"#C8943A",fontWeight:600}}>Click to upload or drag &amp; drop</span>
-          <span style={{fontSize:11,color:"#9C9486"}}>PDF · DOC · DOCX · up to 5 MB</span>
+          <span style={{fontSize:13,color:"#6366f1",fontWeight:600}}>Click to upload or drag &amp; drop</span>
+          <span style={{fontSize:11,color:"#94a3b8"}}>PDF · DOC · DOCX · up to 5 MB</span>
           <input type="file" accept=".pdf,.doc,.docx,.txt" onChange={handleFile} style={{display:"none"}}/>
         </label>
       }
@@ -2610,8 +2622,8 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
   function ContractCard({ct}){
     const cm=CT_META[ct.type]||CT_META.Other;
     const acct=accounts.find(a=>a.id===ct.accountId);
-    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#7A6E60":ct.status==="Pending"?"#f59e0b":"#ef4444";
-    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#F7F4EF":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
     const daysLeft=ct.endDate?Math.round((new Date(ct.endDate)-today)/86400000):null;
     const isExpired=ct.endDate&&new Date(ct.endDate)<today;
     const urgent=daysLeft!==null&&daysLeft>=0&&daysLeft<=30;
@@ -2619,15 +2631,15 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
 
     return(
       <div onClick={()=>setSelCT(isSel?null:ct)}
-        style={{background:"#fff",borderRadius:14,border:"2px solid "+(isSel?"#C8943A":"#E4E0D8"),padding:"18px 20px",cursor:"pointer",transition:"all .15s",boxShadow:isSel?"0 0 0 3px rgba(212,165,71,.12)":"none"}}
-        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.borderColor="#E8D5A8";}}
-        onMouseLeave={e=>{if(!isSel)e.currentTarget.style.borderColor="#E4E0D8";}}>
+        style={{background:"#fff",borderRadius:14,border:"2px solid "+(isSel?"#6366f1":"#e2e8f0"),padding:"18px 20px",cursor:"pointer",transition:"all .15s",boxShadow:isSel?"0 0 0 3px rgba(99,102,241,.12)":"none"}}
+        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.borderColor="#c7d2fe";}}
+        onMouseLeave={e=>{if(!isSel)e.currentTarget.style.borderColor="#e2e8f0";}}>
         {/* Top row */}
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
           <div style={{display:"flex",gap:10,alignItems:"flex-start",flex:1,minWidth:0}}>
             <div style={{width:40,height:40,borderRadius:11,background:cm.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:20,flexShrink:0}}>{cm.icon}</div>
             <div style={{minWidth:0}}>
-              <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.name}</div>
+              <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:4,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.name}</div>
               <div style={{display:"flex",gap:5,flexWrap:"wrap"}}>
                 <span style={{background:cm.bg,color:cm.c,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.type}</span>
                 <span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.status}</span>
@@ -2637,7 +2649,7 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
             </div>
           </div>
           <div style={{display:"flex",gap:5,marginLeft:8,flexShrink:0}} onClick={e=>e.stopPropagation()}>
-            <label title="Attach file" style={{display:"inline-flex",alignItems:"center",padding:"4px 8px",borderRadius:7,border:"1px solid #E4E0D8",background:"#F5F1EB",color:"#7A6E60",fontSize:11,fontWeight:600,cursor:"pointer",gap:3}}>
+            <label title="Attach file" style={{display:"inline-flex",alignItems:"center",padding:"4px 8px",borderRadius:7,border:"1px solid #e2e8f0",background:"#f8fafc",color:"#64748b",fontSize:11,fontWeight:600,cursor:"pointer",gap:3}}>
               📎<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
             </label>
             <Btn sz="sm" v="ghost" onClick={()=>{setEditCT(ct);setShowForm(true);}}>Edit</Btn>
@@ -2646,43 +2658,43 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
         </div>
 
         {/* Account */}
-        {acct&&<div style={{display:"flex",alignItems:"center",gap:6,marginBottom:12,padding:"6px 10px",background:"#F5F1EB",borderRadius:8}}>
-          <Avatar name={acct.name} size={20} color="#C8943A" bg="#F5EDD8"/>
-          <span style={{fontSize:12,color:"#3D3428",fontWeight:500}}>{acct.name}</span>
+        {acct&&<div style={{display:"flex",alignItems:"center",gap:6,marginBottom:12,padding:"6px 10px",background:"#f8fafc",borderRadius:8}}>
+          <Avatar name={acct.name} size={20} color="#6366f1" bg="#eef2ff"/>
+          <span style={{fontSize:12,color:"#334155",fontWeight:500}}>{acct.name}</span>
         </div>}
 
         {/* KPI row */}
         <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:6,marginBottom:ct.fileName?10:0}}>
           {[["Value",ct.value?("$"+Number(ct.value).toLocaleString()):"—"],["Start",ct.startDate?fmt(ct.startDate):"—"],["End",ct.endDate?fmt(ct.endDate):"—"],["Days",ct.startDate&&ct.endDate?Math.round((new Date(ct.endDate)-new Date(ct.startDate))/86400000)+"d":"—"]].map(([l,v])=>
-            <div key={l} style={{background:"#F5F1EB",borderRadius:7,padding:"6px 9px"}}>
-              <div style={{fontSize:8,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:1}}>{l}</div>
-              <div style={{fontSize:12,fontWeight:700,color:l==="Value"?"#10b981":"#3D3428"}}>{v}</div>
+            <div key={l} style={{background:"#f8fafc",borderRadius:7,padding:"6px 9px"}}>
+              <div style={{fontSize:8,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:1}}>{l}</div>
+              <div style={{fontSize:12,fontWeight:700,color:l==="Value"?"#10b981":"#334155"}}>{v}</div>
             </div>
           )}
         </div>
 
         {/* File chip */}
-        {ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",background:"#F7F4EF",borderRadius:8,border:"1px solid #E4E0D8"}} onClick={e=>e.stopPropagation()}>
+        {ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",background:"#f1f5f9",borderRadius:8,border:"1px solid #e2e8f0"}} onClick={e=>e.stopPropagation()}>
           <span style={{fontSize:15}}>{ct.fileName.toLowerCase().endsWith(".pdf")?"📄":"📝"}</span>
           <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:11,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
-            <div style={{fontSize:9,color:"#9C9486"}}>{fmtBytes(ct.fileSize)}</div>
+            <div style={{fontSize:11,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
+            <div style={{fontSize:9,color:"#94a3b8"}}>{fmtBytes(ct.fileSize)}</div>
           </div>
           {ct.fileData&&<>
             <button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
-              style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:700,cursor:"pointer",flexShrink:0}}>Open</button>
+              style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:700,cursor:"pointer",flexShrink:0}}>Open</button>
             <a href={ct.fileData} download={ct.fileName}
               style={{background:"#ecfdf5",color:"#10b981",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:700,textDecoration:"none",flexShrink:0}}>↓</a>
           </>}
         </div>}
-        {!ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",border:"1.5px dashed #E4E0D8",borderRadius:8,marginTop:ct.notes?6:0}} onClick={e=>e.stopPropagation()}>
-          <span style={{fontSize:13,color:"#D8D0C0"}}>📎</span>
-          <span style={{fontSize:11,color:"#9C9486",flex:1}}>No file attached</span>
-          <label style={{background:"#F5EDD8",color:"#C8943A",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:600,cursor:"pointer",flexShrink:0}}>
+        {!ct.fileName&&<div style={{display:"flex",alignItems:"center",gap:7,padding:"7px 10px",border:"1.5px dashed #e2e8f0",borderRadius:8,marginTop:ct.notes?6:0}} onClick={e=>e.stopPropagation()}>
+          <span style={{fontSize:13,color:"#cbd5e1"}}>📎</span>
+          <span style={{fontSize:11,color:"#94a3b8",flex:1}}>No file attached</span>
+          <label style={{background:"#eef2ff",color:"#6366f1",borderRadius:6,padding:"3px 9px",fontSize:10,fontWeight:600,cursor:"pointer",flexShrink:0}}>
             + Attach<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
           </label>
         </div>}
-        {ct.notes&&<div style={{marginTop:8,fontSize:11,color:"#7A6E60",fontStyle:"italic",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{ct.notes}</div>}
+        {ct.notes&&<div style={{marginTop:8,fontSize:11,color:"#64748b",fontStyle:"italic",lineHeight:1.5,overflow:"hidden",textOverflow:"ellipsis",display:"-webkit-box",WebkitLineClamp:2,WebkitBoxOrient:"vertical"}}>{ct.notes}</div>}
       </div>
     );
   }
@@ -2691,78 +2703,78 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
   function DetailPanel({ct}){
     const cm=CT_META[ct.type]||CT_META.Other;
     const acct=accounts.find(a=>a.id===ct.accountId);
-    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#7A6E60":ct.status==="Pending"?"#f59e0b":"#ef4444";
-    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#F7F4EF":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
     const daysLeft=ct.endDate?Math.round((new Date(ct.endDate)-today)/86400000):null;
     const pct=ct.startDate&&ct.endDate?Math.min(100,Math.max(0,Math.round((today-new Date(ct.startDate))/(new Date(ct.endDate)-new Date(ct.startDate))*100))):null;
     return(
-      <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden",position:"sticky",top:0}}>
+      <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",position:"sticky",top:0}}>
         {/* Header */}
-        <div style={{padding:"16px 18px",borderBottom:"1px solid #F7F4EF",background:"linear-gradient(135deg,"+cm.bg+",#fff)"}}>
+        <div style={{padding:"16px 18px",borderBottom:"1px solid #f1f5f9",background:"linear-gradient(135deg,"+cm.bg+",#fff)"}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
             <div style={{display:"flex",gap:10,alignItems:"center"}}>
               <div style={{width:42,height:42,borderRadius:11,background:cm.bg,border:"1.5px solid "+cm.c+"44",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22}}>{cm.icon}</div>
               <div>
-                <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:3}}>{ct.name}</div>
+                <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:3}}>{ct.name}</div>
                 <span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:700,padding:"2px 9px"}}>{ct.status}</span>
               </div>
             </div>
-            <button onClick={()=>setSelCT(null)} style={{background:"none",border:"none",cursor:"pointer",color:"#9C9486",fontSize:16,padding:2,lineHeight:1}}>✕</button>
+            <button onClick={()=>setSelCT(null)} style={{background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:16,padding:2,lineHeight:1}}>✕</button>
           </div>
           {acct&&<div style={{display:"flex",alignItems:"center",gap:6,padding:"6px 10px",background:"rgba(255,255,255,.7)",borderRadius:8}}>
-            <Avatar name={acct.name} size={18} color="#C8943A" bg="#F5EDD8"/>
-            <span style={{fontSize:12,color:"#3D3428",fontWeight:500}}>{acct.name}</span>
+            <Avatar name={acct.name} size={18} color="#6366f1" bg="#eef2ff"/>
+            <span style={{fontSize:12,color:"#334155",fontWeight:500}}>{acct.name}</span>
           </div>}
         </div>
 
         {/* KPIs */}
-        <div style={{padding:"14px 18px",borderBottom:"1px solid #F7F4EF"}}>
+        <div style={{padding:"14px 18px",borderBottom:"1px solid #f1f5f9"}}>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
             {[["Contract Value",ct.value?("$"+Number(ct.value).toLocaleString()):"—"],["Type",ct.type],["Start Date",ct.startDate?fmt(ct.startDate):"—"],["End Date",ct.endDate?fmt(ct.endDate):"—"],["Days Remaining",daysLeft!=null&&daysLeft>=0?daysLeft+"d":daysLeft!=null?"Expired":"—"],["Total Days",ct.startDate&&ct.endDate?Math.round((new Date(ct.endDate)-new Date(ct.startDate))/86400000)+"d":"—"]].map(([l,v])=>
-              <div key={l} style={{background:"#F5F1EB",borderRadius:8,padding:"9px 11px"}}>
-                <div style={{fontSize:8,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
-                <div style={{fontSize:13,fontWeight:700,color:l==="Contract Value"?"#10b981":"#3D3428"}}>{v}</div>
+              <div key={l} style={{background:"#f8fafc",borderRadius:8,padding:"9px 11px"}}>
+                <div style={{fontSize:8,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".07em",marginBottom:2}}>{l}</div>
+                <div style={{fontSize:13,fontWeight:700,color:l==="Contract Value"?"#10b981":"#334155"}}>{v}</div>
               </div>
             )}
           </div>
           {pct!==null&&<div style={{marginTop:10}}>
             <div style={{display:"flex",justifyContent:"space-between",marginBottom:4}}>
-              <span style={{fontSize:10,fontWeight:600,color:"#7A6E60"}}>Contract Progress</span>
-              <span style={{fontSize:10,fontWeight:700,color:"#C8943A"}}>{pct}%</span>
+              <span style={{fontSize:10,fontWeight:600,color:"#64748b"}}>Contract Progress</span>
+              <span style={{fontSize:10,fontWeight:700,color:"#6366f1"}}>{pct}%</span>
             </div>
-            <div style={{height:6,background:"#E4E0D8",borderRadius:3,overflow:"hidden"}}>
-              <div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#C8943A,#B8832C)",borderRadius:3,transition:"width .4s"}}/>
+            <div style={{height:6,background:"#e2e8f0",borderRadius:3,overflow:"hidden"}}>
+              <div style={{height:"100%",width:pct+"%",background:"linear-gradient(90deg,#6366f1,#8b5cf6)",borderRadius:3,transition:"width .4s"}}/>
             </div>
           </div>}
         </div>
 
         {/* Notes */}
-        {ct.notes&&<div style={{padding:"12px 18px",borderBottom:"1px solid #F7F4EF"}}>
-          <div style={{fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em",marginBottom:6}}>Notes</div>
-          <div style={{fontSize:12,color:"#7A6E60",lineHeight:1.6}}>{ct.notes}</div>
+        {ct.notes&&<div style={{padding:"12px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",marginBottom:6}}>Notes</div>
+          <div style={{fontSize:12,color:"#64748b",lineHeight:1.6}}>{ct.notes}</div>
         </div>}
 
         {/* File */}
-        <div style={{padding:"12px 18px",borderBottom:"1px solid #F7F4EF"}}>
-          <div style={{fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em",marginBottom:8}}>Attached File</div>
+        <div style={{padding:"12px 18px",borderBottom:"1px solid #f1f5f9"}}>
+          <div style={{fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",marginBottom:8}}>Attached File</div>
           {ct.fileName
-            ?<div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"#F5F1EB",borderRadius:9,border:"1px solid #E4E0D8"}}>
+            ?<div style={{display:"flex",alignItems:"center",gap:8,padding:"9px 12px",background:"#f8fafc",borderRadius:9,border:"1px solid #e2e8f0"}}>
               <span style={{fontSize:20}}>{ct.fileName.toLowerCase().endsWith(".pdf")?"📄":"📝"}</span>
               <div style={{flex:1,minWidth:0}}>
-                <div style={{fontSize:12,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
-                <div style={{fontSize:10,color:"#9C9486"}}>{fmtBytes(ct.fileSize)}</div>
+                <div style={{fontSize:12,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{ct.fileName}</div>
+                <div style={{fontSize:10,color:"#94a3b8"}}>{fmtBytes(ct.fileSize)}</div>
               </div>
               {ct.fileData&&<div style={{display:"flex",gap:5,flexShrink:0}}>
                 <button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
-                  style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📂 Open</button>
+                  style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,cursor:"pointer"}}>📂 Open</button>
                 <a href={ct.fileData} download={ct.fileName}
                   style={{background:"#ecfdf5",color:"#10b981",borderRadius:6,padding:"4px 10px",fontSize:11,fontWeight:700,textDecoration:"none",display:"flex",alignItems:"center"}}>↓ Save</a>
               </div>}
             </div>
-            :<div style={{padding:"12px",border:"1.5px dashed #E4E0D8",borderRadius:9,textAlign:"center"}}>
+            :<div style={{padding:"12px",border:"1.5px dashed #e2e8f0",borderRadius:9,textAlign:"center"}}>
               <div style={{fontSize:20,marginBottom:6}}>📎</div>
-              <div style={{fontSize:12,color:"#9C9486",marginBottom:8}}>No file attached</div>
-              <label style={{background:"#F5EDD8",color:"#C8943A",borderRadius:7,padding:"5px 14px",fontSize:11,fontWeight:700,cursor:"pointer"}}>
+              <div style={{fontSize:12,color:"#94a3b8",marginBottom:8}}>No file attached</div>
+              <label style={{background:"#eef2ff",color:"#6366f1",borderRadius:7,padding:"5px 14px",fontSize:11,fontWeight:700,cursor:"pointer"}}>
                 + Attach File<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
               </label>
             </div>}
@@ -2782,8 +2794,8 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
       {/* Page header */}
       <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:20,flexWrap:"wrap",gap:12}}>
         <div>
-          <h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:3}}>Contracts & Proposals</h1>
-          <p style={{fontSize:13,color:"#7A6E60"}}>{contracts.length} total · {filtered.length} shown</p>
+          <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:3}}>Contracts & Proposals</h1>
+          <p style={{fontSize:13,color:"#64748b"}}>{contracts.length} total · {filtered.length} shown</p>
         </div>
         <Btn onClick={()=>{setEditCT(null);setShowForm(true);}}>+ New Contract</Btn>
       </div>
@@ -2791,16 +2803,16 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
       {/* Stats strip */}
       <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(130px,1fr))",gap:10,marginBottom:18}}>
         {[
-          {label:"Total Contracts",val:contracts.length,       color:"#C8943A",icon:"📋"},
+          {label:"Total Contracts",val:contracts.length,       color:"#6366f1",icon:"📋"},
           {label:"Active",          val:byStatus("Active"),     color:"#10b981",icon:"✅"},
           {label:"Pending",         val:byStatus("Pending"),    color:"#f59e0b",icon:"⏳"},
           {label:"Expiring Soon",   val:expiringSoon,           color:"#f97316",icon:"⚠️"},
           {label:"Total Value",     val:"$"+totalValue.toLocaleString(),color:"#10b981",icon:"💰",wide:true},
         ].map(s=>
-          <div key={s.label} style={{background:"#fff",borderRadius:12,border:"1px solid #E4E0D8",padding:"14px 16px",display:"flex",alignItems:"center",gap:10}}>
+          <div key={s.label} style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"14px 16px",display:"flex",alignItems:"center",gap:10}}>
             <div style={{width:36,height:36,borderRadius:9,background:s.color+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,flexShrink:0}}>{s.icon}</div>
             <div>
-              <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em",marginBottom:2}}>{s.label}</div>
+              <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:".06em",marginBottom:2}}>{s.label}</div>
               <div style={{fontSize:s.wide?16:22,fontWeight:700,color:s.color,lineHeight:1}}>{s.val}</div>
             </div>
           </div>
@@ -2814,9 +2826,9 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
           const active=fType===t;
           const cnt=t==="All"?contracts.length:contracts.filter(c=>c.type===t).length;
           return<button key={t} onClick={()=>setFType(t)}
-            style={{display:"flex",alignItems:"center",gap:5,padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?(m?.c||"#C8943A"):"#E4E0D8"),background:active?(m?.bg||"#F5EDD8"):"#fff",color:active?(m?.c||"#C8943A"):"#7A6E60",fontSize:12,fontWeight:active?700:400,cursor:"pointer",transition:"all .12s"}}>
+            style={{display:"flex",alignItems:"center",gap:5,padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?(m?.c||"#6366f1"):"#e2e8f0"),background:active?(m?.bg||"#eef2ff"):"#fff",color:active?(m?.c||"#6366f1"):"#64748b",fontSize:12,fontWeight:active?700:400,cursor:"pointer",transition:"all .12s"}}>
             {m&&<span style={{fontSize:13}}>{m.icon}</span>}{t}
-            <span style={{fontSize:10,fontWeight:700,background:active?"rgba(0,0,0,0.08)":"#F7F4EF",borderRadius:10,padding:"1px 5px",marginLeft:2}}>{cnt}</span>
+            <span style={{fontSize:10,fontWeight:700,background:active?"rgba(0,0,0,0.08)":"#f1f5f9",borderRadius:10,padding:"1px 5px",marginLeft:2}}>{cnt}</span>
           </button>;
         })}
       </div>
@@ -2824,33 +2836,33 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
       {/* Filter bar */}
       <div style={{display:"flex",gap:10,marginBottom:16,flexWrap:"wrap",alignItems:"center"}}>
         <div style={{position:"relative",flex:"1 1 220px"}}>
-          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#9C9486",fontSize:13,pointerEvents:"none"}}>🔍</span>
+          <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#94a3b8",fontSize:13,pointerEvents:"none"}}>🔍</span>
           <input value={search} onChange={e=>setSearch(e.target.value)} placeholder="Search contracts…"
-            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#fff"}}/>
+            style={{width:"100%",padding:"8px 12px 8px 30px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#fff"}}/>
         </div>
-        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+        <select value={fStatus} onChange={e=>setFStatus(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
           <option value="All">All Statuses</option>{["Active","Expired","Pending","Terminated"].map(s=><option key={s}>{s}</option>)}
         </select>
-        <select value={fAccount} onChange={e=>setFAccount(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,background:"#fff",cursor:"pointer"}}>
+        <select value={fAccount} onChange={e=>setFAccount(e.target.value)} style={{padding:"8px 12px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,background:"#fff",cursor:"pointer"}}>
           <option value="All">All Accounts</option>{accounts.map(a=><option key={a.id} value={a.id}>{a.name}</option>)}
         </select>
         {/* View toggle */}
-        <div style={{display:"flex",background:"#F7F4EF",padding:3,borderRadius:8,gap:2,marginLeft:"auto"}}>
+        <div style={{display:"flex",background:"#f1f5f9",padding:3,borderRadius:8,gap:2,marginLeft:"auto"}}>
           {[["cards","⊞ Cards"],["table","☰ Table"]].map(([v,lbl])=>
             <button key={v} onClick={()=>setView(v)}
-              style={{padding:"5px 13px",borderRadius:6,border:"none",background:view===v?"#fff":"transparent",color:view===v?"#C8943A":"#7A6E60",fontSize:11,fontWeight:view===v?700:400,cursor:"pointer",whiteSpace:"nowrap",boxShadow:view===v?"0 1px 3px rgba(0,0,0,.08)":"none"}}>
+              style={{padding:"5px 13px",borderRadius:6,border:"none",background:view===v?"#fff":"transparent",color:view===v?"#6366f1":"#64748b",fontSize:11,fontWeight:view===v?700:400,cursor:"pointer",whiteSpace:"nowrap",boxShadow:view===v?"0 1px 3px rgba(0,0,0,.08)":"none"}}>
               {lbl}
             </button>
           )}
         </div>
         {(search||fType!=="All"||fStatus!=="All"||fAccount!=="All")&&
           <button onClick={()=>{setSearch("");setFType("All");setFStatus("All");setFAccount("All");}}
-            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#FFF0F0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
+            style={{padding:"8px 12px",borderRadius:8,border:"1px solid #fecdd3",background:"#fff0f0",color:"#ef4444",fontSize:12,fontWeight:600,cursor:"pointer"}}>✕ Clear</button>}
       </div>
 
-      {filtered.length===0&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"60px 0",textAlign:"center",color:"#9C9486",fontSize:14}}>
+      {filtered.length===0&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"60px 0",textAlign:"center",color:"#94a3b8",fontSize:14}}>
         No contracts match your filters.<br/>
-        <button onClick={()=>{setEditCT(null);setShowForm(true);}} style={{marginTop:12,padding:"8px 18px",borderRadius:8,border:"none",background:"#F5EDD8",color:"#C8943A",fontSize:13,fontWeight:600,cursor:"pointer"}}>+ New Contract</button>
+        <button onClick={()=>{setEditCT(null);setShowForm(true);}} style={{marginTop:12,padding:"8px 18px",borderRadius:8,border:"none",background:"#eef2ff",color:"#6366f1",fontSize:13,fontWeight:600,cursor:"pointer"}}>+ New Contract</button>
       </div>}
 
       {/* Layout: grid/detail or table */}
@@ -2862,47 +2874,47 @@ function ContractsScreen({contracts,accounts,onSave,onDelete,notify}){
           </div>}
 
           {/* ── TABLE VIEW ── */}
-          {view==="table"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
+          {view==="table"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
             <div style={{overflowX:"auto"}}>
               <table style={{width:"100%",fontSize:13,borderCollapse:"collapse",minWidth:800}}>
                 <thead>
-                  <tr style={{background:"#F5F1EB",borderBottom:"1px solid #E4E0D8"}}>
+                  <tr style={{background:"#f8fafc",borderBottom:"1px solid #e2e8f0"}}>
                     {["Contract","Account","Type","Status","Value","Start","End","File",""].map(h=>
-                      <th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
+                      <th key={h} style={{padding:"10px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em",whiteSpace:"nowrap"}}>{h}</th>)}
                   </tr>
                 </thead>
                 <tbody>
                   {filtered.map(ct=>{
                     const cm=CT_META[ct.type]||CT_META.Other;
                     const acct=accounts.find(a=>a.id===ct.accountId);
-                    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#7A6E60":ct.status==="Pending"?"#f59e0b":"#ef4444";
-                    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#F7F4EF":ct.status==="Pending"?"#fef3c7":"#fef2f2";
+                    const statColor=ct.status==="Active"?"#10b981":ct.status==="Expired"?"#64748b":ct.status==="Pending"?"#f59e0b":"#ef4444";
+                    const statBg=ct.status==="Active"?"#ecfdf5":ct.status==="Expired"?"#f1f5f9":ct.status==="Pending"?"#fef3c7":"#fef2f2";
                     const isSel=selCT?.id===ct.id;
                     return(
-                      <tr key={ct.id} style={{borderTop:"1px solid #F7F4EF",background:isSel?"#F5EDD8":""}}
-                        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background="#F5F1EB";}}
+                      <tr key={ct.id} style={{borderTop:"1px solid #f1f5f9",background:isSel?"#f5f3ff":""}}
+                        onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background="#f8fafc";}}
                         onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background="";}}>
                         <td style={{padding:"11px 14px",cursor:"pointer"}} onClick={()=>setSelCT(isSel?null:ct)}>
                           <div style={{display:"flex",alignItems:"center",gap:8}}>
                             <span style={{fontSize:17}}>{cm.icon}</span>
-                            <span style={{fontWeight:600,color:"#1A1612"}}>{ct.name}</span>
+                            <span style={{fontWeight:600,color:"#0f172a"}}>{ct.name}</span>
                           </div>
                         </td>
-                        <td style={{padding:"11px 14px",color:"#7A6E60"}}>{acct?.name||"—"}</td>
+                        <td style={{padding:"11px 14px",color:"#64748b"}}>{acct?.name||"—"}</td>
                         <td style={{padding:"11px 14px"}}><span style={{background:cm.bg,color:cm.c,borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 9px"}}>{ct.type}</span></td>
                         <td style={{padding:"11px 14px"}}><span style={{background:statBg,color:statColor,borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 9px"}}>{ct.status}</span></td>
                         <td style={{padding:"11px 14px",fontWeight:700,color:"#10b981"}}>{ct.value?("$"+Number(ct.value).toLocaleString()):"—"}</td>
-                        <td style={{padding:"11px 14px",color:"#7A6E60",fontSize:12}}>{ct.startDate?fmt(ct.startDate):"—"}</td>
-                        <td style={{padding:"11px 14px",color:"#7A6E60",fontSize:12}}>{ct.endDate?fmt(ct.endDate):"—"}</td>
+                        <td style={{padding:"11px 14px",color:"#64748b",fontSize:12}}>{ct.startDate?fmt(ct.startDate):"—"}</td>
+                        <td style={{padding:"11px 14px",color:"#64748b",fontSize:12}}>{ct.endDate?fmt(ct.endDate):"—"}</td>
                         <td style={{padding:"11px 14px"}}>
                           {ct.fileName
                             ?<div style={{display:"flex",gap:4}}>
                               {ct.fileData&&<button onClick={()=>{const w=window.open();w.document.write(`<html><body style="margin:0;background:#1e1e2e"><iframe src="${ct.fileData}" style="width:100%;height:100vh;border:none"/></body></html>`);}}
-                                style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:700,cursor:"pointer"}}>Open</button>}
+                                style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:700,cursor:"pointer"}}>Open</button>}
                               {ct.fileData&&<a href={ct.fileData} download={ct.fileName}
                                 style={{background:"#ecfdf5",color:"#10b981",borderRadius:5,padding:"2px 7px",fontSize:10,fontWeight:700,textDecoration:"none",display:"inline-flex",alignItems:"center"}}>↓</a>}
                             </div>
-                            :<label style={{background:"#F5F1EB",color:"#9C9486",borderRadius:5,padding:"2px 8px",fontSize:10,fontWeight:600,cursor:"pointer",border:"1px dashed #E4E0D8"}}>
+                            :<label style={{background:"#f8fafc",color:"#94a3b8",borderRadius:5,padding:"2px 8px",fontSize:10,fontWeight:600,cursor:"pointer",border:"1px dashed #e2e8f0"}}>
                               📎<input type="file" accept=".pdf,.doc,.docx,.txt" onChange={e=>handleQuickFile(ct,e)} style={{display:"none"}}/>
                             </label>}
                         </td>
@@ -2958,7 +2970,7 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
     accounts:{
       label:"Accounts",
       icon:"🏢",
-      color:"#C8943A",
+      color:"#6366f1",
       required:["name"],
       fields:["name","type","industry","status","website","phone","address","city","state","zip","country","annualRevenue","employees","notes"],
       sample:[
@@ -3002,7 +3014,7 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
     contracts:{
       label:"Contracts",
       icon:"📄",
-      color:"#B8832C",
+      color:"#8b5cf6",
       required:["name"],
       fields:["name","type","accountName","status","value","startDate","endDate","notes"],
       sample:[
@@ -3162,15 +3174,15 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
     <div style={{padding:"24px",maxWidth:1100,margin:"0 auto"}}>
       {/* Header */}
       <div style={{marginBottom:22}}>
-        <h1 style={{fontSize:20,fontWeight:700,color:"#1A1612",marginBottom:3}}>Import &amp; Export</h1>
-        <p style={{fontSize:13,color:"#7A6E60"}}>Bring data in from CSV, download exports, or create a full JSON backup</p>
+        <h1 style={{fontSize:20,fontWeight:700,color:"#0f172a",marginBottom:3}}>Import &amp; Export</h1>
+        <p style={{fontSize:13,color:"#64748b"}}>Bring data in from CSV, download exports, or create a full JSON backup</p>
       </div>
 
       {/* Tab toggle */}
-      <div style={{display:"flex",gap:2,background:"#F7F4EF",padding:4,borderRadius:11,width:"fit-content",marginBottom:24}}>
+      <div style={{display:"flex",gap:2,background:"#f1f5f9",padding:4,borderRadius:11,width:"fit-content",marginBottom:24}}>
         {[["import","⬆️  Import Data"],["export","⬇️  Export Data"],["backup","🗄️  Backup / Restore"]].map(([k,lbl])=>
           <button key={k} onClick={()=>{setTab(k);reset();}}
-            style={{padding:"7px 22px",borderRadius:8,border:"none",background:tab===k?"#fff":"transparent",color:tab===k?"#C8943A":"#7A6E60",fontSize:12,fontWeight:tab===k?700:500,cursor:"pointer",boxShadow:tab===k?"0 1px 4px rgba(0,0,0,.10)":"none",transition:"all .15s",whiteSpace:"nowrap"}}>
+            style={{padding:"7px 22px",borderRadius:8,border:"none",background:tab===k?"#fff":"transparent",color:tab===k?"#6366f1":"#64748b",fontSize:12,fontWeight:tab===k?700:500,cursor:"pointer",boxShadow:tab===k?"0 1px 4px rgba(0,0,0,.10)":"none",transition:"all .15s",whiteSpace:"nowrap"}}>
             {lbl}
           </button>
         )}
@@ -3180,18 +3192,18 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
       {tab==="import"&&<div style={{display:"grid",gridTemplateColumns:"220px 1fr",gap:16,alignItems:"start"}}>
 
         {/* Module selector */}
-        <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-          <div style={{padding:"12px 16px",borderBottom:"1px solid #F7F4EF",fontSize:11,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em"}}>Select Module</div>
+        <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+          <div style={{padding:"12px 16px",borderBottom:"1px solid #f1f5f9",fontSize:11,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em"}}>Select Module</div>
           {MODULES.map(([k,s])=>{
             const active=module===k;
             const cnt={accounts:accounts.length,contacts:contacts.length,leads:leads.length,opportunities:opps.length,contracts:contracts.length}[k]||0;
             return(
               <button key={k} onClick={()=>{setModule(k);reset();}}
-                style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"12px 16px",border:"none",borderBottom:"1px solid #F7F4EF",background:active?"#F5EDD8":"#fff",cursor:"pointer",textAlign:"left",transition:"background .12s"}}>
-                <div style={{width:34,height:34,borderRadius:9,background:active?s.color+"20":"#F5F1EB",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{s.icon}</div>
+                style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:"12px 16px",border:"none",borderBottom:"1px solid #f1f5f9",background:active?"#eef2ff":"#fff",cursor:"pointer",textAlign:"left",transition:"background .12s"}}>
+                <div style={{width:34,height:34,borderRadius:9,background:active?s.color+"20":"#f8fafc",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>{s.icon}</div>
                 <div style={{flex:1,minWidth:0}}>
-                  <div style={{fontSize:13,fontWeight:active?700:500,color:active?s.color:"#3D3428"}}>{s.label}</div>
-                  <div style={{fontSize:10,color:"#9C9486"}}>{cnt} existing</div>
+                  <div style={{fontSize:13,fontWeight:active?700:500,color:active?s.color:"#334155"}}>{s.label}</div>
+                  <div style={{fontSize:10,color:"#94a3b8"}}>{cnt} existing</div>
                 </div>
                 {active&&<span style={{color:s.color,fontSize:16}}>›</span>}
               </button>
@@ -3206,16 +3218,16 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
             {[["upload","1","Upload CSV"],["preview","2","Preview & Map"],["done","3","Done"]].map(([s,n,lbl],i,arr)=>{
               const done=step==="preview"&&s==="upload"||step==="done"&&s!=="done";
               const active=step===s;
-              const c=active?schema.color:done?"#10b981":"#9C9486";
+              const c=active?schema.color:done?"#10b981":"#94a3b8";
               return(
                 <React.Fragment key={s}>
                   <div style={{display:"flex",flexDirection:"column",alignItems:"center",gap:4}}>
-                    <div style={{width:28,height:28,borderRadius:"50%",background:done?"#10b981":active?schema.color:"#E4E0D8",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:done||active?"#fff":"#9C9486",transition:"all .2s"}}>
+                    <div style={{width:28,height:28,borderRadius:"50%",background:done?"#10b981":active?schema.color:"#e2e8f0",display:"flex",alignItems:"center",justifyContent:"center",fontSize:12,fontWeight:700,color:done||active?"#fff":"#94a3b8",transition:"all .2s"}}>
                       {done?"✓":n}
                     </div>
                     <span style={{fontSize:10,fontWeight:active?700:400,color:c,whiteSpace:"nowrap"}}>{lbl}</span>
                   </div>
-                  {i<arr.length-1&&<div style={{flex:1,height:2,background:done?"#10b981":"#E4E0D8",margin:"0 8px",marginBottom:14,transition:"background .2s"}}/>}
+                  {i<arr.length-1&&<div style={{flex:1,height:2,background:done?"#10b981":"#e2e8f0",margin:"0 8px",marginBottom:14,transition:"background .2s"}}/>}
                 </React.Fragment>
               );
             })}
@@ -3225,14 +3237,14 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
           {step==="upload"&&<>
             {/* Drop zone */}
             <label style={{display:"block",cursor:"pointer"}}>
-              <div style={{border:"2px dashed #E8D5A8",borderRadius:14,padding:"40px 24px",textAlign:"center",background:"#F9F6F1",transition:"all .15s"}}
-                onMouseEnter={e=>{e.currentTarget.style.borderColor=schema.color;e.currentTarget.style.background="#F5EDD8";}}
-                onMouseLeave={e=>{e.currentTarget.style.borderColor="#E8D5A8";e.currentTarget.style.background="#F9F6F1";}}>
+              <div style={{border:"2px dashed #c7d2fe",borderRadius:14,padding:"40px 24px",textAlign:"center",background:"#fafbff",transition:"all .15s"}}
+                onMouseEnter={e=>{e.currentTarget.style.borderColor=schema.color;e.currentTarget.style.background="#eef2ff";}}
+                onMouseLeave={e=>{e.currentTarget.style.borderColor="#c7d2fe";e.currentTarget.style.background="#fafbff";}}>
                 <div style={{fontSize:44,marginBottom:12}}>📂</div>
-                <div style={{fontSize:15,fontWeight:700,color:"#3D3428",marginBottom:6}}>Drop your CSV file here</div>
-                <div style={{fontSize:13,color:"#7A6E60",marginBottom:16}}>or click to browse</div>
+                <div style={{fontSize:15,fontWeight:700,color:"#334155",marginBottom:6}}>Drop your CSV file here</div>
+                <div style={{fontSize:13,color:"#64748b",marginBottom:16}}>or click to browse</div>
                 <span style={{background:schema.color,color:"#fff",padding:"8px 22px",borderRadius:9,fontSize:13,fontWeight:600,display:"inline-block"}}>Choose CSV File</span>
-                <div style={{marginTop:12,fontSize:11,color:"#9C9486"}}>Only .csv files · UTF-8 encoding recommended</div>
+                <div style={{marginTop:12,fontSize:11,color:"#94a3b8"}}>Only .csv files · UTF-8 encoding recommended</div>
               </div>
               <input ref={fileRef} type="file" accept=".csv" onChange={handleFile} style={{display:"none"}}/>
             </label>
@@ -3242,41 +3254,41 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
             </div>}
 
             {/* Field reference + template download */}
-            <div style={{marginTop:16,background:"#fff",borderRadius:12,border:"1px solid #E4E0D8",overflow:"hidden"}}>
-              <div style={{padding:"12px 16px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <div style={{marginTop:16,background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",overflow:"hidden"}}>
+              <div style={{padding:"12px 16px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
                 <div>
-                  <span style={{fontSize:13,fontWeight:700,color:"#1A1612"}}>CSV Column Reference — {schema.label}</span>
+                  <span style={{fontSize:13,fontWeight:700,color:"#0f172a"}}>CSV Column Reference — {schema.label}</span>
                   <span style={{marginLeft:8,fontSize:11,color:"#ef4444",fontWeight:600}}>Required: {schema.required.join(", ")}</span>
                 </div>
                 <button onClick={()=>downloadTemplate(module)}
-                  style={{background:"#F5EDD8",color:"#C8943A",border:"none",borderRadius:7,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
+                  style={{background:"#eef2ff",color:"#6366f1",border:"none",borderRadius:7,padding:"6px 14px",fontSize:12,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",gap:5}}>
                   ⬇️ Download Template
                 </button>
               </div>
               <div style={{padding:"12px 16px",display:"flex",flexWrap:"wrap",gap:6}}>
                 {schema.fields.map(f=>{
                   const req=schema.required.includes(f);
-                  return<span key={f} style={{background:req?"#fef3c7":"#F5F1EB",color:req?"#92400e":"#5A5245",border:"1px solid "+(req?"#fde68a":"#E4E0D8"),borderRadius:20,fontSize:11,fontWeight:req?700:400,padding:"3px 10px"}}>{f}{req?" *":""}</span>;
+                  return<span key={f} style={{background:req?"#fef3c7":"#f8fafc",color:req?"#92400e":"#475569",border:"1px solid "+(req?"#fde68a":"#e2e8f0"),borderRadius:20,fontSize:11,fontWeight:req?700:400,padding:"3px 10px"}}>{f}{req?" *":""}</span>;
                 })}
               </div>
-              <div style={{padding:"0 16px 12px",fontSize:11,color:"#9C9486"}}>
-                💡 Use the template to see example data. The <code style={{background:"#F7F4EF",padding:"0 4px",borderRadius:3}}>accountName</code> column is matched to existing accounts by name.
+              <div style={{padding:"0 16px 12px",fontSize:11,color:"#94a3b8"}}>
+                💡 Use the template to see example data. The <code style={{background:"#f1f5f9",padding:"0 4px",borderRadius:3}}>accountName</code> column is matched to existing accounts by name.
               </div>
             </div>
           </>}
 
           {/* STEP 2 — PREVIEW */}
           {step==="preview"&&<div>
-            <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",overflow:"hidden",marginBottom:14}}>
-              <div style={{padding:"14px 18px",borderBottom:"1px solid #F7F4EF",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
+            <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",overflow:"hidden",marginBottom:14}}>
+              <div style={{padding:"14px 18px",borderBottom:"1px solid #f1f5f9",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:10}}>
                 <div>
-                  <span style={{fontSize:14,fontWeight:700,color:"#1A1612"}}>{schema.icon} Preview: {fileName}</span>
-                  <span style={{marginLeft:10,fontSize:12,color:"#7A6E60"}}>{rows.length} row{rows.length!==1?"s":""} found</span>
+                  <span style={{fontSize:14,fontWeight:700,color:"#0f172a"}}>{schema.icon} Preview: {fileName}</span>
+                  <span style={{marginLeft:10,fontSize:12,color:"#64748b"}}>{rows.length} row{rows.length!==1?"s":""} found</span>
                 </div>
                 <div style={{display:"flex",gap:8}}>
                   <Btn v="ghost" sz="sm" onClick={reset}>← Re-upload</Btn>
                   <button onClick={doImport} disabled={importing}
-                    style={{padding:"7px 18px",borderRadius:9,border:"none",background:importing?"#E0C070":schema.color,color:"#fff",fontSize:13,fontWeight:700,cursor:importing?"default":"pointer",display:"flex",alignItems:"center",gap:7}}>
+                    style={{padding:"7px 18px",borderRadius:9,border:"none",background:importing?"#a5b4fc":schema.color,color:"#fff",fontSize:13,fontWeight:700,cursor:importing?"default":"pointer",display:"flex",alignItems:"center",gap:7}}>
                     {importing?<><div className="auth-spin"/>Importing…</>:<>✓ Import {rows.length} {schema.label}</>}
                   </button>
                 </div>
@@ -3285,21 +3297,21 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
               <div style={{overflowX:"auto"}}>
                 <table style={{width:"100%",fontSize:12,borderCollapse:"collapse",minWidth:500}}>
                   <thead>
-                    <tr style={{background:"#F5F1EB"}}>
-                      <th style={{padding:"8px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase"}}>#</th>
-                      {Object.keys(rows[0]||{}).slice(0,8).map(h=><th key={h} style={{padding:"8px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#9C9486",textTransform:"uppercase",whiteSpace:"nowrap"}}>{h}</th>)}
+                    <tr style={{background:"#f8fafc"}}>
+                      <th style={{padding:"8px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase"}}>#</th>
+                      {Object.keys(rows[0]||{}).slice(0,8).map(h=><th key={h} style={{padding:"8px 14px",textAlign:"left",fontSize:10,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",whiteSpace:"nowrap"}}>{h}</th>)}
                     </tr>
                   </thead>
                   <tbody>
                     {rows.slice(0,8).map((row,i)=>(
-                      <tr key={i} style={{borderTop:"1px solid #F7F4EF"}}
-                        onMouseEnter={e=>e.currentTarget.style.background="#F5F1EB"}
+                      <tr key={i} style={{borderTop:"1px solid #f1f5f9"}}
+                        onMouseEnter={e=>e.currentTarget.style.background="#f8fafc"}
                         onMouseLeave={e=>e.currentTarget.style.background=""}>
-                        <td style={{padding:"8px 14px",color:"#9C9486",fontWeight:600}}>{i+1}</td>
-                        {Object.values(row).slice(0,8).map((v,j)=><td key={j} style={{padding:"8px 14px",color:"#3D3428",maxWidth:160,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{v||<span style={{color:"#D8D0C0"}}>—</span>}</td>)}
+                        <td style={{padding:"8px 14px",color:"#94a3b8",fontWeight:600}}>{i+1}</td>
+                        {Object.values(row).slice(0,8).map((v,j)=><td key={j} style={{padding:"8px 14px",color:"#334155",maxWidth:160,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{v||<span style={{color:"#cbd5e1"}}>—</span>}</td>)}
                       </tr>
                     ))}
-                    {rows.length>8&&<tr><td colSpan={9} style={{padding:"8px 14px",color:"#9C9486",fontStyle:"italic",fontSize:11}}>… and {rows.length-8} more row{rows.length-8!==1?"s":""}</td></tr>}
+                    {rows.length>8&&<tr><td colSpan={9} style={{padding:"8px 14px",color:"#94a3b8",fontStyle:"italic",fontSize:11}}>… and {rows.length-8} more row{rows.length-8!==1?"s":""}</td></tr>}
                   </tbody>
                 </table>
               </div>
@@ -3314,15 +3326,15 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
           </div>}
 
           {/* STEP 3 — DONE */}
-          {step==="done"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"48px 32px",textAlign:"center"}}>
+          {step==="done"&&<div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"48px 32px",textAlign:"center"}}>
             <div style={{fontSize:52,marginBottom:14}}>🎉</div>
-            <div style={{fontSize:18,fontWeight:700,color:"#1A1612",marginBottom:6}}>Import Complete!</div>
-            <p style={{fontSize:14,color:"#7A6E60",marginBottom:24}}>
+            <div style={{fontSize:18,fontWeight:700,color:"#0f172a",marginBottom:6}}>Import Complete!</div>
+            <p style={{fontSize:14,color:"#64748b",marginBottom:24}}>
               <strong style={{color:schema.color}}>{importResult?.count}</strong> {importResult?.module} were added to your CRM.
             </p>
             <div style={{display:"flex",gap:10,justifyContent:"center",flexWrap:"wrap"}}>
               <button onClick={reset}
-                style={{padding:"9px 22px",borderRadius:9,border:"none",background:"#F5EDD8",color:"#C8943A",fontSize:13,fontWeight:700,cursor:"pointer"}}>
+                style={{padding:"9px 22px",borderRadius:9,border:"none",background:"#eef2ff",color:"#6366f1",fontSize:13,fontWeight:700,cursor:"pointer"}}>
                 Import More
               </button>
               <button onClick={()=>{setTab("export");reset();}}
@@ -3340,31 +3352,31 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
           {MODULES.map(([k,s])=>{
             const cnt={accounts:accounts.length,contacts:contacts.length,leads:leads.length,opportunities:opps.length,contracts:contracts.length}[k]||0;
             return(
-              <div key={k} style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"20px 22px"}}>
+              <div key={k} style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"20px 22px"}}>
                 <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:14}}>
                   <div style={{width:44,height:44,borderRadius:11,background:s.color+"18",display:"flex",alignItems:"center",justifyContent:"center",fontSize:22,flexShrink:0}}>{s.icon}</div>
                   <div>
-                    <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:2}}>{s.label}</div>
-                    <div style={{fontSize:12,color:"#7A6E60"}}>{cnt} record{cnt!==1?"s":""}</div>
+                    <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:2}}>{s.label}</div>
+                    <div style={{fontSize:12,color:"#64748b"}}>{cnt} record{cnt!==1?"s":""}</div>
                   </div>
                 </div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
                   <button onClick={()=>exportModule(k)} disabled={cnt===0}
-                    style={{padding:"8px 0",borderRadius:8,border:"none",background:cnt>0?s.color+"18":"#F5F1EB",color:cnt>0?s.color:"#9C9486",fontSize:12,fontWeight:600,cursor:cnt>0?"pointer":"default",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+                    style={{padding:"8px 0",borderRadius:8,border:"none",background:cnt>0?s.color+"18":"#f8fafc",color:cnt>0?s.color:"#94a3b8",fontSize:12,fontWeight:600,cursor:cnt>0?"pointer":"default",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
                     ⬇️ Export CSV
                   </button>
                   <button onClick={()=>downloadTemplate(k)}
-                    style={{padding:"8px 0",borderRadius:8,border:"1px dashed #E4E0D8",background:"#fff",color:"#7A6E60",fontSize:12,fontWeight:500,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
+                    style={{padding:"8px 0",borderRadius:8,border:"1px dashed #e2e8f0",background:"#fff",color:"#64748b",fontSize:12,fontWeight:500,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:5}}>
                     📋 Template
                   </button>
                 </div>
-                {cnt===0&&<div style={{marginTop:8,fontSize:11,color:"#9C9486",textAlign:"center"}}>No data to export</div>}
+                {cnt===0&&<div style={{marginTop:8,fontSize:11,color:"#94a3b8",textAlign:"center"}}>No data to export</div>}
               </div>
             );
           })}
         </div>
-        <div style={{padding:"14px 18px",background:"#F5F1EB",borderRadius:10,border:"1px solid #E4E0D8",fontSize:12,color:"#7A6E60"}}>
-          💡 <strong style={{color:"#3D3428"}}>CSV exports</strong> include all fields and are ready to open in Excel, Google Sheets, or Numbers. Use the template files to understand the column format before importing.
+        <div style={{padding:"14px 18px",background:"#f8fafc",borderRadius:10,border:"1px solid #e2e8f0",fontSize:12,color:"#64748b"}}>
+          💡 <strong style={{color:"#334155"}}>CSV exports</strong> include all fields and are ready to open in Excel, Google Sheets, or Numbers. Use the template files to understand the column format before importing.
         </div>
       </div>}
 
@@ -3372,19 +3384,19 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
       {tab==="backup"&&<div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16,alignItems:"start"}}>
 
         {/* Export full backup */}
-        <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"24px"}}>
+        <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"24px"}}>
           <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:14}}>
             <div style={{width:46,height:46,borderRadius:12,background:"#ecfdf5",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24}}>🗄️</div>
             <div>
-              <div style={{fontSize:15,fontWeight:700,color:"#1A1612",marginBottom:2}}>Full Backup</div>
-              <div style={{fontSize:12,color:"#7A6E60"}}>Export everything as a single JSON file</div>
+              <div style={{fontSize:15,fontWeight:700,color:"#0f172a",marginBottom:2}}>Full Backup</div>
+              <div style={{fontSize:12,color:"#64748b"}}>Export everything as a single JSON file</div>
             </div>
           </div>
           <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8,marginBottom:16}}>
             {[["Accounts",accounts.length],["Contacts",contacts.length],["Leads",leads.length],["Opportunities",opps.length],["Contracts",contracts.length],["Activities",acts.length]].map(([l,n])=>
-              <div key={l} style={{background:"#F5F1EB",borderRadius:8,padding:"8px 12px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                <span style={{fontSize:12,color:"#7A6E60"}}>{l}</span>
-                <span style={{fontSize:13,fontWeight:700,color:"#3D3428"}}>{n}</span>
+              <div key={l} style={{background:"#f8fafc",borderRadius:8,padding:"8px 12px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                <span style={{fontSize:12,color:"#64748b"}}>{l}</span>
+                <span style={{fontSize:13,fontWeight:700,color:"#334155"}}>{n}</span>
               </div>
             )}
           </div>
@@ -3392,16 +3404,16 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
             style={{width:"100%",padding:"10px",borderRadius:10,border:"none",background:"linear-gradient(135deg,#10b981,#059669)",color:"#fff",fontSize:13,fontWeight:700,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center",gap:7,boxShadow:"0 4px 12px rgba(16,185,129,.25)"}}>
             ⬇️ Download JSON Backup
           </button>
-          <div style={{marginTop:10,fontSize:11,color:"#9C9486",textAlign:"center"}}>Includes all records, IDs, and relationships</div>
+          <div style={{marginTop:10,fontSize:11,color:"#94a3b8",textAlign:"center"}}>Includes all records, IDs, and relationships</div>
         </div>
 
         {/* Restore from JSON */}
-        <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"24px"}}>
+        <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"24px"}}>
           <div style={{display:"flex",gap:12,alignItems:"center",marginBottom:14}}>
             <div style={{width:46,height:46,borderRadius:12,background:"#fef3c7",display:"flex",alignItems:"center",justifyContent:"center",fontSize:24}}>♻️</div>
             <div>
-              <div style={{fontSize:15,fontWeight:700,color:"#1A1612",marginBottom:2}}>Restore from Backup</div>
-              <div style={{fontSize:12,color:"#7A6E60"}}>Upload a previously exported JSON file</div>
+              <div style={{fontSize:15,fontWeight:700,color:"#0f172a",marginBottom:2}}>Restore from Backup</div>
+              <div style={{fontSize:12,color:"#64748b"}}>Upload a previously exported JSON file</div>
             </div>
           </div>
           <RestorePanel accounts={accounts} onImportAccounts={onImportAccounts} onImportContacts={onImportContacts}
@@ -3409,25 +3421,25 @@ function ImportExport({accounts,contacts,opps,leads,contracts,acts,
         </div>
 
         {/* localStorage direct */}
-        <div style={{background:"#fff",borderRadius:14,border:"1px solid #E4E0D8",padding:"24px",gridColumn:"span 2"}}>
-          <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:4}}>💻 Direct Browser Console Import</div>
-          <p style={{fontSize:12,color:"#7A6E60",marginBottom:14,lineHeight:1.6}}>
-            Advanced users can paste data directly into the browser DevTools console. Press <kbd style={{background:"#F7F4EF",border:"1px solid #E4E0D8",borderRadius:4,padding:"1px 6px",fontSize:11,fontFamily:"monospace"}}>F12</kbd> → Console tab and run:
+        <div style={{background:"#fff",borderRadius:14,border:"1px solid #e2e8f0",padding:"24px",gridColumn:"span 2"}}>
+          <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:4}}>💻 Direct Browser Console Import</div>
+          <p style={{fontSize:12,color:"#64748b",marginBottom:14,lineHeight:1.6}}>
+            Advanced users can paste data directly into the browser DevTools console. Press <kbd style={{background:"#f1f5f9",border:"1px solid #e2e8f0",borderRadius:4,padding:"1px 6px",fontSize:11,fontFamily:"monospace"}}>F12</kbd> → Console tab and run:
           </p>
-          <div style={{background:"#1A1612",borderRadius:10,padding:"16px 18px",fontFamily:"monospace",fontSize:12,color:"#a5f3fc",lineHeight:1.8,overflowX:"auto"}}>
-            <div style={{color:"#9C9486"}}>// Replace [...] with your JSON array of records</div>
+          <div style={{background:"#0f172a",borderRadius:10,padding:"16px 18px",fontFamily:"monospace",fontSize:12,color:"#a5f3fc",lineHeight:1.8,overflowX:"auto"}}>
+            <div style={{color:"#94a3b8"}}>// Replace [...] with your JSON array of records</div>
             <div><span style={{color:"#f9a8d4"}}>localStorage</span><span style={{color:"#fff"}}>.setItem(</span><span style={{color:"#86efac"}}>"ecrm_accts"</span><span style={{color:"#fff"}}>, </span><span style={{color:"#f9a8d4"}}>JSON</span><span style={{color:"#fff"}}>.stringify([...]));</span></div>
             <div><span style={{color:"#f9a8d4"}}>localStorage</span><span style={{color:"#fff"}}>.setItem(</span><span style={{color:"#86efac"}}>"ecrm_contacts"</span><span style={{color:"#fff"}}>, </span><span style={{color:"#f9a8d4"}}>JSON</span><span style={{color:"#fff"}}>.stringify([...]));</span></div>
             <div><span style={{color:"#f9a8d4"}}>localStorage</span><span style={{color:"#fff"}}>.setItem(</span><span style={{color:"#86efac"}}>"ecrm_leads"</span><span style={{color:"#fff"}}>, </span><span style={{color:"#f9a8d4"}}>JSON</span><span style={{color:"#fff"}}>.stringify([...]));</span></div>
             <div><span style={{color:"#f9a8d4"}}>localStorage</span><span style={{color:"#fff"}}>.setItem(</span><span style={{color:"#86efac"}}>"ecrm_opps"</span><span style={{color:"#fff"}}>, </span><span style={{color:"#f9a8d4"}}>JSON</span><span style={{color:"#fff"}}>.stringify([...]));</span></div>
-            <div style={{color:"#9C9486",marginTop:4}}>// Then reload the page</div>
+            <div style={{color:"#94a3b8",marginTop:4}}>// Then reload the page</div>
             <div><span style={{color:"#f9a8d4"}}>location</span><span style={{color:"#fff"}}>.reload();</span></div>
           </div>
           <div style={{marginTop:12,display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(160px,1fr))",gap:8}}>
             {[["ecrm_accts","Accounts"],["ecrm_contacts","Contacts"],["ecrm_leads","Leads"],["ecrm_opps","Opportunities"],["ecrm_contracts","Contracts"],["ecrm_acts","Activities"]].map(([key,label])=>
-              <div key={key} style={{background:"#F5F1EB",borderRadius:8,padding:"8px 12px",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
-                <code style={{fontSize:11,color:"#C8943A",fontFamily:"monospace"}}>{key}</code>
-                <span style={{fontSize:11,color:"#7A6E60"}}>{label}</span>
+              <div key={key} style={{background:"#f8fafc",borderRadius:8,padding:"8px 12px",display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
+                <code style={{fontSize:11,color:"#6366f1",fontFamily:"monospace"}}>{key}</code>
+                <span style={{fontSize:11,color:"#64748b"}}>{label}</span>
               </div>
             )}
           </div>
@@ -3466,7 +3478,7 @@ function RestorePanel({onImportAccounts,onImportContacts,onImportOpps,onImportLe
   return(
     <div>
       {!status&&<>
-        <div style={{padding:"20px",border:"2px dashed #fde68a",borderRadius:10,textAlign:"center",background:"#FFFBEB",marginBottom:12,cursor:"pointer"}}
+        <div style={{padding:"20px",border:"2px dashed #fde68a",borderRadius:10,textAlign:"center",background:"#fffbeb",marginBottom:12,cursor:"pointer"}}
           onClick={()=>ref.current?.click()}>
           <div style={{fontSize:28,marginBottom:8}}>📤</div>
           <div style={{fontSize:13,fontWeight:600,color:"#92400e",marginBottom:4}}>Click to choose JSON backup file</div>
@@ -3480,16 +3492,16 @@ function RestorePanel({onImportAccounts,onImportContacts,onImportOpps,onImportLe
       </>}
       {status&&<div style={{textAlign:"center",padding:"16px 0"}}>
         <div style={{fontSize:36,marginBottom:10}}>✅</div>
-        <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:8}}>Backup Restored!</div>
+        <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:8}}>Backup Restored!</div>
         <div style={{display:"flex",flexDirection:"column",gap:5,marginBottom:14}}>
           {Object.entries(status).map(([k,n])=>
-            <div key={k} style={{display:"flex",justifyContent:"space-between",padding:"5px 14px",background:"#F5F1EB",borderRadius:7,fontSize:12}}>
-              <span style={{color:"#7A6E60",textTransform:"capitalize"}}>{k}</span>
+            <div key={k} style={{display:"flex",justifyContent:"space-between",padding:"5px 14px",background:"#f8fafc",borderRadius:7,fontSize:12}}>
+              <span style={{color:"#64748b",textTransform:"capitalize"}}>{k}</span>
               <span style={{fontWeight:700,color:"#10b981"}}>{n} records</span>
             </div>
           )}
         </div>
-        <button onClick={()=>setStatus(null)} style={{padding:"7px 16px",borderRadius:8,border:"none",background:"#F7F4EF",color:"#7A6E60",fontSize:12,cursor:"pointer"}}>Restore Another</button>
+        <button onClick={()=>setStatus(null)} style={{padding:"7px 16px",borderRadius:8,border:"none",background:"#f1f5f9",color:"#64748b",fontSize:12,cursor:"pointer"}}>Restore Another</button>
       </div>}
     </div>
   );
@@ -3506,10 +3518,10 @@ function LeadActivityForm({onClose,onSave}){
       <Lbl>Activity Type</Lbl>
       <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:6}}>
         {LEAD_ACT_TYPES.map(t=>{
-          const m=LEAD_ACT_META[t]||{e:"📋",c:"#7A6E60",bg:"#F7F4EF"};
+          const m=LEAD_ACT_META[t]||{e:"📋",c:"#64748b",bg:"#f1f5f9"};
           const active=f.type===t;
           return<button key={t} onClick={()=>set("type",t)}
-            style={{padding:"7px 14px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#E4E0D8"),background:active?m.bg:"#fff",color:active?m.c:"#7A6E60",fontSize:12,fontWeight:active?600:400,cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
+            style={{padding:"7px 14px",borderRadius:20,border:"1.5px solid "+(active?m.c:"#e2e8f0"),background:active?m.bg:"#fff",color:active?m.c:"#64748b",fontSize:12,fontWeight:active?600:400,cursor:"pointer",display:"flex",alignItems:"center",gap:6}}>
             <span>{m.e}</span>{t}
           </button>;
         })}
@@ -3524,7 +3536,7 @@ function LeadActivityForm({onClose,onSave}){
       <Lbl>Notes</Lbl>
       <textarea value={f.notes} onChange={e=>set("notes",e.target.value)} rows={3}
         placeholder="Key discussion points, decisions, next steps…"
-        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",resize:"vertical"}}/>
+        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",resize:"vertical"}}/>
     </div>
   </Modal>
 }
@@ -3540,11 +3552,11 @@ function LeadActivitiesPanel({acts,onAdd,onDelete}){
       {LEAD_ACT_TYPES.map(t=>{
         const m=LEAD_ACT_META[t];
         const cnt=typeCounts[t]||0;
-        return<div key={t} style={{background:cnt>0?m.bg:"#F5F1EB",borderRadius:9,border:"1px solid "+(cnt>0?m.c:"#E4E0D8"),padding:"8px 14px",display:"flex",alignItems:"center",gap:7,minWidth:0}}>
+        return<div key={t} style={{background:cnt>0?m.bg:"#f8fafc",borderRadius:9,border:"1px solid "+(cnt>0?m.c:"#e2e8f0"),padding:"8px 14px",display:"flex",alignItems:"center",gap:7,minWidth:0}}>
           <span style={{fontSize:16}}>{m.e}</span>
           <div>
-            <div style={{fontSize:11,fontWeight:700,color:cnt>0?m.c:"#9C9486"}}>{t}</div>
-            <div style={{fontSize:18,fontWeight:700,color:cnt>0?m.c:"#D8D0C0",lineHeight:1}}>{cnt}</div>
+            <div style={{fontSize:11,fontWeight:700,color:cnt>0?m.c:"#94a3b8"}}>{t}</div>
+            <div style={{fontSize:18,fontWeight:700,color:cnt>0?m.c:"#cbd5e1",lineHeight:1}}>{cnt}</div>
           </div>
         </div>;
       })}
@@ -3552,29 +3564,29 @@ function LeadActivitiesPanel({acts,onAdd,onDelete}){
 
     {/* Log button + list */}
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-      <div style={{fontSize:13,fontWeight:600,color:"#1A1612"}}>Activity Log <span style={{fontSize:12,color:"#9C9486",fontWeight:400}}>({acts.length})</span></div>
+      <div style={{fontSize:13,fontWeight:600,color:"#0f172a"}}>Activity Log <span style={{fontSize:12,color:"#94a3b8",fontWeight:400}}>({acts.length})</span></div>
       <Btn sz="sm" onClick={()=>setShowForm(true)}>+ Log Activity</Btn>
     </div>
 
-    {sorted.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:"#9C9486",fontSize:13,background:"#F5F1EB",borderRadius:10}}>No activities yet — log a meeting, email, or call to start tracking.</div>}
+    {sorted.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:"#94a3b8",fontSize:13,background:"#f8fafc",borderRadius:10}}>No activities yet — log a meeting, email, or call to start tracking.</div>}
 
     {sorted.map((act,i)=>{
-      const m=LEAD_ACT_META[act.type]||{e:"📋",c:"#7A6E60",bg:"#F7F4EF"};
-      return<div key={act.id} style={{display:"flex",gap:12,padding:"14px 0",borderBottom:i<sorted.length-1?"1px solid #F7F4EF":"none"}}>
+      const m=LEAD_ACT_META[act.type]||{e:"📋",c:"#64748b",bg:"#f1f5f9"};
+      return<div key={act.id} style={{display:"flex",gap:12,padding:"14px 0",borderBottom:i<sorted.length-1?"1px solid #f1f5f9":"none"}}>
         <div style={{width:38,height:38,borderRadius:10,background:m.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:17,flexShrink:0}}>{m.e}</div>
         <div style={{flex:1,minWidth:0}}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:3,flexWrap:"wrap",gap:6}}>
             <div>
-              <span style={{fontSize:13,fontWeight:700,color:"#1A1612"}}>{act.subject}</span>
+              <span style={{fontSize:13,fontWeight:700,color:"#0f172a"}}>{act.subject}</span>
               <span style={{marginLeft:8,background:m.bg,color:m.c,borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 8px"}}>{act.type}</span>
             </div>
             <div style={{display:"flex",gap:10,alignItems:"center",flexShrink:0}}>
-              <span style={{fontSize:11,color:"#9C9486"}}>{act.date}{act.duration?" · "+act.duration+"m":""}</span>
+              <span style={{fontSize:11,color:"#94a3b8"}}>{act.date}{act.duration?" · "+act.duration+"m":""}</span>
               <button onClick={()=>{if(window.confirm("Delete this activity?"))onDelete(act.id);}}
                 style={{background:"none",border:"none",color:"#ef4444",fontSize:12,cursor:"pointer",padding:0}}>✕</button>
             </div>
           </div>
-          {act.notes&&<div style={{fontSize:12,color:"#7A6E60",lineHeight:1.6,marginTop:2}}>{act.notes}</div>}
+          {act.notes&&<div style={{fontSize:12,color:"#64748b",lineHeight:1.6,marginTop:2}}>{act.notes}</div>}
         </div>
       </div>;
     })}
@@ -3601,7 +3613,7 @@ function LeadProposalForm({proposal,onClose,onSave}){
   const set=(k,v)=>sf(p=>({...p,[k]:v}));
   const MAX=5*1024*1024;
   const STATUSES=["Draft","Sent","Viewed","Accepted","Declined","Expired"];
-  const STATUS_C={Draft:"#7A6E60",Sent:"#C8943A",Viewed:"#f59e0b",Accepted:"#10b981",Declined:"#ef4444",Expired:"#9C9486"};
+  const STATUS_C={Draft:"#64748b",Sent:"#6366f1",Viewed:"#f59e0b",Accepted:"#10b981",Declined:"#ef4444",Expired:"#94a3b8"};
 
   function handleFile(e){
     const file=e.target.files[0];
@@ -3626,9 +3638,9 @@ function LeadProposalForm({proposal,onClose,onSave}){
         <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:4}}>
           {STATUSES.map(s=>{
             const active=f.status===s;
-            const c=STATUS_C[s]||"#7A6E60";
+            const c=STATUS_C[s]||"#64748b";
             return<button key={s} onClick={()=>set("status",s)}
-              style={{padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?c:"#E4E0D8"),background:active?"#F5F1EB":"#fff",color:active?c:"#7A6E60",fontSize:12,fontWeight:active?600:400,cursor:"pointer"}}>
+              style={{padding:"5px 13px",borderRadius:20,border:"1.5px solid "+(active?c:"#e2e8f0"),background:active?"#f8fafc":"#fff",color:active?c:"#64748b",fontSize:12,fontWeight:active?600:400,cursor:"pointer"}}>
               {s}
             </button>;
           })}
@@ -3642,27 +3654,27 @@ function LeadProposalForm({proposal,onClose,onSave}){
       <Lbl>Notes</Lbl>
       <textarea value={f.notes} onChange={e=>set("notes",e.target.value)} rows={2}
         placeholder="Scope summary, special terms, next steps…"
-        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",resize:"vertical"}}/>
+        style={{width:"100%",padding:"8px 10px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",resize:"vertical"}}/>
     </div>
 
-    <div style={{marginTop:16,padding:"14px 16px",background:"#F5F1EB",borderRadius:10,border:"1.5px dashed #D8D0C0"}}>
-      <div style={{fontSize:12,fontWeight:600,color:"#5A5245",marginBottom:8}}>📎 Attach Proposal File <span style={{fontWeight:400,color:"#9C9486"}}>(PDF, DOC, DOCX, PPTX — max 5 MB)</span></div>
+    <div style={{marginTop:16,padding:"14px 16px",background:"#f8fafc",borderRadius:10,border:"1.5px dashed #cbd5e1"}}>
+      <div style={{fontSize:12,fontWeight:600,color:"#475569",marginBottom:8}}>📎 Attach Proposal File <span style={{fontWeight:400,color:"#94a3b8"}}>(PDF, DOC, DOCX, PPTX — max 5 MB)</span></div>
       {f.fileName
-        ?<div style={{display:"flex",alignItems:"center",gap:10,padding:"8px 12px",background:"#fff",borderRadius:8,border:"1px solid #E4E0D8"}}>
+        ?<div style={{display:"flex",alignItems:"center",gap:10,padding:"8px 12px",background:"#fff",borderRadius:8,border:"1px solid #e2e8f0"}}>
           <span style={{fontSize:18}}>{f.fileName.toLowerCase().endsWith(".pdf")?"📄":f.fileName.toLowerCase().endsWith(".pptx")?"📊":"📝"}</span>
           <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:13,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{f.fileName}</div>
-            <div style={{fontSize:11,color:"#9C9486"}}>{fmtBytes(f.fileSize)}</div>
+            <div style={{fontSize:13,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{f.fileName}</div>
+            <div style={{fontSize:11,color:"#94a3b8"}}>{fmtBytes(f.fileSize)}</div>
           </div>
           <button onClick={()=>{set("fileName","");set("fileSize",0);set("fileData",null);}}
-            style={{background:"#FFF0F0",border:"none",color:"#ef4444",borderRadius:6,padding:"3px 8px",fontSize:11,cursor:"pointer",fontWeight:600}}>Remove</button>
+            style={{background:"#fff0f0",border:"none",color:"#ef4444",borderRadius:6,padding:"3px 8px",fontSize:11,cursor:"pointer",fontWeight:600}}>Remove</button>
         </div>
         :<label style={{display:"flex",flexDirection:"column",alignItems:"center",gap:6,padding:"18px",cursor:"pointer",borderRadius:8}}
-          onMouseEnter={e=>e.currentTarget.style.background="#F5EDD8"}
+          onMouseEnter={e=>e.currentTarget.style.background="#eef2ff"}
           onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
           <span style={{fontSize:28}}>☁️</span>
-          <span style={{fontSize:13,color:"#C8943A",fontWeight:600}}>Click to upload or drag &amp; drop</span>
-          <span style={{fontSize:11,color:"#9C9486"}}>PDF · DOC · DOCX · PPTX · up to 5 MB</span>
+          <span style={{fontSize:13,color:"#6366f1",fontWeight:600}}>Click to upload or drag &amp; drop</span>
+          <span style={{fontSize:11,color:"#94a3b8"}}>PDF · DOC · DOCX · PPTX · up to 5 MB</span>
           <input type="file" accept=".pdf,.doc,.docx,.pptx,.ppt,.txt" onChange={handleFile} style={{display:"none"}}/>
         </label>
       }
@@ -3674,8 +3686,8 @@ function LeadProposalForm({proposal,onClose,onSave}){
 function LeadProposalsPanel({proposals,onAdd,onEdit,onDelete}){
   const[showForm,setShowForm]=useState(false);
   const[editP,setEditP]=useState(null);
-  const STATUS_C={Draft:"#7A6E60",Sent:"#C8943A",Viewed:"#f59e0b",Accepted:"#10b981",Declined:"#ef4444",Expired:"#9C9486"};
-  const STATUS_BG={Draft:"#F7F4EF",Sent:"#F5EDD8",Viewed:"#fef3c7",Accepted:"#ecfdf5",Declined:"#fef2f2",Expired:"#F7F4EF"};
+  const STATUS_C={Draft:"#64748b",Sent:"#6366f1",Viewed:"#f59e0b",Accepted:"#10b981",Declined:"#ef4444",Expired:"#94a3b8"};
+  const STATUS_BG={Draft:"#f1f5f9",Sent:"#eef2ff",Viewed:"#fef3c7",Accepted:"#ecfdf5",Declined:"#fef2f2",Expired:"#f1f5f9"};
   function fmtBytes(b){if(!b)return"";if(b<1048576)return(b/1024).toFixed(0)+"KB";return(b/1048576).toFixed(2)+"MB";}
 
   const totalValue=proposals.reduce((s,p)=>s+(Number(p.amount)||0),0);
@@ -3685,7 +3697,7 @@ function LeadProposalsPanel({proposals,onAdd,onEdit,onDelete}){
   return<div>
     {/* Summary */}
     {proposals.length>0&&<div style={{display:"flex",gap:10,flexWrap:"wrap",marginBottom:16}}>
-      {[["Total Proposals",proposals.length,"#C8943A","#F5EDD8"],["Total Value","$"+totalValue.toLocaleString(),"#10b981","#ecfdf5"],["Accepted",accepted.length+" ("+( proposals.length>0?Math.round(accepted.length/proposals.length*100):0)+"%)","#10b981","#ecfdf5"],["Won Value","$"+acceptedValue.toLocaleString(),"#f59e0b","#fef3c7"]].map(([l,v,c,bg])=>
+      {[["Total Proposals",proposals.length,"#6366f1","#eef2ff"],["Total Value","$"+totalValue.toLocaleString(),"#10b981","#ecfdf5"],["Accepted",accepted.length+" ("+( proposals.length>0?Math.round(accepted.length/proposals.length*100):0)+"%)","#10b981","#ecfdf5"],["Won Value","$"+acceptedValue.toLocaleString(),"#f59e0b","#fef3c7"]].map(([l,v,c,bg])=>
         <div key={l} style={{background:bg,border:"1px solid "+c,borderRadius:10,padding:"10px 16px"}}>
           <div style={{fontSize:10,color:c,fontWeight:700,textTransform:"uppercase",letterSpacing:".06em",marginBottom:3}}>{l}</div>
           <div style={{fontSize:18,fontWeight:700,color:c}}>{v}</div>
@@ -3693,25 +3705,25 @@ function LeadProposalsPanel({proposals,onAdd,onEdit,onDelete}){
     </div>}
 
     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:12}}>
-      <div style={{fontSize:13,fontWeight:600,color:"#1A1612"}}>Proposals <span style={{fontSize:12,color:"#9C9486",fontWeight:400}}>({proposals.length})</span></div>
+      <div style={{fontSize:13,fontWeight:600,color:"#0f172a"}}>Proposals <span style={{fontSize:12,color:"#94a3b8",fontWeight:400}}>({proposals.length})</span></div>
       <Btn sz="sm" onClick={()=>{setEditP(null);setShowForm(true);}}>+ New Proposal</Btn>
     </div>
 
-    {proposals.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:"#9C9486",fontSize:13,background:"#F5F1EB",borderRadius:10}}>No proposals yet — create your first proposal for this lead.</div>}
+    {proposals.length===0&&<div style={{textAlign:"center",padding:"32px 0",color:"#94a3b8",fontSize:13,background:"#f8fafc",borderRadius:10}}>No proposals yet — create your first proposal for this lead.</div>}
 
     {proposals.map((p,i)=>{
-      const sc=STATUS_C[p.status]||"#7A6E60";
-      const sbg=STATUS_BG[p.status]||"#F7F4EF";
+      const sc=STATUS_C[p.status]||"#64748b";
+      const sbg=STATUS_BG[p.status]||"#f1f5f9";
       const fileIcon=p.fileName?.toLowerCase().endsWith(".pdf")?"📄":p.fileName?.toLowerCase().endsWith(".pptx")?"📊":"📝";
       const isExpired=p.expiryDate&&new Date(p.expiryDate)<new Date();
       const daysLeft=p.expiryDate?Math.round((new Date(p.expiryDate)-new Date())/86400000):null;
-      return<div key={p.id} style={{background:"#fff",borderRadius:12,border:"1px solid #E4E0D8",padding:"16px 18px",marginBottom:10}}>
+      return<div key={p.id} style={{background:"#fff",borderRadius:12,border:"1px solid #e2e8f0",padding:"16px 18px",marginBottom:10}}>
         <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",flexWrap:"wrap",gap:8,marginBottom:12}}>
           <div>
-            <div style={{fontSize:14,fontWeight:700,color:"#1A1612",marginBottom:4}}>{p.name}</div>
+            <div style={{fontSize:14,fontWeight:700,color:"#0f172a",marginBottom:4}}>{p.name}</div>
             <div style={{display:"flex",gap:6,flexWrap:"wrap",alignItems:"center"}}>
               <span style={{background:sbg,color:sc,borderRadius:20,fontSize:11,fontWeight:600,padding:"2px 10px"}}>{p.status}</span>
-              <span style={{background:"#F7F4EF",color:"#7A6E60",borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 8px"}}>{p.version}</span>
+              <span style={{background:"#f1f5f9",color:"#64748b",borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 8px"}}>{p.version}</span>
               {isExpired&&p.status!=="Accepted"&&<span style={{background:"#fef2f2",color:"#ef4444",borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 8px"}}>Expired</span>}
               {!isExpired&&daysLeft!==null&&daysLeft<=14&&daysLeft>=0&&<span style={{background:"#fff7ed",color:"#f97316",borderRadius:20,fontSize:10,fontWeight:600,padding:"2px 8px"}}>⚠️ {daysLeft}d left</span>}
             </div>
@@ -3724,23 +3736,23 @@ function LeadProposalsPanel({proposals,onAdd,onEdit,onDelete}){
 
         <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(100px,1fr))",gap:8,marginBottom:p.notes||p.fileName?10:0}}>
           {[["Value",p.amount?("$"+Number(p.amount).toLocaleString()):"—"],["Sent",p.sentDate?p.sentDate:"—"],["Expires",p.expiryDate?p.expiryDate:"—"]].map(([l,v])=>
-            <div key={l} style={{background:"#F5F1EB",borderRadius:8,padding:"8px 12px"}}>
-              <div style={{fontSize:9,color:"#9C9486",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
-              <div style={{fontSize:13,fontWeight:600,color:"#3D3428"}}>{v}</div>
+            <div key={l} style={{background:"#f8fafc",borderRadius:8,padding:"8px 12px"}}>
+              <div style={{fontSize:9,color:"#94a3b8",fontWeight:700,textTransform:"uppercase",letterSpacing:"0.07em",marginBottom:2}}>{l}</div>
+              <div style={{fontSize:13,fontWeight:600,color:"#334155"}}>{v}</div>
             </div>)}
         </div>
 
-        {p.notes&&<div style={{fontSize:12,color:"#7A6E60",lineHeight:1.5,marginBottom:p.fileName?8:0,fontStyle:"italic"}}>{p.notes}</div>}
+        {p.notes&&<div style={{fontSize:12,color:"#64748b",lineHeight:1.5,marginBottom:p.fileName?8:0,fontStyle:"italic"}}>{p.notes}</div>}
 
-        {p.fileName&&<div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 12px",background:"#fff",border:"1px solid #E4E0D8",borderRadius:8,marginTop:6}}>
+        {p.fileName&&<div style={{display:"flex",alignItems:"center",gap:8,padding:"8px 12px",background:"#fff",border:"1px solid #e2e8f0",borderRadius:8,marginTop:6}}>
           <span style={{fontSize:16}}>{fileIcon}</span>
           <div style={{flex:1,minWidth:0}}>
-            <div style={{fontSize:12,fontWeight:600,color:"#3D3428",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.fileName}</div>
-            <div style={{fontSize:10,color:"#9C9486"}}>{fmtBytes(p.fileSize)}</div>
+            <div style={{fontSize:12,fontWeight:600,color:"#334155",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{p.fileName}</div>
+            <div style={{fontSize:10,color:"#94a3b8"}}>{fmtBytes(p.fileSize)}</div>
           </div>
           {p.fileData
-            ?<a href={p.fileData} download={p.fileName} style={{background:"#F5EDD8",color:"#C8943A",borderRadius:6,padding:"3px 10px",fontSize:11,fontWeight:600,textDecoration:"none"}}>↓ Download</a>
-            :<span style={{background:"#F5F1EB",color:"#9C9486",borderRadius:6,padding:"3px 10px",fontSize:11}}>Demo file</span>
+            ?<a href={p.fileData} download={p.fileName} style={{background:"#eef2ff",color:"#6366f1",borderRadius:6,padding:"3px 10px",fontSize:11,fontWeight:600,textDecoration:"none"}}>↓ Download</a>
+            :<span style={{background:"#f8fafc",color:"#94a3b8",borderRadius:6,padding:"3px 10px",fontSize:11}}>Demo file</span>
           }
         </div>}
       </div>;
@@ -3884,10 +3896,10 @@ function App(){
     {toast&&<div style={{position:"fixed",top:12,right:12,zIndex:999,background:"#10b981",color:"#fff",padding:"9px 16px",borderRadius:10,fontSize:13,fontWeight:600,boxShadow:"0 4px 20px rgba(0,0,0,0.15)",pointerEvents:"none"}}>{toast}</div>}
 
     {/* ════ COLLAPSIBLE SIDEBAR ════ */}
-    <div style={{width:sideOpen?228:60,minWidth:sideOpen?228:60,background:"#0A0D12",display:"flex",flexDirection:"column",height:"100vh",transition:"width .2s ease",overflow:"hidden",flexShrink:0,borderRight:"1px solid #1C1810"}}>
+    <div style={{width:sideOpen?228:60,minWidth:sideOpen?228:60,background:"#0f172a",display:"flex",flexDirection:"column",height:"100vh",transition:"width .2s ease",overflow:"hidden",flexShrink:0,borderRight:"1px solid #1e293b"}}>
 
       {/* Logo row */}
-      <div style={{height:56,display:"flex",alignItems:"center",padding:"0 14px",borderBottom:"1px solid #1C1810",gap:10,flexShrink:0}}>
+      <div style={{height:56,display:"flex",alignItems:"center",padding:"0 14px",borderBottom:"1px solid #1e293b",gap:10,flexShrink:0}}>
         {sideOpen
           ?<a href="https://ensembledigilabs.com" target="_blank" rel="noopener noreferrer" style={{display:"flex",alignItems:"center",gap:8,textDecoration:"none",flex:1,overflow:"hidden",minWidth:0}}
              onMouseEnter={function(e){e.currentTarget.style.opacity="0.85";}}
@@ -3895,20 +3907,20 @@ function App(){
             <img src="https://ensembledigilabs.com/assets/images/logo-2.png" alt="Ensemble Digital Labs"
               style={{height:32,maxWidth:140,objectFit:"contain",flexShrink:0,filter:"brightness(0) invert(1)"}}/>
           </a>
-          :<div style={{width:30,height:30,borderRadius:8,background:"linear-gradient(135deg,#C8943A,#B8832C)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:700,color:"#fff",flexShrink:0,marginLeft:"auto"}}>E</div>
+          :<div style={{width:30,height:30,borderRadius:8,background:"linear-gradient(135deg,#6366f1,#8b5cf6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:14,fontWeight:700,color:"#fff",flexShrink:0,marginLeft:"auto"}}>E</div>
         }
         <button title={sideOpen?"Collapse sidebar":"Expand sidebar"}
           onClick={function(){setSideOpen(function(p){return !p;});}}
-          style={{background:"none",border:"none",cursor:"pointer",padding:0,color:"#5A5245",display:"flex",alignItems:"center",flexShrink:0,marginLeft:sideOpen?0:"auto"}}
-          onMouseEnter={function(e){e.currentTarget.style.color="#9C9486";}}
-          onMouseLeave={function(e){e.currentTarget.style.color="#5A5245";}}>
+          style={{background:"none",border:"none",cursor:"pointer",padding:0,color:"#475569",display:"flex",alignItems:"center",flexShrink:0,marginLeft:sideOpen?0:"auto"}}
+          onMouseEnter={function(e){e.currentTarget.style.color="#94a3b8";}}
+          onMouseLeave={function(e){e.currentTarget.style.color="#475569";}}>
           <span dangerouslySetInnerHTML={{__html:sideOpen?SVGICONS.chevL:SVGICONS.chevR}}></span>
         </button>
       </div>
 
       {/* Nav items */}
       <div style={{flex:1,padding:"10px 8px",overflowY:"auto",overflowX:"hidden"}}>
-        {sideOpen&&<div style={{fontSize:9,fontWeight:700,color:"#3D3428",textTransform:"uppercase",letterSpacing:".1em",padding:"4px 6px 8px"}}>MAIN MENU</div>}
+        {sideOpen&&<div style={{fontSize:9,fontWeight:700,color:"#334155",textTransform:"uppercase",letterSpacing:".1em",padding:"4px 6px 8px"}}>MAIN MENU</div>}
         {!sideOpen&&<div style={{height:6}}></div>}
         {NAV_ITEMS.map(function(item){
           var k=item.k,label=item.label;
@@ -3919,12 +3931,12 @@ function App(){
           var active =nav===k||isAccts||isCons||isLeads||isOpps;
           var badge  =k==="leads"?leads.filter(function(l){return !l.isConverted;}).length:0;
           return<div key={k} style={{position:"relative",marginBottom:2}}>
-            {active&&<span style={{position:"absolute",left:0,top:"18%",height:"64%",width:3,background:"#C8943A",borderRadius:"0 3px 3px 0",zIndex:1}}></span>}
+            {active&&<span style={{position:"absolute",left:0,top:"18%",height:"64%",width:3,background:"#6366f1",borderRadius:"0 3px 3px 0",zIndex:1}}></span>}
             <button title={!sideOpen?label:""}
               onClick={function(){if(k==="accounts")setSelAcct(null);if(k==="leads")setSelLead(null);if(k==="opportunities")setSelOpp(null);setNav(k);}}
-              style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:sideOpen?"9px 10px":"10px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:active?"rgba(99,102,241,0.18)":"transparent",color:active?"#E0C070":"#7A6E60",cursor:"pointer",fontSize:13,fontWeight:active?600:400,transition:"background .15s,color .15s"}}
-              onMouseEnter={function(e){if(!active){e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.color="#9C9486";}}}
-              onMouseLeave={function(e){e.currentTarget.style.background=active?"rgba(99,102,241,0.18)":"transparent";e.currentTarget.style.color=active?"#E0C070":"#7A6E60";}}>
+              style={{width:"100%",display:"flex",alignItems:"center",gap:10,padding:sideOpen?"9px 10px":"10px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:active?"rgba(99,102,241,0.18)":"transparent",color:active?"#a5b4fc":"#64748b",cursor:"pointer",fontSize:13,fontWeight:active?600:400,transition:"background .15s,color .15s"}}
+              onMouseEnter={function(e){if(!active){e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.color="#94a3b8";}}}
+              onMouseLeave={function(e){e.currentTarget.style.background=active?"rgba(99,102,241,0.18)":"transparent";e.currentTarget.style.color=active?"#a5b4fc":"#64748b";}}>
               <span style={{flexShrink:0,display:"flex",alignItems:"center"}} dangerouslySetInnerHTML={{__html:SVGICONS[k]||""}}></span>
               {sideOpen&&<span style={{flex:1,textAlign:"left",whiteSpace:"nowrap",overflow:"hidden"}}>{label}</span>}
               {sideOpen&&badge>0&&<span style={{background:"#ef4444",color:"#fff",borderRadius:10,fontSize:9,fontWeight:700,padding:"1px 6px",minWidth:18,textAlign:"center",flexShrink:0}}>{badge}</span>}
@@ -3934,16 +3946,16 @@ function App(){
         })}
 
         {/* Quick-add divider */}
-        <div style={{borderTop:"1px solid #1C1810",margin:"10px 4px"}}></div>
-        {sideOpen&&<div style={{fontSize:9,fontWeight:700,color:"#3D3428",textTransform:"uppercase",letterSpacing:".1em",padding:"4px 6px 8px"}}>QUICK ADD</div>}
+        <div style={{borderTop:"1px solid #1e293b",margin:"10px 4px"}}></div>
+        {sideOpen&&<div style={{fontSize:9,fontWeight:700,color:"#334155",textTransform:"uppercase",letterSpacing:".1em",padding:"4px 6px 8px"}}>QUICK ADD</div>}
 
         <div style={{position:"relative",marginBottom:2}}>
           <button title={!sideOpen?"New Lead":""}
             onClick={function(){setEditLead(null);setShowLF(true);}}
-            style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sideOpen?"8px 10px":"9px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:"transparent",color:"#5A5245",cursor:"pointer",fontSize:12,fontWeight:500,transition:"background .15s,color .15s"}}
-            onMouseEnter={function(e){e.currentTarget.style.background="rgba(99,102,241,0.12)";e.currentTarget.style.color="#E0C070";}}
-            onMouseLeave={function(e){e.currentTarget.style.background="transparent";e.currentTarget.style.color="#5A5245";}}>
-            <span style={{width:22,height:22,borderRadius:6,border:"1px solid #1C1810",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}} dangerouslySetInnerHTML={{__html:SVGICONS.plus}}></span>
+            style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sideOpen?"8px 10px":"9px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:"transparent",color:"#475569",cursor:"pointer",fontSize:12,fontWeight:500,transition:"background .15s,color .15s"}}
+            onMouseEnter={function(e){e.currentTarget.style.background="rgba(99,102,241,0.12)";e.currentTarget.style.color="#a5b4fc";}}
+            onMouseLeave={function(e){e.currentTarget.style.background="transparent";e.currentTarget.style.color="#475569";}}>
+            <span style={{width:22,height:22,borderRadius:6,border:"1px solid #1e293b",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}} dangerouslySetInnerHTML={{__html:SVGICONS.plus}}></span>
             {sideOpen&&<span style={{whiteSpace:"nowrap"}}>New Lead</span>}
           </button>
         </div>
@@ -3951,40 +3963,40 @@ function App(){
         <div style={{position:"relative",marginBottom:2}}>
           <button title={!sideOpen?"New Account":""}
             onClick={function(){setEditAcct(null);setShowAcctF(true);}}
-            style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sideOpen?"8px 10px":"9px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:"transparent",color:"#5A5245",cursor:"pointer",fontSize:12,fontWeight:500,transition:"background .15s,color .15s"}}
-            onMouseEnter={function(e){e.currentTarget.style.background="rgba(99,102,241,0.12)";e.currentTarget.style.color="#E0C070";}}
-            onMouseLeave={function(e){e.currentTarget.style.background="transparent";e.currentTarget.style.color="#5A5245";}}>
-            <span style={{width:22,height:22,borderRadius:6,border:"1px solid #1C1810",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}} dangerouslySetInnerHTML={{__html:SVGICONS.plus}}></span>
+            style={{width:"100%",display:"flex",alignItems:"center",gap:9,padding:sideOpen?"8px 10px":"9px 0",justifyContent:sideOpen?"flex-start":"center",borderRadius:9,border:"none",background:"transparent",color:"#475569",cursor:"pointer",fontSize:12,fontWeight:500,transition:"background .15s,color .15s"}}
+            onMouseEnter={function(e){e.currentTarget.style.background="rgba(99,102,241,0.12)";e.currentTarget.style.color="#a5b4fc";}}
+            onMouseLeave={function(e){e.currentTarget.style.background="transparent";e.currentTarget.style.color="#475569";}}>
+            <span style={{width:22,height:22,borderRadius:6,border:"1px solid #1e293b",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}} dangerouslySetInnerHTML={{__html:SVGICONS.plus}}></span>
             {sideOpen&&<span style={{whiteSpace:"nowrap"}}>New Account</span>}
           </button>
         </div>
       </div>
 
       {/* User footer */}
-      <div style={{padding:"10px 10px 12px",borderTop:"1px solid #1C1810",flexShrink:0}}>
+      <div style={{padding:"10px 10px 12px",borderTop:"1px solid #1e293b",flexShrink:0}}>
         <div style={{display:"flex",alignItems:"center",gap:8}}>
           {/* Avatar */}
-          <div style={{width:32,height:32,borderRadius:"50%",background:"linear-gradient(135deg,#C8943A,#B8832C)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,color:"#fff",flexShrink:0}}>
+          <div style={{width:32,height:32,borderRadius:"50%",background:"linear-gradient(135deg,#6366f1,#8b5cf6)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:11,fontWeight:700,color:"#fff",flexShrink:0}}>
             {(currentUser?.name||currentUser?.username||"?").split(" ").map(w=>w[0]).slice(0,2).join("").toUpperCase()}
           </div>
           {sideOpen&&<>
             <div style={{flex:1,minWidth:0,overflow:"hidden"}}>
-              <div style={{fontSize:12,fontWeight:600,color:"#E4E0D8",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{currentUser?.name||currentUser?.username}</div>
-              <div style={{fontSize:10,color:"#5A5245",whiteSpace:"nowrap"}}>
+              <div style={{fontSize:12,fontWeight:600,color:"#e2e8f0",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{currentUser?.name||currentUser?.username}</div>
+              <div style={{fontSize:10,color:"#475569",whiteSpace:"nowrap"}}>
                 <span style={{background:(ROLE_META[currentUser?.role]||ROLE_META.Viewer).bg,color:(ROLE_META[currentUser?.role]||ROLE_META.Viewer).c,borderRadius:6,padding:"1px 5px",fontSize:9,fontWeight:700}}>{currentUser?.role}</span>
               </div>
             </div>
             <button title="Sign out" onClick={handleLogout}
-              style={{background:"none",border:"none",cursor:"pointer",color:"#5A5245",padding:5,borderRadius:7,display:"flex",alignItems:"center",flexShrink:0,transition:"all .12s"}}
+              style={{background:"none",border:"none",cursor:"pointer",color:"#475569",padding:5,borderRadius:7,display:"flex",alignItems:"center",flexShrink:0,transition:"all .12s"}}
               onMouseEnter={e=>{e.currentTarget.style.color="#ef4444";e.currentTarget.style.background="rgba(239,68,68,.12)";}}
-              onMouseLeave={e=>{e.currentTarget.style.color="#5A5245";e.currentTarget.style.background="none";}}>
+              onMouseLeave={e=>{e.currentTarget.style.color="#475569";e.currentTarget.style.background="none";}}>
               <span dangerouslySetInnerHTML={{__html:SVGICONS.signout}}/>
             </button>
           </>}
           {!sideOpen&&<button title="Sign out" onClick={handleLogout}
-            style={{background:"none",border:"none",cursor:"pointer",color:"#5A5245",padding:4,borderRadius:6,display:"flex",marginLeft:"auto"}}
+            style={{background:"none",border:"none",cursor:"pointer",color:"#475569",padding:4,borderRadius:6,display:"flex",marginLeft:"auto"}}
             onMouseEnter={e=>e.currentTarget.style.color="#ef4444"}
-            onMouseLeave={e=>e.currentTarget.style.color="#5A5245"}>
+            onMouseLeave={e=>e.currentTarget.style.color="#475569"}>
             <span dangerouslySetInnerHTML={{__html:SVGICONS.signout}}/>
           </button>}
         </div>
@@ -3995,37 +4007,37 @@ function App(){
     <div style={{flex:1,display:"flex",flexDirection:"column",overflow:"hidden"}}>
 
       {/* Topbar with Global Search */}
-      <div style={{background:"#fff",borderBottom:"1px solid #E4E0D8",height:52,display:"flex",alignItems:"center",padding:"0 22px",gap:12,flexShrink:0,position:"relative",zIndex:200}}>
+      <div style={{background:"#fff",borderBottom:"1px solid #e2e8f0",height:52,display:"flex",alignItems:"center",padding:"0 22px",gap:12,flexShrink:0,position:"relative",zIndex:200}}>
 
         {/* Breadcrumb */}
         <div style={{display:"flex",alignItems:"center",gap:5,fontSize:13,minWidth:0,flexShrink:0}}>
-          <span style={{color:"#9C9486",fontWeight:500,textTransform:"capitalize"}}>
+          <span style={{color:"#94a3b8",fontWeight:500,textTransform:"capitalize"}}>
             {nav==="account-detail"||nav==="contact-detail"?"Accounts":nav==="lead-detail"?"Leads":nav==="opp-detail"?"Opportunities":nav==="users"?"Users":nav==="contracts"?"Contracts":nav==="import"?"Import / Export":nav==="dashboard"?"Home":nav}
           </span>
-          {nav==="account-detail"&&liveAcct&&<span style={{color:"#D8D0C0"}}>/</span>}
-          {nav==="account-detail"&&liveAcct&&<span style={{color:"#3D3428",fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:160}}>{liveAcct.name}</span>}
-          {nav==="lead-detail"&&liveLead&&<span style={{color:"#D8D0C0"}}>/</span>}
-          {nav==="lead-detail"&&liveLead&&<span style={{color:"#3D3428",fontWeight:600,whiteSpace:"nowrap"}}>{((liveLead.firstName||"")+" "+(liveLead.lastName||"")).trim()||liveLead.company}</span>}
-          {nav==="contact-detail"&&selContact&&<span style={{color:"#D8D0C0"}}>/</span>}
-          {nav==="contact-detail"&&selContact&&<span style={{color:"#3D3428",fontWeight:600}}>{selContact.name}</span>}
+          {nav==="account-detail"&&liveAcct&&<span style={{color:"#cbd5e1"}}>/</span>}
+          {nav==="account-detail"&&liveAcct&&<span style={{color:"#334155",fontWeight:600,overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap",maxWidth:160}}>{liveAcct.name}</span>}
+          {nav==="lead-detail"&&liveLead&&<span style={{color:"#cbd5e1"}}>/</span>}
+          {nav==="lead-detail"&&liveLead&&<span style={{color:"#334155",fontWeight:600,whiteSpace:"nowrap"}}>{((liveLead.firstName||"")+" "+(liveLead.lastName||"")).trim()||liveLead.company}</span>}
+          {nav==="contact-detail"&&selContact&&<span style={{color:"#cbd5e1"}}>/</span>}
+          {nav==="contact-detail"&&selContact&&<span style={{color:"#334155",fontWeight:600}}>{selContact.name}</span>}
         </div>
 
         {/* Global Search Box */}
         <div style={{flex:1,position:"relative",maxWidth:420}}>
           <div style={{position:"relative"}}>
-            <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#9C9486",pointerEvents:"none",fontSize:14}}>🔍</span>
+            <span style={{position:"absolute",left:10,top:"50%",transform:"translateY(-50%)",color:"#94a3b8",pointerEvents:"none",fontSize:14}}>🔍</span>
             <input
               value={globalSearch}
               onChange={function(e){setGlobalSearch(e.target.value);setShowSearch(e.target.value.length>0);}}
               onFocus={function(){if(globalSearch.length>0)setShowSearch(true);}}
               onBlur={function(){setTimeout(function(){setShowSearch(false);},200);}}
               placeholder="Search leads, accounts, contacts, opportunities…"
-              style={{width:"100%",padding:"8px 12px 8px 32px",borderRadius:8,border:"1px solid #E4E0D8",fontSize:13,outline:"none",background:"#F5F1EB",color:"#1A1612",transition:"border-color .15s,background .15s"}}
-              onMouseEnter={function(e){e.target.style.borderColor="#C8943A";}}
-              onMouseLeave={function(e){if(document.activeElement!==e.target)e.target.style.borderColor="#E4E0D8";}}
+              style={{width:"100%",padding:"8px 12px 8px 32px",borderRadius:8,border:"1px solid #e2e8f0",fontSize:13,outline:"none",background:"#f8fafc",color:"#0f172a",transition:"border-color .15s,background .15s"}}
+              onMouseEnter={function(e){e.target.style.borderColor="#6366f1";}}
+              onMouseLeave={function(e){if(document.activeElement!==e.target)e.target.style.borderColor="#e2e8f0";}}
             />
             {globalSearch&&<button onClick={function(){setGlobalSearch("");setShowSearch(false);}}
-              style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#9C9486",fontSize:14,lineHeight:1}}>✕</button>}
+              style={{position:"absolute",right:8,top:"50%",transform:"translateY(-50%)",background:"none",border:"none",cursor:"pointer",color:"#94a3b8",fontSize:14,lineHeight:1}}>✕</button>}
           </div>
 
           {/* Search Results Dropdown */}
@@ -4035,7 +4047,7 @@ function App(){
             leads.forEach(function(l){
               var name=((l.firstName||"")+" "+(l.lastName||"")).trim();
               if(name.toLowerCase().includes(q)||(l.company||"").toLowerCase().includes(q)||(l.email||"").toLowerCase().includes(q))
-                results.push({type:"Lead",icon:"👤",label:name||l.company,sub:l.company,color:"#C8943A",bg:"#F5EDD8",action:function(){setSelLead(l);setNav("lead-detail");setGlobalSearch("");setShowSearch(false);}});
+                results.push({type:"Lead",icon:"👤",label:name||l.company,sub:l.company,color:"#6366f1",bg:"#eef2ff",action:function(){setSelLead(l);setNav("lead-detail");setGlobalSearch("");setShowSearch(false);}});
             });
             accounts.forEach(function(a){
               if((a.name||"").toLowerCase().includes(q)||(a.industry||"").toLowerCase().includes(q))
@@ -4043,25 +4055,25 @@ function App(){
             });
             contacts.forEach(function(c){
               if((c.name||"").toLowerCase().includes(q)||(c.email||"").toLowerCase().includes(q)||(c.title||"").toLowerCase().includes(q))
-                results.push({type:"Contact",icon:"👥",label:c.name,sub:c.title||c.role,color:"#B8832C",bg:"#F5EDD8",action:function(){setSelContact(c);setPrevNav(nav);setNav("contact-detail");setGlobalSearch("");setShowSearch(false);}});
+                results.push({type:"Contact",icon:"👥",label:c.name,sub:c.title||c.role,color:"#8b5cf6",bg:"#f5f3ff",action:function(){setSelContact(c);setPrevNav(nav);setNav("contact-detail");setGlobalSearch("");setShowSearch(false);}});
             });
             opps.forEach(function(o){
               var acctName=(accounts.find(function(a){return a.id===o.accountId;})||{}).name||"";
               if((o.name||"").toLowerCase().includes(q)||acctName.toLowerCase().includes(q))
                 results.push({type:"Opportunity",icon:"💰",label:o.name,sub:acctName+" · "+o.stage,color:"#f59e0b",bg:"#fef3c7",action:function(){setNav("opportunities");setGlobalSearch("");setShowSearch(false);}});
             });
-            if(results.length===0)return<div style={{position:"absolute",top:"calc(100% + 6px)",left:0,right:0,background:"#fff",borderRadius:10,boxShadow:"0 8px 30px rgba(0,0,0,0.12)",border:"1px solid #E4E0D8",padding:"20px",textAlign:"center",color:"#9C9486",fontSize:13,zIndex:300}}>No results for "<strong>{globalSearch}</strong>"</div>;
-            return<div style={{position:"absolute",top:"calc(100% + 6px)",left:0,right:0,background:"#fff",borderRadius:10,boxShadow:"0 8px 30px rgba(0,0,0,0.12)",border:"1px solid #E4E0D8",overflow:"hidden",zIndex:300,maxHeight:380,overflowY:"auto"}}>
-              <div style={{padding:"8px 14px",borderBottom:"1px solid #F7F4EF",fontSize:11,fontWeight:700,color:"#9C9486",textTransform:"uppercase",letterSpacing:".06em"}}>{results.length} result{results.length!==1?"s":""}</div>
+            if(results.length===0)return<div style={{position:"absolute",top:"calc(100% + 6px)",left:0,right:0,background:"#fff",borderRadius:10,boxShadow:"0 8px 30px rgba(0,0,0,0.12)",border:"1px solid #e2e8f0",padding:"20px",textAlign:"center",color:"#94a3b8",fontSize:13,zIndex:300}}>No results for "<strong>{globalSearch}</strong>"</div>;
+            return<div style={{position:"absolute",top:"calc(100% + 6px)",left:0,right:0,background:"#fff",borderRadius:10,boxShadow:"0 8px 30px rgba(0,0,0,0.12)",border:"1px solid #e2e8f0",overflow:"hidden",zIndex:300,maxHeight:380,overflowY:"auto"}}>
+              <div style={{padding:"8px 14px",borderBottom:"1px solid #f1f5f9",fontSize:11,fontWeight:700,color:"#94a3b8",textTransform:"uppercase",letterSpacing:".06em"}}>{results.length} result{results.length!==1?"s":""}</div>
               {results.map(function(r,i){
                 return<div key={i} onClick={r.action}
-                  style={{display:"flex",alignItems:"center",gap:12,padding:"10px 14px",cursor:"pointer",borderBottom:i<results.length-1?"1px solid #F5F1EB":"none"}}
-                  onMouseEnter={function(e){e.currentTarget.style.background="#F5F1EB";}}
+                  style={{display:"flex",alignItems:"center",gap:12,padding:"10px 14px",cursor:"pointer",borderBottom:i<results.length-1?"1px solid #f8fafc":"none"}}
+                  onMouseEnter={function(e){e.currentTarget.style.background="#f8fafc";}}
                   onMouseLeave={function(e){e.currentTarget.style.background="transparent";}}>
                   <div style={{width:32,height:32,borderRadius:8,background:r.bg,display:"flex",alignItems:"center",justifyContent:"center",fontSize:15,flexShrink:0}}>{r.icon}</div>
                   <div style={{flex:1,minWidth:0}}>
-                    <div style={{fontSize:13,fontWeight:600,color:"#1A1612",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.label}</div>
-                    <div style={{fontSize:11,color:"#7A6E60",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.sub}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:"#0f172a",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.label}</div>
+                    <div style={{fontSize:11,color:"#64748b",overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap"}}>{r.sub}</div>
                   </div>
                   <span style={{fontSize:10,fontWeight:600,color:r.color,background:r.bg,padding:"2px 8px",borderRadius:20,flexShrink:0}}>{r.type}</span>
                 </div>;
